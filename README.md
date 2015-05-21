@@ -1,0 +1,1 @@
+clone the repo: `git clone git@bitbucket.org:gwmoura/georgesite.git`

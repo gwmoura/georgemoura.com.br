@@ -1,0 +1,413 @@
+<meta charset="utf-8">
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
+<channel>
+<title>George Moura</title>
+<atom:link href="http://georgemoura.com.br/feed/" rel="self" type="application/rss+xml"/>
+<link>http://georgemoura.com.br</link>
+<description>Programador PHP, Ruby, Java, Javascript e Mobile</description>
+<lastBuildDate>Tue, 21 Apr 2015 21:06:02 +0000</lastBuildDate>
+<language>pt-BR</language>
+<sy:updatePeriod>hourly</sy:updatePeriod>
+<sy:updateFrequency>1</sy:updateFrequency>
+<generator>http://wordpress.org/?v=3.9.3</generator>
+<item>
+<title>Criando VMs na Google Cloud Platform</title>
+<link>
+http://georgemoura.com.br/criando-vms-na-google-cloud-platform/
+</link>
+<comments>
+http://georgemoura.com.br/criando-vms-na-google-cloud-platform/#comments
+</comments>
+<pubDate>Tue, 17 Mar 2015 21:02:37 +0000</pubDate>
+<dc:creator>
+<![CDATA[ George Moura ]]>
+</dc:creator>
+<category>
+<![CDATA[ Sem categoria ]]>
+</category>
+<guid isPermaLink="false">http://www.georgemoura.com.br/?p=328</guid>
+<description>
+<![CDATA[
+<p>Neste tutorial vou mostrar como criar VMs na nuvem da Google (Google Cloud Platform). O primeiro passo é acessar: cloud.google.com e clicar em &#8220;Sign in&#8221; no canto superior direito. Após o login (com sua conta google) clique em &#8220;My Console&#8221; no canto superior direito. Ao clicar nesse link você irá para a página de projetos. [&#8230;]</p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/criando-vms-na-google-cloud-platform/">Criando VMs na Google Cloud Platform</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</description>
+<content:encoded>
+<![CDATA[
+<p>Neste tutorial vou mostrar como criar VMs na nuvem da Google (Google Cloud Platform). O primeiro passo é acessar: <a title="Google Cloud Platform" href="cloud.google.com" target="_blank">cloud.google.com</a> e clicar em &#8220;Sign in&#8221; no canto superior direito.</p> <p>Após o login (com sua conta google) clique em &#8220;My Console&#8221; no canto superior direito. Ao clicar nesse link você irá para a página de projetos.</p> <p>Nesta página clique em &#8220;Criar projeto&#8221;, será aberto um modal com o nome do projeto e um ID gerado automaticamente pela Google, você pode alterá-lo se quiser, é só digitar um novo nome e clicar no ícone de <em>reload</em>. Após definir o nome do projeto clique no botão &#8220;Criar&#8221; e aguarde o projeto ser criado.</p> <p><a href="http://george-moura-site-bucket.storage.googleapis.com/2015/03/new-projetc-gcloud.png"><img class="alignnone wp-image-329 size-medium" src="http://george-moura-site-bucket.storage.googleapis.com/2015/03/new-projetc-gcloud-300x205.png" alt="new-projetc-gcloud" width="300" height="205" /></a></p> <p>Após a criação do projeto, acesse-o clicando no link na lista de projetos ou na janelinha que ficará no canto inferior direito. Você verá uma janela como essa:</p> <p><a href="http://george-moura-site-bucket.storage.googleapis.com/2015/03/dashboard-gcloud.png"><img class="alignnone wp-image-330 size-medium" src="http://george-moura-site-bucket.storage.googleapis.com/2015/03/dashboard-gcloud-300x143.png" alt="dashboard-gcloud" width="300" height="143" /></a></p> <p>Agora acesse: <strong>Computação &gt; Google Compute Engine &gt; Instâncias da VM</strong> e você verá uma página como essa:</p> <p><a href="http://george-moura-site-bucket.storage.googleapis.com/2015/03/gce-index-gclod.png"><img class="alignnone wp-image-331 size-medium" src="http://george-moura-site-bucket.storage.googleapis.com/2015/03/gce-index-gclod-300x113.png" alt="gce-index-gclod" width="300" height="113" /></a></p> <p>Clique em &#8220;Criar instância&#8221; e será exibido um formulário com as configurações básicas da VM, preencha o campo NOME com um nome para sua VM, em FIREWALL selecione Permitir tráfego HTTP, selecione a ZONA que desejar, escolha o tipo de VM em TIPO DE MÁQUINA, em IMAGEM, escolha a imagem do SO que você achar melhor. Clique no botão &#8220;Criar&#8221; e aguarde a sua máquina ser criada, após a criação você verá uma tela como essa:</p> <p><a href="http://george-moura-site-bucket.storage.googleapis.com/2015/03/newvm-gcloud.png"><img class="alignnone wp-image-332 size-medium" src="http://george-moura-site-bucket.storage.googleapis.com/2015/03/newvm-gcloud-300x156.png" alt="newvm-gcloud" width="300" height="156" /></a></p> <p>Pronto! Sua maquina virtual já esta pronta e você pode acessá-la via ssh, pelo browser ou usando a ferramenta <a title="Gcloud Tool" href="https://cloud.google.com/compute/docs/gcloud-compute/?hl=pt_BR" target="_blank">gcloud</a>.</p> <p><a href="http://george-moura-site-bucket.storage.googleapis.com/2015/03/ssh-gcloud.png"><img class="alignnone wp-image-333 size-medium" src="http://george-moura-site-bucket.storage.googleapis.com/2015/03/ssh-gcloud-300x138.png" alt="ssh-gcloud" width="300" height="138" /></a></p> <p>Perceba que você não conseguirá acessar nenhuma página web da sua VM, isso porque só fizemos habilitar o tráfego http no firewall, mas ainda é necessário colocar algum servidor web rodando na porta 80, então meu caro leitor, agora é só acessar sua VM com umas das opções listadas acima se divertir instalando e rodando suas aplicações.</p> <p> <img src="http://georgemoura.com.br/wp-includes/images/smilies/icon_wink.gif" alt=";)" class="wp-smiley" /> </p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/criando-vms-na-google-cloud-platform/">Criando VMs na Google Cloud Platform</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</content:encoded>
+<wfw:commentRss>
+http://georgemoura.com.br/criando-vms-na-google-cloud-platform/feed/
+</wfw:commentRss>
+<slash:comments>0</slash:comments>
+</item>
+<item>
+<title>Iniciando com o Docker</title>
+<link>http://georgemoura.com.br/iniciando-com-o-docker/</link>
+<comments>
+http://georgemoura.com.br/iniciando-com-o-docker/#comments
+</comments>
+<pubDate>Mon, 13 Oct 2014 22:06:47 +0000</pubDate>
+<dc:creator>
+<![CDATA[ George Moura ]]>
+</dc:creator>
+<category>
+<![CDATA[ Sem categoria ]]>
+</category>
+<guid isPermaLink="false">http://www.georgemoura.com.br/?p=315</guid>
+<description>
+<![CDATA[
+<p>O que é o Docker? &#8220;An open platform for distributed applications&#8221; -&#160;Uma plataforma aberta para aplicativos distribuídos. Essa é a definição no site, mas não fica muito clara no início, porém faz sentido depois. O Docker é uma ferramenta para distribuir aplicações em containers de forma rápida e leve, ou seja você não precisa mais [&#8230;]</p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/iniciando-com-o-docker/">Iniciando com o Docker</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</description>
+<content:encoded>
+<![CDATA[
+<p><strong>O que é o Docker?</strong> </p> <p>&#8220;An open platform for distributed applications&#8221; -&nbsp;Uma plataforma aberta para aplicativos distribuídos. Essa é a definição no site, mas não fica muito clara no início, porém faz sentido depois. O Docker é uma ferramenta para distribuir aplicações em containers de forma rápida e leve, ou seja você não precisa mais provisionar um servidor para sua aplicação e depois instalar todas as dependências e repetir esse procedimento toda vez que for escalar sua aplicação. Com o Docker sua aplicação e tudo que ela precisa fica no container, é só subir para o servidor e pronto. O Docker apesar de ser cross plataforma, só roda containers linux.</p> <p><strong>Vantagens:</strong></p> <ul> <li>Compartilha os recursos da máquina, você não precisa alocar recursos como uma vm, os containers funcionam como processos do computador</li> <li>É só plugar e rodar, você não precisar provisionar um servidor inteiro e configurar tudo de novo, instale o Docker baixe as imagens necessárias e suba quantos containers precisar</li> <li>Agilize o deploy de aplicações, é só criar um container e rodá-lo no servidor</li> <li>Crie serviços simples e isolados, separe sua enorme aplicação em aplicações menores e isoladas que podem ser reutilizadas em vários servidores</li> <li>Isole as dependências, com o Docker você cria um container específico para sua aplicação</li> <li>Acelere sua entrega contínua, com o Docker você levanta sua aplicação em segundos e pode multiplicá-las em milhares de nós</li> </ul> <p><strong>Site do Docker:</strong><br /> <a href="https://www.docker.com/">https://www.docker.com/</a></p> <p><strong>Instalando o Docker:</strong><br /> O Docker pode ser instalado no Linux, Mac OS e no Windows. O link para as plataformas e locais você pode ver aqui&nbsp;<a href="https://docs.docker.com/installation/#installation">https://docs.docker.com/installation/#installation</a>, neste tutorial estou usando o Ubuntu 14.04.</p> <p>Para instalar o pacote mais recente do ubuntu (pode não ser a versão mais nova do Docker), faça o seguinte:</p> <pre>
+ $ sudo apt-get update
+ $ sudo apt-get install docker.io
+ $ sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
+ $ sudo sed -i '$acomplete -F _docker docker'/etc/bash_completion.d/docker.io
+ </pre> <p>para ver outras formas acesse: <a href="https://docs.docker.com/installation/ubuntulinux/#ubuntu-trusty-1404-lts-64-bit">https://docs.docker.com/installation/ubuntulinux/#ubuntu-trusty-1404-lts-64-bit</a></p> <p>Após a instalação você pode abrir o console e digitar <code>docker</code>, com isso você verá a lista de comandos:</p> <pre>
+ Usage: docker [OPTIONS] COMMAND [arg...]
+ -H=[unix:///var/run/docker.sock]: tcp://host:port to bind/connect to or unix://path/to/socket to use
+ 
+ A self-sufficient runtime for linux containers.
+ 
+ Commands:
+ attach Attach to a running container
+ build Build an image from a Dockerfile
+ commit Create a new image from a container's changes
+ cp Copy files/folders from the containers filesystem to the host path
+ diff Inspect changes on a container's filesystem
+ events Get real time events from the server
+ export Stream the contents of a container as a tar archive
+ history Show the history of an image
+ images List images
+ import Create a new filesystem image from the contents of a tarball
+ info Display system-wide information
+ inspect Return low-level information on a container
+ kill Kill a running container
+ load Load an image from a tar archive
+ login Register or Login to the docker registry server
+ logs Fetch the logs of a container
+ port Lookup the public-facing port which is NAT-ed to PRIVATE_PORT
+ pause Pause all processes within a container
+ ps List containers
+ pull Pull an image or a repository from the docker registry server
+ push Push an image or a repository to the docker registry server
+ restart Restart a running container
+ rm Remove one or more containers
+ rmi Remove one or more images
+ run Run a command in a new container
+ save Save an image to a tar archive
+ search Search for an image in the docker index
+ start Start a stopped container
+ stop Stop a running container
+ tag Tag an image into a repository
+ top Lookup the running processes of a container
+ unpause Unpause a paused container
+ version Show the docker version information
+ wait Block until a container stops, then print its exit code
+ </pre> <p><strong>Listando imagens</strong><br /> Para ver a lista de imagens instaladas no seu pc use: <code>docker images</code>, quando você tiver algumas imagens você terá esse resultado:</p> <pre>
+ REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE
+ gwmoura/centos-node-hello latest aa8963f7f251 40 minutes ago 460.2 MB
+ centos centos6 68edf809afe7 10 days ago 212.7 MB
+ </pre> <p>Perceba que eu possuo uma imagem do CentOS e que ela tem apenas 212.7 MB, isso mesmo, as imagens baixadas pelo Docker são bem pequenas e vem apenas com o necessário para rodar o sistema operacional, é importante seguir esse padrão, porque o ideal é que cada container Docker seja pequeno e rode apenas uma aplicação. Por exemplo, ao invés de instalar MySQL + Apache + PHP e etc, instale cada aplicação dessa em um container.</p> <p><strong>Baixando um imagem</strong><br /> Para baixar uma imagem use o comando <code>docker pull [nome-da-imagem]</code> ex: docker pull ubuntu. O local ideal para baixar mais imagens é: <a href="https://registry.hub.docker.com/">https://registry.hub.docker.com/</a>, lá existem vários repositórios.</p> <p><strong>Rodando um container</strong><br /> Para rodar um container é só utilizar o comando <code>docker run</code>, a sintaxe dele é bem simples: <code>docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</code>, como exemplo vou rodar o famoso hello world. </p> <pre>
+ $ docker run ubuntu /bin/echo 'Hello world'
+ Hello world
+ </pre> <p>Caso você queira acessar o container rode o seguinte comando: </p> <pre>
+ $ sudo docker run -t -i ubuntu /bin/bash
+ root@af8bae53bdd3:/#
+ </pre> <p><strong>Listando os processos</strong><br /> Para listar os processos docker use <code>docker ps</code> ou <code>docker ps -l</code></p> <pre>
+ $ docker ps -l
+ CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
+ 23e3a680fb7e ubuntu:14.04 /bin/echo 'Hello wor 20 minutes ago Exited (0) 20 minutes ago cocky_poincare
+ </pre> <p><strong>Removendo um container</strong><br /> O comando para remover é simples também</p> <pre>
+ $ docker rm cocky_poincare
+ </pre> <p>Perceba que o Docker da um nome aleatório ao container e foi este nome que utilizei, você pode especificar um nome usando o parâmetro <code>--name [nome-do-container]</code>. Caso você tenha algum container executando uma aplicação na porta 8080, por exemplo, você pode usar o comando <code>docker stop [container_name]</code> para parar o serviço e para reiniciar é só digitar <code>docker start [container_name]</code>.</p> <p><strong>Removendo uma imagem</strong><br /> Para remover uma imagem o comando é simples também, mas antes de removê-la lembre-se de remover todos os containers ligado a essa imagem. O comando é o <code>docker rmi [nome-da-imagem]</code>.</p> <p>Aqui foi só uma introdução, no próximo post irei ensinar como criar um container usando o Dockerfile e como fazer o deploy de um aplicação.</p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/iniciando-com-o-docker/">Iniciando com o Docker</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</content:encoded>
+<wfw:commentRss>
+http://georgemoura.com.br/iniciando-com-o-docker/feed/
+</wfw:commentRss>
+<slash:comments>0</slash:comments>
+</item>
+<item>
+<title>
+Desenvolvedores: Use suas habilidades de codificação para ajudar Tufão Haiyan nos esforços de resgate nas Filipinas
+</title>
+<link>
+http://georgemoura.com.br/desenvolvedores-use-habilidades-codificacao-ajudar-tufao-haiyan-esforcos-resgate-filipinas/
+</link>
+<comments>
+http://georgemoura.com.br/desenvolvedores-use-habilidades-codificacao-ajudar-tufao-haiyan-esforcos-resgate-filipinas/#comments
+</comments>
+<pubDate>Mon, 11 Nov 2013 18:02:56 +0000</pubDate>
+<dc:creator>
+<![CDATA[ George Moura ]]>
+</dc:creator>
+<category>
+<![CDATA[ Sem categoria ]]>
+</category>
+<guid isPermaLink="false">http://www.georgemoura.com.br/?p=287</guid>
+<description>
+<![CDATA[
+<p>Super Tufão Haiyan, um dos mais fortes ciclones tropicais já registrados, devastou as Filipinas na semana passada , matando até 10 mil pessoas. Os esforços de socorro já estão em andamento, incluindo um por do Geeklist Corpo de Desenvolvedores , que está recrutando programadores, gerentes de produto e outros especialistas em tecnologia de todo o mundo para construir ferramentas que [&#8230;]</p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/desenvolvedores-use-habilidades-codificacao-ajudar-tufao-haiyan-esforcos-resgate-filipinas/">Desenvolvedores: Use suas habilidades de codificação para ajudar Tufão Haiyan nos esforços de resgate nas Filipinas</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</description>
+<content:encoded>
+<![CDATA[
+<p>Super Tufão Haiyan, um dos mais fortes ciclones tropicais já registrados, <a href="http://translate.googleusercontent.com/translate_c?act=url&amp;depth=1&amp;hl=pt-BR&amp;ie=UTF8&amp;prev=_t&amp;rurl=translate.google.com&amp;sl=auto&amp;tl=pt-BR&amp;u=http://learning.blogs.nytimes.com/2013/11/11/6-qs-about-the-news-typhoon-haiyan-devastates-the-central-philippines/&amp;usg=ALkJrhh70P9wSlZhufudrdRzGHD3OsmMZQ" target="_blank">devastou as Filipinas na semana passada</a> , matando até 10 mil pessoas. Os esforços de socorro já estão em andamento, incluindo um por <a href="https://geekli.st/hackathon/52793a2660fb3f52d50001f8" target="_blank">do Geeklist Corpo de Desenvolvedores</a> , que está recrutando programadores, gerentes de produto e outros especialistas em tecnologia de todo o mundo para construir ferramentas que irão ajudar a coordenar os esforços de resgate, permitem a comunicação de crise e certificar-se de suprimentos de emergência e alimentos são rapidamente distribuídos para as áreas necessitadas.</p> <p>A iniciativa está a trabalhar com o governo das Filipinas para implantar e começar a usar projetos acabados. Kat Borlongan, coordenador da iniciativa, me diz que eles estão procurando designers, desenvolvedores, gerentes de produto e especialistas em mídia social para ajudar.</p> <p>&#8220;Nós temos um monte de voluntários com o coração no lugar certo, com pouca ou nenhuma experiência em nada disso, para que os gerentes de produtos especializados em colaboração virtual são necessários. Além disso, no ponto em que estamos agora, as equipes de pré-formados com as suas próprias idéias sobre como fazer isso acontecer são mais do que bem-vindo &#8220;, diz ela.</p> <p>Entre os projetos em andamento na plataforma Geeklist é a <a href="https://geekli.st/hackathon/52793a2660fb3f52d50001f8/idea/527c5e0453ddeb854a000026" target="_blank">de Coordenação de Salvamento</a>(hashtag # ReliefPH em plataformas de mídia social), que está ajudando os esforços de resgate ser melhor organizado por ferramentas de desenvolvimento para classificar através de pedidos de resgate que estão sendo enviados através de múltiplas fontes, incluindo SMS, Twitter e Web Forms. Os membros do projeto com base nas Filipinas estão trabalhando com provedores de recursos para alívio mapa necessidades, tais como água, comida, abrigo e remédios. Um protótipo de seu mapa interativo está acima em <a href="http://relief.io/" target="_blank">Relief.io</a> .</p> <p>A iniciativa não é apenas para os esforços de resgate de emergência. Borlongan acrescenta que outro foco principal é a reconstrução.</p> <p>&#8220;Neste momento de telecomunicações são estabelecidas em muitas áreas e as estradas estão bloqueadas, dificultando os esforços de socorro. A iluminação de emergência está sendo instalado para reabrir pistas do aeroporto e entregar geradores de emergência e telecomunicações San Fronteiras estão trabalhando com empresas de telecomunicações locais para restaurar as comunicações. Uma vez que as comunicações são restauradas, os pedidos de resgate e socorro são esperados para bola de neve &#8220;, diz ela.</p> <p>fonte: TechCrunch - <a href="http://techcrunch.com/2013/11/11/developers-use-your-coding-skills-to-help-typhoon-haiyan-rescue-efforts-in-the-philippines/?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+Techcrunch+%28TechCrunch%29">http://techcrunch.com/2013/11/11/developers-use-your-coding-skills-to-help-typhoon-haiyan-rescue-efforts-in-the-philippines/?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+Techcrunch+%28TechCrunch%29</a></p> <p>traduzido pelo Google Translate</p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/desenvolvedores-use-habilidades-codificacao-ajudar-tufao-haiyan-esforcos-resgate-filipinas/">Desenvolvedores: Use suas habilidades de codificação para ajudar Tufão Haiyan nos esforços de resgate nas Filipinas</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</content:encoded>
+<wfw:commentRss>
+http://georgemoura.com.br/desenvolvedores-use-habilidades-codificacao-ajudar-tufao-haiyan-esforcos-resgate-filipinas/feed/
+</wfw:commentRss>
+<slash:comments>0</slash:comments>
+</item>
+<item>
+<title>Chrome OS no meu pc</title>
+<link>http://georgemoura.com.br/chrome-os-no-meu-pc/</link>
+<comments>
+http://georgemoura.com.br/chrome-os-no-meu-pc/#comments
+</comments>
+<pubDate>Sat, 12 Oct 2013 18:53:22 +0000</pubDate>
+<dc:creator>
+<![CDATA[ George Moura ]]>
+</dc:creator>
+<category>
+<![CDATA[ Sem categoria ]]>
+</category>
+<guid isPermaLink="false">http://www.georgemoura.com.br/?p=261</guid>
+<description>
+<![CDATA[
+<p>Atenção faça os testes usando uma máquina virtual ou um pc que não tenha utilidade Aí galera venho falar para vocês sobre o Chrome OS, o sistema operacional da Google, acabei de instalar ele no meu pen-drive e já estou utilizando, a propósito estou escrevendo este post nele. Eu estava empolgado para comprar um chromebook, [&#8230;]</p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/chrome-os-no-meu-pc/">Chrome OS no meu pc</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</description>
+<content:encoded>
+<![CDATA[
+<p><strong><span style="color: #ff0000;">Atenção faça os testes usando uma máquina virtual ou um pc que não tenha utilidade</span></strong></p> <p>Aí galera venho falar para vocês sobre o Chrome OS, o sistema operacional da Google, acabei de instalar ele no meu pen-drive e já estou utilizando, a propósito estou escrevendo este post nele.</p> <p>Eu estava empolgado para comprar um chromebook, mas aí como sistema é open source resolvi pesquisar e achei uma iso, então resolvi testar o ditocujo. O sistema é bem simples como de costume da Google, ele na verdade é uma tela com o chrome instalado e mais nada, não existe a pasta &#8220;Meus documentos&#8221;, &#8220;Computador&#8221;, &#8220;Painel de Controle&#8221;, &#8220;Acessórios&#8221; ou qualquer outra pasta ou aplicativo que você possa imaginar, a única pasta que existe é a &#8220;Files&#8221; e dentro dela a pasta Downloads e Google Drive <img src="http://georgemoura.com.br/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" />  é meus amigos, é simplesmente o chrome e os aplicativos que você instalar e visualizadores (imagem, audio e video), mas só conseguir ver imagens, arquivos mp3 são reconhecidos, mas não consegui reproduzir, nem pdf da pra ver, só baixando algum aplicativo ou pelo gmail.</p> <p>A sistema que estou utilizando na verdade é o Chromium (a versão open source do Chrome OS), no chromium, os plugins do flash e do pdf reader que já vem integrado ao chrome, não vêm habilitados mas a comunidade já achou um maneira de habilitá-los, <a href="https://gist.github.com/rikels/4031126" target="_blank">veja aqui.</a></p> <p>O Chromium OSe o Chrome OS, são sistemas diferentes neste <a href="http://dev.chromium.org/chromium-os/chromium-os-faq" target="_blank">link</a> da pra ver a diferença entre eles, basicamente um da mais trabalho que o outro para configurar, mas fazem a mesma coisas.</p> <p>A instalação do Chrome OS no pc é bem simples veja aqui o passo a passo: <a href="http://chromeos.hexxeh.net/" target="_blank">http://chromeos.hexxeh.net/</a>.</p> <p>Você vai precisar de um pen-drive de 4Gb e depois de copiado a ISO é só dar boot no pc via usb, no link acima você também acha as imagens para VMWare e Virtualbox.</p> <p>Agora deixo pra vocês uns prints <img src="http://georgemoura.com.br/wp-includes/images/smilies/icon_biggrin.gif" alt=":D" class="wp-smiley" /> </p> <p><a href="http://george-moura-site-bucket.storage.googleapis.com/2013/10/Screenshot-2013-10-12-at-11.49.31.png"><img class="alignnone size-thumbnail wp-image-271" alt="Screenshot 2013-10-12 at 11.49.31" src="http://george-moura-site-bucket.storage.googleapis.com/2013/10/Screenshot-2013-10-12-at-11.49.31-150x150.png" width="150" height="150" /></a> <a href="http://george-moura-site-bucket.storage.googleapis.com/2013/10/Screenshot-2013-10-12-at-15.10.31.png"><img class="alignnone size-thumbnail wp-image-272" alt="Screenshot 2013-10-12 at 15.10.31" src="http://george-moura-site-bucket.storage.googleapis.com/2013/10/Screenshot-2013-10-12-at-15.10.31-150x150.png" width="150" height="150" /></a> <a href="http://george-moura-site-bucket.storage.googleapis.com/2013/10/Screenshot-2013-10-12-at-15.12.48.png"><img class="alignnone size-thumbnail wp-image-273" alt="Screenshot 2013-10-12 at 15.12.48" src="http://george-moura-site-bucket.storage.googleapis.com/2013/10/Screenshot-2013-10-12-at-15.12.48-150x150.png" width="150" height="150" /></a> <a href="http://george-moura-site-bucket.storage.googleapis.com/2013/10/Screenshot-2013-10-12-at-15.13.42.png"><img class="alignnone size-thumbnail wp-image-274" alt="Screenshot 2013-10-12 at 15.13.42" src="http://george-moura-site-bucket.storage.googleapis.com/2013/10/Screenshot-2013-10-12-at-15.13.42-150x150.png" width="150" height="150" /></a> <a href="http://george-moura-site-bucket.storage.googleapis.com/2013/10/Screenshot-2013-10-12-at-15.14.17.png"><img class="alignnone size-thumbnail wp-image-276" alt="Screenshot 2013-10-12 at 15.14.17" src="http://george-moura-site-bucket.storage.googleapis.com/2013/10/Screenshot-2013-10-12-at-15.14.17-150x150.png" width="150" height="150" /></a> <a href="http://george-moura-site-bucket.storage.googleapis.com/2013/10/Screenshot-2013-10-12-at-15.14.08.png"><img class="alignnone size-thumbnail wp-image-275" alt="Screenshot 2013-10-12 at 15.14.08" src="http://george-moura-site-bucket.storage.googleapis.com/2013/10/Screenshot-2013-10-12-at-15.14.08-150x150.png" width="150" height="150" /></a></p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/chrome-os-no-meu-pc/">Chrome OS no meu pc</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</content:encoded>
+<wfw:commentRss>
+http://georgemoura.com.br/chrome-os-no-meu-pc/feed/
+</wfw:commentRss>
+<slash:comments>0</slash:comments>
+</item>
+<item>
+<title>
+Como deletar registros duplicados no banco de dados, deixando apenas um
+</title>
+<link>
+http://georgemoura.com.br/como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um/
+</link>
+<comments>
+http://georgemoura.com.br/como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um/#comments
+</comments>
+<pubDate>Sat, 05 Oct 2013 12:20:19 +0000</pubDate>
+<dc:creator>
+<![CDATA[ George Moura ]]>
+</dc:creator>
+<category>
+<![CDATA[ Post ]]>
+</category>
+<category>
+<![CDATA[ banco de dados ]]>
+</category>
+<category>
+<![CDATA[ mysql ]]>
+</category>
+<category>
+<![CDATA[ registros duplicados ]]>
+</category>
+<category>
+<![CDATA[ sql ]]>
+</category>
+<guid isPermaLink="false">http://www.georgemoura.com.br/?p=255</guid>
+<description>
+<![CDATA[
+<p>Pessoal, vim deixar um post bem pequeno, mas que foi minha salvação e achei legal compartilhar. Estou em um projeto e acabei precisando fazer uma migração de dados, o problema é que meu script acabou duplicando as informações no banco de dados, imagine o problema, a sorte é que era um banco de desenvolvimento e [&#8230;]</p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um/">Como deletar registros duplicados no banco de dados, deixando apenas um</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</description>
+<content:encoded>
+<![CDATA[
+<p>Pessoal, vim deixar um post bem pequeno, mas que foi minha salvação e achei legal compartilhar. Estou em um projeto e acabei precisando fazer uma migração de dados, o problema é que meu script acabou duplicando as informações no banco de dados, imagine o problema, a sorte é que era um banco de desenvolvimento e que eu poderia apagar a tabela e restaurar, mas não queria ter esse trabalho e resolvi pesquisar uma solução.</p> <p>Vamos ao que interessa, esse script sql ajudará a apagar os registros duplicados no banco de dados, deixando apenas um, o último nesse caso.</p> <p>Assumindo que você use o banco de dados Mysql e tenha uma tabela chamada &#8220;nomes&#8221; e que essa tabela tenha os campos id e nome. Essa sintaxe pode ser usada em outros bancos, digite o seguinte comando:<br /> <code><br /> DELETE a FROM nomes AS a, nomes AS b WHERE a.nome=b.nome AND a.id &lt; b.id<br /> </code></p> <p>Explicando:</p> <p>nomes: É a tabela com os registros duplicados.<br /> nome: É o campo para comparação dos registros.<br /> id: É a chave primária da tabela.</p> <p>Caso queira apagar todos os registros duplicados, sem deixar nenhum é só trocar o &#8220;&lt;&#8221; por &#8220;!=&#8221;</p> <p>Pronto! É isso aí pessoal, muito simples né?</p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um/">Como deletar registros duplicados no banco de dados, deixando apenas um</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</content:encoded>
+<wfw:commentRss>
+http://georgemoura.com.br/como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um/feed/
+</wfw:commentRss>
+<slash:comments>0</slash:comments>
+</item>
+<item>
+<title>Scaffold com ZF Tool</title>
+<link>http://georgemoura.com.br/scaffold-com-zf-tool/</link>
+<comments>
+http://georgemoura.com.br/scaffold-com-zf-tool/#comments
+</comments>
+<pubDate>Sun, 04 Aug 2013 17:28:04 +0000</pubDate>
+<dc:creator>
+<![CDATA[ George Moura ]]>
+</dc:creator>
+<category>
+<![CDATA[ Sem categoria ]]>
+</category>
+<guid isPermaLink="false">http://www.georgemoura.com.br/?p=199</guid>
+<description>
+<![CDATA[
+<p>Olá pessoal, hoje escrevo sobre uma solução que desenvolvi utilizando um script .bat e zftool, eu o chamo de Zend Scaffold. Eu programo em Ruby on Rails e sentia falta da facilidade do rails no zend, para quem não conhece o rails é um framework para ruby e este possui um comando, chamado scaffold, que [&#8230;]</p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/scaffold-com-zf-tool/">Scaffold com ZF Tool</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</description>
+<content:encoded>
+<![CDATA[
+<p>Olá pessoal, hoje escrevo sobre uma solução que desenvolvi utilizando um script .bat e zftool, eu o chamo de Zend Scaffold.</p> <p>Eu programo em Ruby on Rails e sentia falta da facilidade do rails no zend, para quem não conhece o <a title="Ruby on Rails no wikipedia" href="http://pt.wikipedi
+]]>
+<![CDATA[
+a.org/wiki/Ruby_on_Rails" target="_blank">rails</a> é um framework para ruby e este possui um comando, chamado scaffold, que você utiliza para gerar os Controllers com as principais Actions (index, edit, update, new, create e delete), os Models e os Forms, além das rotas e tabelas no banco de dados, é uma mão na roda.</p> <p>No Zend não encontramos isso, o máximo que conseguimos é extender a classe Zend_Rest_Controller e implementar os métodos delete, get, post e put, mas as views não são geradas. Deixemos de explicações e vamos ao que interessa, estou desenvolvendo um sistema e tive a necessidade de utilizar um banco de dados Access, consegui fazer a ligação ODBC criando uma classe abstrata (Que chamei de Abstract_Model) e extendi nos Models,  tive que fazer isso pois a base da dados Access parece que não suporta todos os comando sql executados pela Zend_Db_Table, como o projeto vão tem muitos controllers e todos terão CRUD eu teria que criar controller por controller, adicionar as actions em cada um, criar os forms e criar também os models. Pensando na solução criei um arquivo .bat em que eu passo o nome do controller e o nome do módulo e ele gera o controller, as action,  as views, o model e o form.</p> <p>Isso nos da uma agilidade boa, já que não precisamos ter que digitar os mesmos comandos diversas vezes. Disponibilizei o projeto no github para que mais pessoas possam contribuir e possamos colaborar com a Zend para desenvolver uma ferramenta melhor e mais prática, utilizando scaffold com zf tool.</p> <p>Link para o Github: <a title="Zend Scaffold no Github" href="https://github.com/gwmoura/ZendScaffold" target="_blank">https://github.com/gwmoura/ZendScaffold</a></p> <p>Obrigado pessoal e até a próxima</p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/scaffold-com-zf-tool/">Scaffold com ZF Tool</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</content:encoded>
+<wfw:commentRss>
+http://georgemoura.com.br/scaffold-com-zf-tool/feed/
+</wfw:commentRss>
+<slash:comments>0</slash:comments>
+</item>
+<item>
+<title>Uma boa IDE para Ruby on Rails</title>
+<link>
+http://georgemoura.com.br/uma-boa-ide-para-ruby-on-rails/
+</link>
+<comments>
+http://georgemoura.com.br/uma-boa-ide-para-ruby-on-rails/#comments
+</comments>
+<pubDate>Thu, 04 Jul 2013 00:23:47 +0000</pubDate>
+<dc:creator>
+<![CDATA[ George Moura ]]>
+</dc:creator>
+<category>
+<![CDATA[ Post ]]>
+</category>
+<category>
+<![CDATA[ eclipse ]]>
+</category>
+<category>
+<![CDATA[ ide ]]>
+</category>
+<category>
+<![CDATA[ rails ]]>
+</category>
+<category>
+<![CDATA[ ruby ]]>
+</category>
+<guid isPermaLink="false">http://www.georgemoura.com.br/?p=150</guid>
+<description>
+<![CDATA[
+<p>Meus caros estou escrevendo esse post para falar sobre uma dificuldade que tive logo quando resolvi programar para ruby &#8211; uma IDE. Comecei meus primeiros estudos utilizando o Eclipse e fazendo os teste em meu próprio notebook, mas assim que comecei a testar meu códigos em servidores me deparei com problemas: A versão do rails [&#8230;]</p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/uma-boa-ide-para-ruby-on-rails/">Uma boa IDE para Ruby on Rails</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</description>
+<content:encoded>
+<![CDATA[
+<p>Meus caros estou escrevendo esse post para falar sobre uma dificuldade que tive logo quando resolvi programar para ruby &#8211; uma IDE. Comecei meus primeiros estudos utilizando o Eclipse e fazendo os teste em meu próprio notebook, mas assim que comecei a testar meu códigos em servidores me deparei com problemas:</p> <ol> <li>A versão do rails no servidor web era diferente da versão que utilizava no meu computador;</li> <li>Atualizar o código era muito ruim eu tinha que alterar em meu pc e depois subir os arquivos pelo FileZilla</li> </ol> <p>Nas minhas pesquisas para achar uma boa IDE para ruby on rails encontrei as seguintes: <a title="Eclipse" href="http://www.eclipse.org/" target="_blank">Eclipse</a>, <a title="Netbeans 6.9" href="https://netbeans.org/community/releases/69/" target="_blank">Netbeans (versão 6.9)</a>, <a title="Sublime Text" href="http://www.sublimetext.com/" target="_blank">Sublime Text</a> e <a title="Titanium Studio" href="http://www.appcelerator.com/platform/titanium-studio/" target="_blank">Titanium Studio</a>.</p> <h2>Titanium Studio</h2> <p>Essa é descrição encontrada no site (traduzida pelo Google Translate):</p> <blockquote><p>IDE baseada no Eclipse Studio permite que você crie atraentes multi-plataforma, nativas aplicações móveis – tudo a partir de uma base de código único. Com 60-90% de reutilização de código, você pode criar aplicativos para tablets, telefones inteligentes, smart TVs, mais rápido e com custo menor que qualquer outro ambiente.<br /> Com backend móvel integrada como um serviço (MBaaS) de recursos, bem como no dispositivo de depuração e um framework MVC (liga), estúdio de titânio é a plataforma de desenvolvimento móvel mais completa.</p></blockquote> <p>Como vocês podem ver ela é uma IDE voltada para desenvolvimento móvel, utilizando o próprio framework, que por sinal é fácil de usar, mas ela também server de IDE para outras linguagens, mas é uma pena que nas últimas atualizações o suporte a Ruby on Rails acabou e o que eu achava mais interessante é que ela já vinha integrado com acesso ftp e eu podia alterar os arquivos locais e a IDE já atualizava no servidor (Sabemos que o<strong> ideal é ter um servidor de testes, desenvolvimento e produção</strong>, mas para um momento de emergência é muito bom, ou até mesmo para atualização de servidor de teste com acesso ftp.</p> <h2>Netbeans 6.9</h2> <p>IDE Muito conhecida já vem com servidor ruby instalado (JRuby) e tem suport a rails 3.0. Descartei esta IDE pelo fato de possuir ligação ftp em projetos ruby on rails.</p> <h2>Sublime Text</h2> <p>Uma das melhores ferramentas para edição de texto, leve, limpa e cheia de plugins, é uma ótima ferramenta, com o seu plugin FTP (Que deve ser instalado) você pode editar direto no servidor ou mapear uma pasta no seu desktop que já possua o código, editar localmente e depois sincronizar as alterações.</p> <h2>Eclipse</h2> <p>Por fim a IDE mais conhecida pelo mercado. Inicialmente essa IDE estava entre as minhas últimas opções, mas depois que descobri um plugin ftp (<a title="JCraft SFTP" href="http://www.jcraft.com/eclipse-sftp/" target="_blank">JCraft SFTP Plug-in</a>), ela subiu nas minhas preferências, acima de tudo pela sua velocidade e por suportar uma quantidade enorme de plataformas com o Eclipse você pode programar na maioria das linguagens (C, C++, PHP, JAVA, Ruby, Phyton, Javasrctipt e por aí vai). Para programar em ruby com o eclipse é necessário <a title="Aptana Studio" href="http://www.aptana.com/products/radrails" target="_blank">instalar o plugin RadRails ou instalar a IDE (Aptana Studio)</a>.</p> <p>Atualmente eu utilizo o Eclipse como ferramenta de trabalho, não consigo salvar simultaneamente no servidor, mas pelo menos posso enviar os arquivos individualmente sem ter que ir para outro programa e nem preciso enviar um bloco grande de arquivos, envio apenas o necessário. É isso aí pessoal, Mais pra frente escreverei como instalar o plugin Aptana Studio e o JCraft SFTP. Qualquer dúvida é só entrar em contato.</p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/uma-boa-ide-para-ruby-on-rails/">Uma boa IDE para Ruby on Rails</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</content:encoded>
+<wfw:commentRss>
+http://georgemoura.com.br/uma-boa-ide-para-ruby-on-rails/feed/
+</wfw:commentRss>
+<slash:comments>0</slash:comments>
+</item>
+<item>
+<title>Site Sou Julio Rocha</title>
+<link>http://georgemoura.com.br/site-sou-julio-rocha/</link>
+<comments>
+http://georgemoura.com.br/site-sou-julio-rocha/#comments
+</comments>
+<pubDate>Wed, 22 May 2013 11:10:35 +0000</pubDate>
+<dc:creator>
+<![CDATA[ George Moura ]]>
+</dc:creator>
+<category>
+<![CDATA[ Portifolio ]]>
+</category>
+<guid isPermaLink="false">http://www.georgemoura.com.br/?p=157</guid>
+<description>
+<![CDATA[
+<p>O Site Sou Julio Rocha, foi um projeto realizado junto ao candidato Julio Rocha, foi um projeto simples e rápido, fizemos algumas integrações com o álbum da campanha no Facebook e módulo de agenda. &#160; Veja o projeto</p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/site-sou-julio-rocha/">Site Sou Julio Rocha</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</description>
+<content:encoded>
+<![CDATA[
+<p>O Site Sou Julio Rocha, foi um projeto realizado junto ao candidato Julio Rocha, foi um projeto simples e rápido, fizemos algumas integrações com o álbum da campanha no Facebook e módulo de agenda.</p> <p>&nbsp;</p> <p><a title="Sou Julio Rocha" href="http://www.soujuliorocha.com.br/">Veja o projeto</a></p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/site-sou-julio-rocha/">Site Sou Julio Rocha</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</content:encoded>
+<wfw:commentRss>
+http://georgemoura.com.br/site-sou-julio-rocha/feed/
+</wfw:commentRss>
+<slash:comments>0</slash:comments>
+</item>
+<item>
+<title>Loja Virtual Com Q Relógio</title>
+<link>
+http://georgemoura.com.br/loja-virtual-com-q-relogio/
+</link>
+<comments>
+http://georgemoura.com.br/loja-virtual-com-q-relogio/#comments
+</comments>
+<pubDate>Wed, 22 May 2013 11:03:14 +0000</pubDate>
+<dc:creator>
+<![CDATA[ George Moura ]]>
+</dc:creator>
+<category>
+<![CDATA[ Portifolio ]]>
+</category>
+<category>
+<![CDATA[ Sem categoria ]]>
+</category>
+<guid isPermaLink="false">http://www.georgemoura.com.br/?p=140</guid>
+<description>
+<![CDATA[
+<p>Loja Virtual da empresa Com Q Relógio, foi um projeto inovador já que fizemos uma integração entre a SEFAZ BA e a plataforma de e-commerce utilizada (Opencart). Esse projeto além de uma loja também é um emissor de NF-e (Nota Fiscal Eletrônica), fizemos também outros módulos adicionais: Mensagem de boas vindas customizada Módulo de sugestões [&#8230;]</p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/loja-virtual-com-q-relogio/">Loja Virtual Com Q Relógio</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</description>
+<content:encoded>
+<![CDATA[
+<p>Loja Virtual da empresa Com Q Relógio, foi um projeto inovador já que fizemos uma integração entre a SEFAZ BA e a plataforma de e-commerce utilizada (Opencart). Esse projeto além de uma loja também é um emissor de NF-e (Nota Fiscal Eletrônica), fizemos também outros módulos adicionais:</p> <ol> <li>Mensagem de boas vindas customizada</li> <li>Módulo de sugestões</li> <li>Catálogo de Produtos</li> </ol> <p>&nbsp;</p> <p><a title="Com Q Relógio" href="http://www.comqrelogio.com.br/" target="_blank">Veja o projeto</a></p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/loja-virtual-com-q-relogio/">Loja Virtual Com Q Relógio</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</content:encoded>
+<wfw:commentRss>
+http://georgemoura.com.br/loja-virtual-com-q-relogio/feed/
+</wfw:commentRss>
+<slash:comments>0</slash:comments>
+</item>
+<item>
+<title>Loja Virtual Leme Militar</title>
+<link>
+http://georgemoura.com.br/loja-virtual-leme-militar/
+</link>
+<comments>
+http://georgemoura.com.br/loja-virtual-leme-militar/#comments
+</comments>
+<pubDate>Fri, 01 Feb 2013 22:11:51 +0000</pubDate>
+<dc:creator>
+<![CDATA[ George Moura ]]>
+</dc:creator>
+<category>
+<![CDATA[ Portifolio ]]>
+</category>
+<guid isPermaLink="false">http://www.georgemoura.com.br/?p=125</guid>
+<description>
+<![CDATA[
+<p>Loja Virtual da empresa Leme Militar, criada com o Opencart. Foi realizado um processo de modificação tanto Layout como das funcionalidades internas da loja para atender os requisitos da empresa. Entre as adaptações temos: Instalamos um módulo de integração com o ERP da empresa; Criamos uma nova forma de pagamento; Criamos um módulo para envio [&#8230;]</p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/loja-virtual-leme-militar/">Loja Virtual Leme Militar</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</description>
+<content:encoded>
+<![CDATA[
+<p>Loja Virtual da empresa Leme Militar, criada com o Opencart. Foi realizado um processo de modificação tanto Layout como das funcionalidades internas da loja para atender os requisitos da empresa.</p> <p>Entre as adaptações temos:</p> <ol> <li>Instalamos um módulo de integração com o ERP da empresa;</li> <li>Criamos uma nova forma de pagamento;</li> <li>Criamos um módulo para envio de documentação do cliente;</li> <li>Criamos um módulo de promoção automática.</li> </ol> <p>&nbsp;</p> <p><a title="Loja Virtual Leme" href="http://www.lememilitar.com" target="_blank">Veja o projeto</a></p> <p>&nbsp;</p> <p>&nbsp;</p> <p>The post <a rel="nofollow" href="http://georgemoura.com.br/loja-virtual-leme-militar/">Loja Virtual Leme Militar</a> appeared first on <a rel="nofollow" href="http://georgemoura.com.br">George Moura</a>.</p>
+]]>
+</content:encoded>
+<wfw:commentRss>
+http://georgemoura.com.br/loja-virtual-leme-militar/feed/
+</wfw:commentRss>
+<slash:comments>0</slash:comments>
+</item>
+</channel>
+</rss>
+Open in feedly

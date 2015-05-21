@@ -1,0 +1,117 @@
+application: george-moura-site
+version: 1
+runtime: php55
+api_version: 1
+
+handlers:
+#- url: /(.*\.(htm|html|css|js))$
+#  static_files: georgesite/\1
+#  upload: georgesite/.*\.(htm|html|css|js)$
+#  application_readable: true
+
+#- url: /wp-content/(.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg))$
+#  static_files: georgesite/wp-content/\1
+#  upload: georgesite/wp-content/.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg)$
+#  application_readable: true
+
+- url: /(.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg))$
+  static_files: georgesite/\1
+  upload: georgesite/.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg)$
+  application_readable: true
+
+#- url: /wp-includes/images/media/(.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg))$
+#  static_files: georgesite/wp-includes/images/media/\1
+#  upload: georgesite/wp-includes/images/media/.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg)$
+#  application_readable: true
+
+#- url: /wp-admin/(.+)
+#  script: georgesite/wp-admin/\1
+#  secure: always
+
+#- url: /wp-admin/
+#  script: georgesite/wp-admin/index.php
+#  secure: always
+
+#- url: /wp-login.php
+#  script: georgesite/wp-login.php
+#  secure: always
+
+#- url: /wp-cron.php
+#  script: georgesite/wp-cron.php
+#  login: admin
+
+#- url: /xmlrpc.php
+#  script: georgesite/xmlrpc.php
+
+#- url: /wp-(.+).php
+#  script: georgesite/wp-\1.php
+
+#- url: /(.+)?/?
+#  script: georgesite/index.php
+- url: /criando-vms-na-google-cloud-platform/
+  script: posts/criando-vms-na-google-cloud-platform.html
+
+- url: /criando-vms-na-google-cloud-platform
+  script: posts/criando-vms-na-google-cloud-platform.html
+
+- url: /iniciando-com-o-docker/
+  script: posts/iniciando-com-o-docker.html
+
+- url: /iniciando-com-o-docker
+  script: posts/iniciando-com-o-docker.html
+
+- url: /chrome-os-no-meu-pc/
+  script: posts/chrome-os-no-meu-pc.html
+
+- url: /chrome-os-no-meu-pc
+  script: posts/chrome-os-no-meu-pc.html
+
+- url: /como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um/
+  script: posts/como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um.html
+
+- url: /como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um
+  script: posts/como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um.html
+
+- url: /uma-boa-ide-para-ruby-on-rails/
+  script: posts/uma-boa-ide-para-ruby-on-rails.html
+
+- url: /uma-boa-ide-para-ruby-on-rails
+  script: posts/uma-boa-ide-para-ruby-on-rails.html
+
+- url: /feed/
+  mime_type: application/xml
+  http_headers:
+    Content-type: application/xml
+  static_files: feed.xml
+
+- url: /feed
+  mime_type: application/xml
+  http_headers:
+    Content-type: application/xml
+  #script: feed.xml
+  static_files: feed.xml
+
+- url: /(.+)?/?
+  script: index.html
+
+skip_files:
+- ^(.*/)?\.zip$
+- ^(.*/)?\.bat$
+- ^(.*/)?\.sh$
+- ^(.*/)?\.md$
+- georgesite/wp-content/uploads/
+- georgesite/wp-content/cache/autoptimize/
+- georgesite/wp-content/themes/georgetheme/
+- georgesite/wp-content/themes/spine/
+- georgesite/wp-content/themes/twentyeleven/
+- georgesite/wp-content/themes/twentyfourteen/
+- georgesite/wp-content/themes/twentyten/
+- georgesite/wp-content/themes/twentytwelve/
+- georgesite/wp-content/themes/wp-polymer-theme/
+
+
+env_variables:
+  MYSQL_USER: root
+  MYSQL_PASS: root
+  MYSQL_HOST: localhost
+  MYSQL_APPENGINE_PASS: "G43My#g30sq!"

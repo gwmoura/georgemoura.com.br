@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>George Moura - Desenvolvedor Web e Mobile</title>
+	<link rel="canonical" href="http://georgemoura.com.br/" />
+	<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-38960674-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	</script>
+</head>
+<body>
+<header>
+		<a class="home-link" href="/" title="George Moura" rel="home">
+			<h1 class="site-title">George Moura</h1>
+			<h4 class="site-description">Programador PHP, Ruby, Java, Javascript e Mobile</h4>
+		</a>
+	</header>
+<article id="post-328" class="post-328 post type-post status-publish format-standard hentry category-sem-categoria">
+	<header class="entry-header">
+		
+				<h1 class="entry-title">Criando VMs na Google Cloud Platform</h1>
+		
+		<div class="entry-meta">
+			<span class="date"><a href="http://georgemoura.com.br/criando-vms-na-google-cloud-platform/" title="Link permanente para Criando VMs na Google Cloud Platform" rel="bookmark"><time class="entry-date" datetime="2015-03-17T18:02:37+00:00">17 de março de 2015</time></a></span><span class="categories-links"><a href="http://georgemoura.com.br/category/sem-categoria/" title="Ver todos os posts em Sem categoria" rel="category tag">Sem categoria</a></span><span class="author vcard"><a class="url fn n" href="http://georgemoura.com.br/author/admin/" title="Ver todos posts por George Moura" rel="author">George Moura</a></span>					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p>Neste tutorial vou mostrar como criar VMs na nuvem da Google (Google Cloud Platform). O primeiro passo é acessar: <a title="Google Cloud Platform" href="cloud.google.com" target="_blank">cloud.google.com</a> e clicar em “Sign in” no canto superior direito.</p>
+<p>Após o login (com sua conta google) clique em “My Console” no canto superior direito. Ao clicar nesse link você irá para a página de projetos.</p>
+<p>Nesta página clique em “Criar projeto”, será aberto um modal com o nome do projeto e um ID gerado automaticamente pela Google, você pode alterá-lo se quiser, é só digitar um novo nome e clicar no ícone de <em>reload</em>. Após definir o nome do projeto clique no botão “Criar” e aguarde o projeto ser criado.</p>
+<p><a href="http://george-moura-site-bucket.storage.googleapis.com/2015/03/new-projetc-gcloud.png"><img class="alignnone wp-image-329 size-medium" src="http://george-moura-site-bucket.storage.googleapis.com/2015/03/new-projetc-gcloud-300x205.png" alt="new-projetc-gcloud" width="300" height="205"></a></p>
+<p>Após a criação do projeto, acesse-o clicando no link na lista de projetos ou na janelinha que ficará no canto&nbsp;inferior direito. Você verá uma janela como essa:</p>
+<p><a href="http://george-moura-site-bucket.storage.googleapis.com/2015/03/dashboard-gcloud.png"><img class="alignnone wp-image-330 size-medium" src="http://george-moura-site-bucket.storage.googleapis.com/2015/03/dashboard-gcloud-300x143.png" alt="dashboard-gcloud" width="300" height="143"></a></p>
+<p>Agora acesse: <strong>Computação &gt; Google Compute Engine &gt; Instâncias da VM</strong> e você verá uma página como essa:</p>
+<p><a href="http://george-moura-site-bucket.storage.googleapis.com/2015/03/gce-index-gclod.png"><img class="alignnone wp-image-331 size-medium" src="http://george-moura-site-bucket.storage.googleapis.com/2015/03/gce-index-gclod-300x113.png" alt="gce-index-gclod" width="300" height="113"></a></p>
+<p>Clique em “Criar instância” e será exibido um formulário com as configurações básicas da VM, preencha o campo NOME com um nome para sua VM, em FIREWALL selecione Permitir tráfego HTTP, selecione a ZONA que desejar, escolha o tipo de VM&nbsp;em TIPO DE MÁQUINA, em IMAGEM, escolha a imagem do SO que você achar melhor. Clique no botão “Criar” e aguarde a sua máquina ser criada, após a criação você verá uma tela como essa:</p>
+<p><a href="http://george-moura-site-bucket.storage.googleapis.com/2015/03/newvm-gcloud.png"><img class="alignnone wp-image-332 size-medium" src="http://george-moura-site-bucket.storage.googleapis.com/2015/03/newvm-gcloud-300x156.png" alt="newvm-gcloud" width="300" height="156"></a></p>
+<p>Pronto! Sua maquina virtual já esta pronta e você pode acessá-la via ssh, pelo browser ou usando a ferramenta <a title="Gcloud Tool" href="https://cloud.google.com/compute/docs/gcloud-compute/?hl=pt_BR" target="_blank">gcloud</a>.</p>
+<p><a href="http://george-moura-site-bucket.storage.googleapis.com/2015/03/ssh-gcloud.png"><img class="alignnone wp-image-333 size-medium" src="http://george-moura-site-bucket.storage.googleapis.com/2015/03/ssh-gcloud-300x138.png" alt="ssh-gcloud" width="300" height="138"></a></p>
+<p>Perceba que você não conseguirá acessar nenhuma página web da sua VM, isso porque só fizemos habilitar o tráfego http no firewall, mas ainda é necessário colocar algum servidor web rodando na porta 80, então meu caro leitor, agora é só acessar sua VM com umas das opções listadas acima se divertir instalando e rodando suas aplicações.</p>
+<p> <img src="http://georgemoura.com.br/wp-includes/images/smilies/icon_wink.gif" alt=";)" class="wp-smiley"> </p>
+<div class="sharedaddy sd-block sd-social sd-gplus"><h3 class="sd-title">Google+</h3><div class="sd-content"><a href="https://plus.google.com/117003595797551984923"><img src="https://lh4.googleusercontent.com/-5-TBgq-jI6s/AAAAAAAAAAI/AAAAAAAABXE/uTxm9ijjOnw/photo.jpg?sz=40" alt="George Moura" width="20" height="20" align="absmiddle"> </a><a rel="author" href="https://plus.google.com/117003595797551984923" class="gplus-profile">George Moura</a><span class="g-follow-wrapper"><div id="___follow_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 113px; height: 15px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 113px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" tabindex="0" vspace="0" width="100%" id="I0_1432236256193" name="I0_1432236256193" src="https://apis.google.com/u/0/_/widget/render/follow?usegapi=1&amp;rel=author&amp;height=15&amp;origin=http%3A%2F%2Fgeorgemoura.com.br&amp;url=https%3A%2F%2Fplus.google.com%2F117003595797551984923&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.pt_BR.rkfQaIyaSHY.O%2Fm%3D__features__%2Fam%3DAQ%2Frt%3Dj%2Fd%3D1%2Ft%3Dzcms%2Frs%3DAGLTcCO4ZJWY5yL3dqJczsJZIkIl2DRkGA#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1432236256193&amp;parent=http%3A%2F%2Fgeorgemoura.com.br&amp;pfname=&amp;rpctoken=12616049" data-gapiattached="true"></iframe></div></span></div></div>			</div><!-- .entry-content -->
+	
+	<footer class="entry-meta">
+		
+			</footer><!-- .entry-meta -->
+</article>
+</body>
+</html>
