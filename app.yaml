@@ -79,17 +79,10 @@ handlers:
   script: posts/uma-boa-ide-para-ruby-on-rails.html
 
 - url: /feed/
-  mime_type: application/xml
-  http_headers:
-    Content-type: application/xml
-  static_files: feed.xml
+  script: feed.xml
 
 - url: /feed
-  mime_type: application/xml
-  http_headers:
-    Content-type: application/xml
-  #script: feed.xml
-  static_files: feed.xml
+  script: feed.xml
 
 - url: /(.+)?/?
   script: index.html
