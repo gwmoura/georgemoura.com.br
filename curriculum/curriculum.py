@@ -1,5 +1,5 @@
 # Import the Flask Framework
-from flask import Flask
+from flask import Flask, url_for, render_template
 app = Flask(__name__)
 # Note: We don't need to call run() since our application is embedded within
 # the App Engine WSGI application server.
@@ -7,8 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    """Return a friendly HTTP greeting."""
-    return 'Hello World!'
+    return render_template('cv.html')
 
 
 @app.errorhandler(404)
