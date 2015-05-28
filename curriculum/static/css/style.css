@@ -1,0 +1,20 @@
+@import url(http://fonts.googleapis.com/css?family=Ubuntu);
+body{
+  margin: 0;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
+}
+
+.header{ text-align: center; }
+.title{
+  background: #D9D9D9 !important;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+.info{
+  text-align: center;
+}
