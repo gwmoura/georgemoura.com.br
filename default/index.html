@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>George Moura - Desenvolvedor Web e Mobile</title>
+	<link rel="canonical" href="http://georgemoura.com.br/" />
+	<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-38960674-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	</script>
+</head>
+<body>
+	<header>
+		<a class="home-link" href="/" title="George Moura" rel="home">
+			<h1 class="site-title">George Moura</h1>
+		</a>
+		<h4 class="site-description">Programador PHP, Ruby, Java, Javascript e Mobile</h4>
+	</header>
+	<div class="posts">
+		<h4>Posts</h4>
+		<ul>
+		<?php
+			$posts = scandir('posts');
+			foreach($posts as $post){
+				if($post!=='.' && $post!=='..'){
+					$post_link = str_replace('.html','',$post);
+					$post_link = '<li><a href="'.$post_link.'/">'.strtoupper(str_replace('-',' ',$post_link)).'</a></li>';
+					echo $post_link;
+				}
+			}
+		?>
+		</ul>
+	</div>
+	<div class="contatcts">
+		<h4>Contatos</h4>
+		<p>Tel: <a href="tel:07187886089">071 8788-6089</a></p>
+		<p>E-mail: <a href="mailto:george@georgemoura.com.br">george@georgemoura.com.br</a></p>
+		<p><a href="/feed/" title="Assinar Posts">RSS</a></p>
+	</div>
+	<footer>
+		<center>
+			<a href="http://www.facebook.com/gwmoura" target="_blank"><img src="http://www.georgemoura.com.br/imagens/icon-facebook.png"  alt="Facebook"  /></a>
+			<a href="https://github.com/gwmoura" target="_blank"><img src="http://www.georgemoura.com.br/imagens/icon-github.png"  alt="Github"  /></a>
+			<a href="http://www.twitter.com/georgemoura" target="_blank"><img src="http://www.georgemoura.com.br/imagens/icon-twitter.png"  alt="Twitter"  /></a>
+		</center>
+		<hr/>
+		<div>
+			<center>&copy; George Moura - 2015</center>
+		</div>
+	</footer>
+	
+</body>
+</html>
