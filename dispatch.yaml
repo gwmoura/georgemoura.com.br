@@ -9,5 +9,8 @@ dispatch:
 	- url: "*/feed/*"
 		module: feed
 
-	- url: "*/curriculum/*"
+	- url: "*/curriculo/*"
 		module: curriculum
+
+  - url: "cv.georgemoura.com.br/"
+    module: curriculum
