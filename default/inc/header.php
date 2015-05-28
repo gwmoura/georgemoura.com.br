@@ -25,5 +25,6 @@
 	</header>
 	<div class="menu">
 		<a href="/" title="Início">Início</a> | 
-		<a href="/blog" title="Blog">Blog</a>
+		<a href="/blog" title="Blog">Blog</a> | 
+		<a href="/curriculo" title="Currículo">Currículo</a>
 	</div>
