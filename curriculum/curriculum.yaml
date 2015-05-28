@@ -1,0 +1,9 @@
+application: george-moura-site
+module: curriculum
+version: cv1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+- url: .*  # This regex directs all routes to main.app
+  script: curriculum.app
