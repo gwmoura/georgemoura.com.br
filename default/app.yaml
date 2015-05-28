@@ -78,6 +78,9 @@ handlers:
 - url: /uma-boa-ide-para-ruby-on-rails
   script: posts/uma-boa-ide-para-ruby-on-rails.html
 
+- url: /blog
+  script: blog.php
+
 - url: /feed/
   script: feed.xml
 

@@ -1,3 +1,4 @@
+<?php if($_SERVER['REQUEST_URI'] != '/blog'): ?>
 		<footer>
 			<center>
 				<a href="http://www.facebook.com/gwmoura" target="_blank"><img src="http://www.georgemoura.com.br/imagens/icon-facebook.png"  alt="Facebook"  /></a>
@@ -12,3 +13,4 @@
 	
 	</body>
 </html>
+<?php endif ?>

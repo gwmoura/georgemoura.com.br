@@ -23,3 +23,7 @@
 		</a>
 		<h4 class="site-description">Programador PHP, Ruby, Java, Javascript e Mobile</h4>
 	</header>
+	<div class="menu">
+		<a href="/" title="Início">Início</a> | 
+		<a href="/blog" title="Blog">Blog</a>
+	</div>
