@@ -1,2 +1,3 @@
-georgesite
+*.pyc
+__pycache__
 
