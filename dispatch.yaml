@@ -7,6 +7,9 @@ dispatch:
  - url: "*/static/*"
    module: curriculum
 
+ - url: "*/imagens/*"
+   module: default
+
 # - url: "georgemoura.com.br/"
 #   module: default
 
