@@ -1,16 +1,24 @@
 application: george-moura-site
+
 dispatch:
-	- url: "*/favicon.ico"
-		module: default
+ - url: "*/favicon.ico"
+   module: default
 
-	- url: "georgemoura.com.br/"
-		module: default
+# - url: "georgemoura.com.br/"
+#   module: default
 
-	- url: "*/feed/*"
-		module: feed
+ - url: "*/feed/*"
+   module: feed
+ - url: "*/feed*"
+   module: feed
 
-	- url: "*/curriculo/*"
-		module: curriculum
+ - url: "*/curriculo/*"
+   module: curriculum
+ - url: "*/curriculo*"
+   module: curriculum
 
-  - url: "cv.georgemoura.com.br/"
-    module: curriculum
+ - url: "*/*"
+   module: default
+
+# - url: "cv.georgemoura.com.br/"
+#   module: curriculum

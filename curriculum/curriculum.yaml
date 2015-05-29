@@ -6,5 +6,14 @@ api_version: 1
 threadsafe: true
 
 handlers:
-- url: .*  # This regex directs all routes to main.app
+- url: /static
+  static_dir: static
+
+- url: /.*
+  script: curriculum.app
+
+- url: /curriculo/.*
+  script: curriculum.app
+
+- url: /curriculum/.*
   script: curriculum.app

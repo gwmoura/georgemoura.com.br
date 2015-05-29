@@ -4,8 +4,9 @@ app = Flask(__name__)
 # Note: We don't need to call run() since our application is embedded within
 # the App Engine WSGI application server.
 
-
 @app.route('/')
+@app.route('/curriculo')
+@app.route('/curriculo/')
 def hello():
     return render_template('cv.html')
 

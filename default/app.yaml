@@ -81,11 +81,8 @@ handlers:
 - url: /blog
   script: blog.php
 
-- url: /feed/
-  script: feed.xml
-
-- url: /feed
-  script: feed.xml
+- url: /static
+  static_dir: ../curriculum/static
 
 - url: /(.+)?/?
   script: index.html
