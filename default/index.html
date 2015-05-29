@@ -1,12 +1,15 @@
+<?php $meta_description = "Blog de George Moura"?>
+<?php $meta_keywords = ""; ?>
 <?php include_once 'inc/header.php'; ?>
 <div class="posts">
 	<h4>Posts</h4>
 	<ul>
 	<?php
-		$posts = scandir('posts');
+		$posts = scandir('posts', 1);
 		foreach($posts as $post){
 			if($post!=='.' && $post!=='..'){
-				$post_link = str_replace('.html','',$post);
+				$post_link = substr($post, 9);
+				$post_link = str_replace('.html','',$post_link);
 				$post_link = '<li><a href="'.$post_link.'/">'.strtoupper(str_replace('-',' ',$post_link)).'</a></li>';
 				echo $post_link;
 			}
