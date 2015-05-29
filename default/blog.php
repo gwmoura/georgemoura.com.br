@@ -1,6 +1,6 @@
 <?php include_once 'inc/header.php' ?>
 <?php
-	$posts = scandir('posts');
+	$posts = scandir('posts', 1);
 	foreach($posts as $post){
 		if($post!=='.' && $post!=='..'){
 			include_once 'posts/'.$post;
