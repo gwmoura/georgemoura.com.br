@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width">
 	<title>George Moura - Desenvolvedor Web e Mobile</title>
 	<link rel="canonical" href="http://georgemoura.com.br/" />
+	<link type="text/css" rel="stylesheet" href="/css/style.css" />
 	<script type="text/javascript">
 	var _gaq = _gaq || [];
 	_gaq.push(['_setAccount', 'UA-38960674-1']);
@@ -26,5 +27,5 @@
 	<div class="menu">
 		<a href="/" title="Início">Início</a> | 
 		<a href="/blog" title="Blog">Blog</a> | 
-		<a href="/curriculo" title="Currículo">Currículo</a>
+		<a href="/curriculo" target="_blank" title="Currículo">Currículo</a>
 	</div>

@@ -4,6 +4,8 @@ runtime: php55
 api_version: 1
 
 handlers:
+- url: /css
+  static_dir: css
 #- url: /(.*\.(htm|html|css|js))$
 #  static_files: georgesite/\1
 #  upload: georgesite/.*\.(htm|html|css|js)$
@@ -81,10 +83,7 @@ handlers:
 - url: /blog
   script: blog.php
 
-- url: /static
-  static_dir: ../curriculum/static
-
-- url: /(.+)?/?
+- url: /.*
   script: index.html
 
 skip_files:

@@ -4,21 +4,29 @@ dispatch:
  - url: "*/favicon.ico"
    module: default
 
+ - url: "*/static/*"
+   module: curriculum
+
 # - url: "georgemoura.com.br/"
 #   module: default
 
  - url: "*/feed/*"
    module: feed
+
  - url: "*/feed*"
    module: feed
 
  - url: "*/curriculo/*"
    module: curriculum
+
  - url: "*/curriculo*"
    module: curriculum
 
- - url: "*/*"
-   module: default
+ - url: "*/curriculum/*"
+   module: curriculum
+
+ - url: "*/curriculum*"
+   module: curriculum
 
 # - url: "cv.georgemoura.com.br/"
 #   module: curriculum
