@@ -1,3 +1,7 @@
+<?php /*if($_SERVER['REQUEST_URI'] != '/'): ?>
+	<?php include 'inc/adsense.php'; ?>
+<?php endif */?>
+<?php include 'inc/adsense.php'; ?>
 <?php if($_SERVER['REQUEST_URI'] != '/blog'): ?>
 		<footer>
 			<center>
