@@ -65,7 +65,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 	rss, err := feed.ToRss()
 	if err != nil {
-		fmt.Fprint(w, "Error!")
+		fmt.Fprint(w, "Errors!")
 	}
 
 	fmt.Fprint(w, rss)
