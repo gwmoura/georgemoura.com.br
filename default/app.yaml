@@ -100,6 +100,7 @@ skip_files:
 - georgesite/wp-content/themes/twentyten/
 - georgesite/wp-content/themes/twentytwelve/
 - georgesite/wp-content/themes/wp-polymer-theme/
+- .git
 
 
 env_variables:
