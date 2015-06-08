@@ -1,4 +1,1 @@
-#cron:
-#- description: wordpress cron tasks
-#  url: /wp-cron.php
-#  schedule: every 24 hours
+cron:

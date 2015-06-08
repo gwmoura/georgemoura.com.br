@@ -3,6 +3,7 @@ package feed
 import (
 	"fmt"
 	"github.com/gorilla/feeds"
+	"io/ioutil"
 	"net/http"
 	"time"
 )
@@ -14,13 +15,35 @@ func init() {
 	http.HandleFunc("/", handler)
 }
 
+func check(e error) {
+	if e != nil {
+		panic(e)
+	}
+}
+
+func getPosts() string {
+	files, _ := ioutil.ReadDir("../default/posts/")
+	filesName := ""
+	for _, f := range files {
+		filesName += f.Name()
+		filesName += readPost("../default/posts/" + f.Name())
+	}
+	return filesName
+}
+
+func readPost(filename string) string {
+	data, err := ioutil.ReadFile(filename)
+	check(err)
+	return string(data)
+}
+
 func handler(w http.ResponseWriter, r *http.Request) {
 	now := time.Now()
 
 	feed := &feeds.Feed{
 		Title:       "George Moura Blog",
 		Link:        &feeds.Link{Href: "http://georgemoura.com.br"},
-		Description: "Programador Web e Mobile",
+		Description: "Programador Web e Mobile ",
 		Author:      &feeds.Author{authorName, authorEmail},
 		Created:     now,
 	}
