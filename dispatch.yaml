@@ -30,3 +30,6 @@ dispatch:
 
 # - url: "cv.georgemoura.com.br/"
 #   module: curriculum
+
+skip_files:
+- .git
