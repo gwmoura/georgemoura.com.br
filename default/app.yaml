@@ -5,86 +5,15 @@ api_version: 1
 
 handlers:
 - url: /css
-  static_dir: css
-#- url: /(.*\.(htm|html|css|js))$
-#  static_files: georgesite/\1
-#  upload: georgesite/.*\.(htm|html|css|js)$
-#  application_readable: true
-
-#- url: /wp-content/(.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg))$
-#  static_files: georgesite/wp-content/\1
-#  upload: georgesite/wp-content/.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg)$
-#  application_readable: true
+  static_dir: public_html/css
 
 - url: /(.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg))$
   static_files: georgesite/\1
   upload: georgesite/.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg)$
   application_readable: true
 
-#- url: /wp-includes/images/media/(.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg))$
-#  static_files: georgesite/wp-includes/images/media/\1
-#  upload: georgesite/wp-includes/images/media/.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg)$
-#  application_readable: true
-
-#- url: /wp-admin/(.+)
-#  script: georgesite/wp-admin/\1
-#  secure: always
-
-#- url: /wp-admin/
-#  script: georgesite/wp-admin/index.php
-#  secure: always
-
-#- url: /wp-login.php
-#  script: georgesite/wp-login.php
-#  secure: always
-
-#- url: /wp-cron.php
-#  script: georgesite/wp-cron.php
-#  login: admin
-
-#- url: /xmlrpc.php
-#  script: georgesite/xmlrpc.php
-
-#- url: /wp-(.+).php
-#  script: georgesite/wp-\1.php
-
-#- url: /(.+)?/?
-#  script: georgesite/index.php
-- url: /criando-vms-na-google-cloud-platform/
-  script: posts/20150317-criando-vms-na-google-cloud-platform.html
-
-- url: /criando-vms-na-google-cloud-platform
-  script: posts/20150317-criando-vms-na-google-cloud-platform.html
-
-- url: /iniciando-com-o-docker/
-  script: posts/20141013-iniciando-com-o-docker.html
-
-- url: /iniciando-com-o-docker
-  script: posts/20141013-iniciando-com-o-docker.html
-
-- url: /chrome-os-no-meu-pc/
-  script: posts/20131012-chrome-os-no-meu-pc.html
-
-- url: /chrome-os-no-meu-pc
-  script: posts/20131012-chrome-os-no-meu-pc.html
-
-- url: /como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um/
-  script: posts/20131005-como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um.html
-
-- url: /como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um
-  script: posts/20131005-como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um.html
-
-- url: /uma-boa-ide-para-ruby-on-rails/
-  script: posts/20130703-uma-boa-ide-para-ruby-on-rails.html
-
-- url: /uma-boa-ide-para-ruby-on-rails
-  script: posts/20130703-uma-boa-ide-para-ruby-on-rails.html
-
-- url: /blog
-  script: blog.php
-
 - url: /.*
-  script: index.html
+  script: public_html/index.php
 
 skip_files:
 - ^(.*/)?\.zip$
@@ -101,10 +30,3 @@ skip_files:
 - georgesite/wp-content/themes/twentytwelve/
 - georgesite/wp-content/themes/wp-polymer-theme/
 - .git
-
-
-env_variables:
-  MYSQL_USER: root
-  MYSQL_PASS: root
-  MYSQL_HOST: localhost
-  MYSQL_APPENGINE_PASS: "G43My#g30sq!"
