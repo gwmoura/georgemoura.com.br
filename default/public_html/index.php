@@ -18,22 +18,25 @@ if (isset($_SERVER['SERVER_SOFTWARE']) && strpos($_SERVER['SERVER_SOFTWARE'],'Go
   $debug = false;
   $mode = 'production';
   $log_enable = true;
+  $log_level = \Slim\Log::INFO;
 }
 else
 {
   $debug = true;
   $mode = 'development';
   $log_enable = false;
+  $log_level = \Slim\Log::DEBUG;
 }
 
 $app->config(array(
-  'debug' => $debug,
-  'mode' => $mode,
-  'templates.path' => '../templates/',
-  'log.writer' => new DummyLogWriter(),
-  'log.enable' => $log_enable,
-  'view' => '\Slim\LayoutView',
-  'layout' => '../templates/layouts/main.php'
+  'debug' 		=> $debug,
+  'mode' 		=> $mode,
+  'templates.path' 	=> '../templates/',
+  'log.writer' 		=> new DummyLogWriter(),
+  'log.enable' 		=> $log_enable,
+  'log.level' 		=> $log_level,
+  'view' 		=> '\Slim\LayoutView',
+  'layout' 		=> '../templates/layouts/main.php'
 ));
 
 $app->get('/', function() use ($app) {
