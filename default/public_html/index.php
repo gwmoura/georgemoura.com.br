@@ -49,7 +49,12 @@ $app->get('/', function() use ($app) {
 });
 
 $app->get('/blog/', function() use ($app) {
-  $app->render('blog.php');
+  $data = array(
+    'meta_description' => "George Moura Blog",
+    'meta_keywords' => "blog,ide,google cloud,ruby,python,go,docker,php,sql,mysql"
+  );
+
+  $app->render('blog.php', $data);
 });
 
 $app->get('/:postname/', function($postname) use ($app) {
