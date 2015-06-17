@@ -1,1 +1,1 @@
-dev_appserver.py dispatch.yaml default/app.yaml feed/feed.yaml curriculum/curriculum.yaml
+python dev_appserver.py dispatch.yaml default/app.yaml feed/feed.yaml curriculum/curriculum.yaml
