@@ -40,6 +40,9 @@ $app->config(array(
 ));
 
 $app->get('/', function() use ($app) {
+  $app->etag('home');
+  $app->expires('+1 week');
+  
   $meta_description = "Blog de George Moura";
   $meta_keywords = "";
 
@@ -52,6 +55,9 @@ $app->get('/', function() use ($app) {
 });
 
 $app->get('/blog/', function() use ($app) {
+  $app->etag('blog');
+  $app->expires('+1 month');
+
   $data = array(
     'meta_description' => "George Moura Blog",
     'meta_keywords' => "blog,ide,google cloud,ruby,python,go,docker,php,sql,mysql"
@@ -61,6 +67,9 @@ $app->get('/blog/', function() use ($app) {
 });
 
 $app->get('/:postname/', function($postname) use ($app) {
+
+  $app->etag($postname);
+  $app->expires('+1 month');
 
   $posts = scandir('../templates/posts', 1);
 
