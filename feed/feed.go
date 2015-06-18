@@ -38,6 +38,7 @@ func readPost(filename string) string {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Cache-Control", "public, max-age=2592000")
 	now := time.Now()
 
 	feed := &feeds.Feed{
