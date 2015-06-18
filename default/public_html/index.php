@@ -1,13 +1,6 @@
 <?php
 require 'vendor/autoload.php';
 
-class DummyLogWriter {
-  public function write($message, $level = null) {
-    error_log((string) $message);
-    return true;
-  }
-}
-
 $app = new \Slim\Slim();
 
 // Google App Engine doesn't set $_SERVER['PATH_INFO']
@@ -17,7 +10,7 @@ $app->environment['PATH_INFO'] = $_SERVER['REQUEST_URI'];
 if (isset($_SERVER['SERVER_SOFTWARE']) && strpos($_SERVER['SERVER_SOFTWARE'],'Google App Engine') !== false) {
   $debug = false;
   $mode = 'production';
-  $log_enable = true;
+  $log_enable = false;
   $log_level = \Slim\Log::INFO;
 }
 else
@@ -32,7 +25,6 @@ $app->config(array(
   'debug' 		=> $debug,
   'mode' 		=> $mode,
   'templates.path' 	=> '../templates/',
-  'log.writer' 		=> new DummyLogWriter(),
   'log.enable' 		=> $log_enable,
   'log.level' 		=> $log_level,
   'view' 		=> '\Slim\LayoutView',
@@ -41,7 +33,7 @@ $app->config(array(
 
 $app->get('/', function() use ($app) {
   $app->etag('home');
-  $app->expires('+1 week');
+  $app->expires(604800);
   
   $meta_description = "Blog de George Moura";
   $meta_keywords = "";
@@ -56,7 +48,7 @@ $app->get('/', function() use ($app) {
 
 $app->get('/blog/', function() use ($app) {
   $app->etag('blog');
-  $app->expires('+1 month');
+  $app->expires(2592000);
 
   $data = array(
     'meta_description' => "George Moura Blog",
@@ -69,7 +61,7 @@ $app->get('/blog/', function() use ($app) {
 $app->get('/:postname/', function($postname) use ($app) {
 
   $app->etag($postname);
-  $app->expires('+1 month');
+  $app->expires(2592000);
 
   $posts = scandir('../templates/posts', 1);
 
