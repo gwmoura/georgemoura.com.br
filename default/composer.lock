@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "67d6dfa983bfd950dc4f052db1c2396a",
+    "hash": "df546176135d1a5f766df793ea4946f9",
     "packages": [
         {
             "name": "petebrowne/slim-layout-view",
