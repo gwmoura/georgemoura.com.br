@@ -64,6 +64,7 @@ func init() {
 
 	m.Get("/curriculo", func(r render.Render) {
 		yearsOld := age(time.Date(1990, 5, 14, 0, 0, 0, 0, time.UTC))
+
 		r.HTML(200, "cv", yearsOld)
 	})
 
