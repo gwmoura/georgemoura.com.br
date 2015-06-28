@@ -6,3 +6,9 @@ api_version: go1
 handlers:
 - url: /.*
   script: _go_app
+- url: /css
+  static_dir: public/css/
+- url: /images
+  static_dir: public/images/
+- url: /wp-includes
+  static_dir: public/wp-includes/images/smiles
