@@ -1,11 +1,15 @@
 package site
 
+//package main
+
 import (
 	"fmt"
 	"github.com/go-martini/martini"
 	"github.com/gorilla/feeds"
 	"github.com/martini-contrib/render"
+	//"io/ioutil"
 	"net/http"
+	//"strings"
 	"time"
 )
 
@@ -103,11 +107,32 @@ func init() {
 	}
 
 	m.Get("/", func(r render.Render) {
-		r.HTML(200, "home", metaTags["home"])
+		s := struct {
+			Description string
+			Keywords    string
+			Posts       []*feeds.Item
+		}{metaTags["home"].Description, metaTags["home"].Keywords, feed.Items}
+		r.HTML(200, "home", s)
 	})
 
 	m.Get("/blog", func(r render.Render) {
-		r.HTML(200, "blog", metaTags)
+		/*var posts_names []string
+		for _, item := range feed.Items {
+			template_name := strings.Replace(item.Link.Href, "http://georgemoura.com.br/", "", -1)
+			template_name = strings.Replace(template_name, "/", "", -1)
+			page, err := ioutil.ReadFile("./templates/posts/" + template_name + ".html")
+			if err != nil {
+				panic(err)
+			}
+			posts_names = append(posts_names, string(page))
+		}*/
+		s := struct {
+			Description string
+			Keywords    string
+			//Posts       []string
+		}{metaTags["home"].Description, metaTags["home"].Keywords}
+		//{metaTags["home"].Description, metaTags["home"].Keywords, posts_names}
+		r.HTML(200, "blog", s)
 	})
 
 	m.Get("/curriculo", func(r render.Render) {
@@ -122,12 +147,12 @@ func init() {
 		r.HTML(200, "cv", s)
 	})
 
-	m.Get("/feed/", func() string {
+	m.Get("/feed", func() string {
 		rss := getFeed()
 		return rss
 	})
 
-	m.Get("/:postname/", func(params martini.Params, r render.Render) {
+	m.Get("/:postname", func(params martini.Params, r render.Render) {
 		postname := params["postname"]
 		r.HTML(200, "posts/"+postname, metaTags[postname])
 	})
