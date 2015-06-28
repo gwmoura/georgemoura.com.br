@@ -21,6 +21,7 @@
   </script>
 </head>
 <body>
+  {{if ne current "cv"}}
   <header>
     <a class="home-link" href="/" title="George Moura" rel="home">
       <h1 class="site-title">George Moura</h1>
@@ -32,8 +33,10 @@
     <a href="/blog" title="Blog">Blog</a> | 
     <a href="/curriculo" target="_blank" title="Currículo">Currículo</a>
   </div>
+  {{end}}
     <!-- Render the current template here -->
     {{ yield }}
+  {{if ne current "cv"}}
   <div>
     <div class="anuncio">
       anúncio
@@ -60,5 +63,6 @@
         <center>&copy; George Moura - 2015</center>
       </div>
     </footer>
+    {{end}}
   </body>
 </html>
