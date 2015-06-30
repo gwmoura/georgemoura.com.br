@@ -4,11 +4,23 @@ runtime: go
 api_version: go1
 
 handlers:
-- url: /.*
-  script: _go_app
+
 - url: /css
   static_dir: public/css/
+
 - url: /images
   static_dir: public/images/
+
+- url: /(.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg))$
+  static_files: public/images\1
+  upload: public/images/.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg)$
+  application_readable: true
+
 - url: /wp-includes
   static_dir: public/wp-includes/images/smiles
+
+- url: /robots.txt
+  static_file: public/robots.txt
+
+- url: /.*
+  script: _go_app
