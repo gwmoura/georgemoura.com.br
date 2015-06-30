@@ -20,7 +20,7 @@ handlers:
   static_dir: public/wp-includes/images/smiles
 
 - url: /robots.txt
-  static_file: public/robots.txt
+  script: public/robots.txt
 
 - url: /.*
   script: _go_app
