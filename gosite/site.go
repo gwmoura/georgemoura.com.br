@@ -143,6 +143,14 @@ func init() {
 		r.HTML(200, "blog", s)
 	})
 
+	m.Get("/contato", func(r render.Render) {
+		s := struct {
+			Description string
+			Keywords    string
+		}{metaTags["home"].Description, metaTags["home"].Keywords}
+		r.HTML(200, "contact", s)
+	})
+
 	m.Get("/curriculo", func(r render.Render) {
 		yearsOld := age(time.Date(1990, 5, 14, 0, 0, 0, 0, time.UTC))
 
