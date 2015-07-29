@@ -143,7 +143,7 @@ func init() {
 		r.HTML(200, "blog", s)
 	})
 
-	m.Get("/contato", func(r render.Render) {
+	m.Get("/contatos", func(r render.Render) {
 		s := struct {
 			Description string
 			Keywords    string
