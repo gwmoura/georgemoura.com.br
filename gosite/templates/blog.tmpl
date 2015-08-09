@@ -1,17 +1,15 @@
 <div class="posts">
-  <div class="post card-panel">
-    {{template "posts/criando-vms-na-google-cloud-platform"}}
-  </div>
-  <div class="post card-panel">
-    {{template "posts/iniciando-com-o-docker"}}
-  </div>
-  <div class="post card-panel">
-    {{template "posts/chrome-os-no-meu-pc"}}
-  </div>
-  <div class="post card-panel">
-    {{template "posts/como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um"}}
-  </div>
-  <div class="post card-panel">
-    {{template "posts/uma-boa-ide-para-ruby-on-rails"}}
-  </div>
+  {{range .Posts}}
+    <div class="post card-panel">
+      <h5><a class="collection-item" href="{{.Link}}" title="{{.Title}}">{{.Title}}</a></h5>
+      <div class="date">
+        {{.CreatedAt}}
+      </div>
+      <div class="description">
+        {{.Description}}
+        <br/>
+        <a href="{{.Link}}" title="Leia mais sobre {{.Title}}">leia mais...</a>
+      </div>
+    </div>
+  {{end}}
 </div>
