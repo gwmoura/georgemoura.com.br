@@ -13,44 +13,9 @@ import (
 	//"github.com/martini-contrib/gorelic"
 )
 
-type PageMetaTag struct {
-	Description string
-	Keywords    string
-}
-
-var metaTags = map[string]PageMetaTag{
-	"home": {
-		Description: "Blog de George Moura",
-		Keywords:    "",
-	},
-	"cv": {
-		Description: "Currículo George Moura",
-		Keywords:    "",
-	},
-	"uma-boa-ide-para-ruby-on-rails": {
-		Description: "Meus caros estou escrevendo esse post para falar sobre uma dificuldade que tive logo quando resolvi programar para ruby &#8211; uma IDE. Comecei meus primeiros estudos utilizando o Eclipse e fazendo os teste em meu próprio notebook, mas assim que comecei a testar meu códigos em servidores me deparei com problemas: A versão do rails",
-		Keywords:    "ide,ruby,rails,sublimetext,eclipse,netbeans",
-	},
-	"como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um": {
-		Description: "Pessoal, vim deixar um post bem pequeno, mas que foi minha salvação e achei legal compartilhar. Estou em um projeto e acabei precisando fazer uma migração de dados, o problema é que meu script acabou duplicando as informações no banco de dados, imagine o problema, a sorte é que era um banco de desenvolvimento e",
-		Keywords:    "mysql,banco de dados",
-	},
-	"chrome-os-no-meu-pc": {
-		Description: "Atenção faça os testes usando uma máquina virtual ou um pc que não tenha utilidade Aí galera venho falar para vocês sobre o Chrome OS, o sistema operacional da Google, acabei de instalar ele no meu pen-drive e já estou utilizando, a propósito estou escrevendo este post nele. Eu estava empolgado para comprar um chromebook,",
-		Keywords:    "chrome os,chrome,virtualbox",
-	},
-	"iniciando-com-o-docker": {
-		Description: "O que é o Docker? &#8220;An open platform for distributed applications&#8221; -&#160;Uma plataforma aberta para aplicativos distribuídos. Essa é a definição no site, mas não fica muito clara no início, porém faz sentido depois. O Docker é uma ferramenta para distribuir aplicações em containers de forma rápida e leve, ou seja você não precisa mais",
-		Keywords:    "docker,nodejs",
-	},
-	"criando-vms-na-google-cloud-platform": {
-		Description: "Neste tutorial vou mostrar como criar VMs na nuvem da Google (Google Cloud Platform). O primeiro passo é acessar: cloud.google.com e clicar em &#8220;Sign in&#8221; no canto superior direito. Após o login (com sua conta google) clique em &#8220;My Console&#8221; no canto superior direito. Ao clicar nesse link você irá para a página de projetos.",
-		Keywords:    "google,cloud,vm,google cloud platform,compute engine",
-	},
-}
-
 var authorName string = "George Moura"
 var authorEmail string = "gwmoura@gmail.com"
+var domain string = "georgemoura.com.br"
 
 var feed = &feeds.Feed{
 	Title:       "George Moura Blog",
@@ -58,6 +23,85 @@ var feed = &feeds.Feed{
 	Description: "Programador Web e Mobile ",
 	Author:      &feeds.Author{authorName, authorEmail},
 	Created:     time.Now(),
+}
+
+type Post struct {
+	Title       string
+	Description string
+	Link        string
+	Keywords    string
+	AuthorName  string
+	AuthorEmail string
+	CreatedAt   time.Time
+	PostType    string
+	FriendlyId  string
+}
+
+var posts = []Post{
+	{
+		Title:       "George Moura Blog",
+		Description: "Blog de George Moura",
+		Keywords:    "",
+		PostType:    "page",
+		FriendlyId:  "home",
+	},
+	{
+		Title:       "George Moura | Currículo",
+		Description: "Currículo George Moura",
+		Keywords:    "",
+		PostType:    "page",
+		FriendlyId:  "cv",
+	},
+	{
+		Description: "Neste tutorial vou mostrar como criar VMs na nuvem da Google (Google Cloud Platform). O primeiro passo é acessar: cloud.google.com e clicar em \"Sign in\" no canto superior direito. Após o login (com sua conta google) clique em \"My Console\" no canto superior direito. Ao clicar nesse link você irá para a página de projetos.",
+		Keywords:    "google,cloud,vm,google cloud platform,compute engine",
+		Title:       "Criando VMs na Google Cloud Platform",
+		Link:        "/criando-vms-na-google-cloud-platform/",
+		//Description: "<![CDATA[<p>Neste tutorial vou mostrar como criar VMs na nuvem da Google (Google Cloud Platform). O primeiro passo é acessar: cloud.google.com e clicar em \"Sign in\" no canto superior direito. Após o login (com sua conta google) clique em \"My Console\" no canto superior direito. Ao clicar nesse link você irá para a página de projetos. [&#8230;]</p> <p>The post <a rel=\"nofollow\" href=\"http://georgemoura.com.br/criando-vms-na-google-cloud-platform/\">Criando VMs na Google Cloud Platform</a> appeared first on <a rel=\"nofollow\" href=\"http://georgemoura.com.br\">George Moura</a>.</p>]]>",
+		//Author:      &feeds.Author{authorName, authorEmail},
+		CreatedAt:  time.Date(2015, time.March, 17, 18, 2, 37, 0, time.UTC).Local(),
+		FriendlyId: "criando-vms-na-google-cloud-platform",
+	},
+	{
+		Description: "O que é o Docker? \"An open platform for distributed applications\" - Uma plataforma aberta para aplicativos distribuídos. Essa é a definição no site, mas não fica muito clara no início, porém faz sentido depois. O Docker é uma ferramenta para distribuir aplicações em containers de forma rápida e leve, ou seja você não precisa mais",
+		Keywords:    "docker,nodejs",
+		Title:       "Iniciando com o Docker",
+		Link:        "/iniciando-com-o-docker/",
+		//Description: "<![CDATA[<p>O que é o Docker? "An open platform for distributed applications\" -&#160;Uma plataforma aberta para aplicativos distribuídos. Essa é a definição no site, mas não fica muito clara no início, porém faz sentido depois. O Docker é uma ferramenta para distribuir aplicações em containers de forma rápida e leve, ou seja você não precisa mais [&#8230;]</p> <p>The post <a rel=\"nofollow\" href=\"http://georgemoura.com.br/iniciando-com-o-docker/\">Iniciando com o Docker</a> appeared first on <a rel=\"nofollow\" href=\"http://georgemoura.com.br\">George Moura</a>.</p>]]>",
+		//Author:      &feeds.Author{authorName, authorEmail},
+		CreatedAt:  time.Date(2014, time.October, 13, 19, 6, 47, 0, time.UTC).Local(),
+		FriendlyId: "iniciando-com-o-docker",
+	},
+	{
+		Description: "Atenção faça os testes usando uma máquina virtual ou um pc que não tenha utilidade Aí galera venho falar para vocês sobre o Chrome OS, o sistema operacional da Google, acabei de instalar ele no meu pen-drive e já estou utilizando, a propósito estou escrevendo este post nele. Eu estava empolgado para comprar um chromebook,",
+		Keywords:    "chrome os,chrome,virtualbox",
+		Title:       "Chrome OS no meu pc",
+		Link:        "/chrome-os-no-meu-pc/",
+		//Description: "<![CDATA[<p>Atenção faça os testes usando uma máquina virtual ou um pc que não tenha utilidade Aí galera venho falar para vocês sobre o Chrome OS, o sistema operacional da Google, acabei de instalar ele no meu pen-drive e já estou utilizando, a propósito estou escrevendo este post nele. Eu estava empolgado para comprar um chromebook, [&#8230;]</p> <p>The post <a rel=\"nofollow\" href=\"http://georgemoura.com.br/chrome-os-no-meu-pc/\">Chrome OS no meu pc</a> appeared first on <a rel=\"nofollow\" href=\"http://georgemoura.com.br\">George Moura</a>.</p>]]>",
+		//Author:      &feeds.Author{authorName, authorEmail},
+		CreatedAt:  time.Date(2013, time.October, 12, 15, 53, 22, 0, time.UTC).Local(),
+		FriendlyId: "chrome-os-no-meu-pc",
+	},
+	{
+		Description: "Pessoal, vim deixar um post bem pequeno, mas que foi minha salvação e achei legal compartilhar. Estou em um projeto e acabei precisando fazer uma migração de dados, o problema é que meu script acabou duplicando as informações no banco de dados, imagine o problema, a sorte é que era um banco de desenvolvimento e",
+		Keywords:    "mysql,banco de dados",
+		Title:       "Como deletar registros duplicados no banco de dados, deixando apenas um",
+		Link:        "/como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um/",
+		//Description: "<![CDATA[<p>Pessoal, vim deixar um post bem pequeno, mas que foi minha salvação e achei legal compartilhar. Estou em um projeto e acabei precisando fazer uma migração de dados, o problema é que meu script acabou duplicando as informações no banco de dados, imagine o problema, a sorte é que era um banco de desenvolvimento e [&#8230;]</p> <p>The post <a rel=\"nofollow\" href=\"http://georgemoura.com.br/como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um/\">Como deletar registros duplicados no banco de dados, deixando apenas um</a> appeared first on <a rel=\"nofollow\" href=\"http://georgemoura.com.br\">George Moura</a>.</p>]]>",
+		//Author:      &feeds.Author{authorName, authorEmail},
+		CreatedAt:  time.Date(2013, time.October, 5, 9, 20, 19, 0, time.UTC).Local(),
+		FriendlyId: "como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um",
+	},
+	{
+		Description: "Meus caros estou escrevendo esse post para falar sobre uma dificuldade que tive logo quando resolvi programar para ruby &#8211; uma IDE. Comecei meus primeiros estudos utilizando o Eclipse e fazendo os teste em meu próprio notebook, mas assim que comecei a testar meu códigos em servidores me deparei com problemas: A versão do rails",
+		Keywords:    "ide,ruby,rails,sublimetext,eclipse,netbeans",
+		Title:       "Uma boa IDE para Ruby on Rails",
+		Link:        "/uma-boa-ide-para-ruby-on-rails/",
+		//Description: "<![CDATA[<p>Meus caros estou escrevendo esse post para falar sobre uma dificuldade que tive logo quando resolvi programar para ruby &#8211; uma IDE. Comecei meus primeiros estudos utilizando o Eclipse e fazendo os teste em meu próprio notebook, mas assim que comecei a testar meu códigos em servidores me deparei com problemas: A versão do rails [&#8230;]</p> <p>The post <a rel=\"nofollow\" href=\"http://georgemoura.com.br/uma-boa-ide-para-ruby-on-rails/\">Uma boa IDE para Ruby on Rails</a> appeared first on <a rel=\"nofollow\" href=\"http://georgemoura.com.br\">George Moura</a>.</p>]]>",
+		//Author:      &feeds.Author{authorName, authorEmail},
+		CreatedAt:  time.Date(2013, time.July, 3, 21, 23, 47, 0, time.UTC).Local(),
+		FriendlyId: "uma-boa-ide-para-ruby-on-rails",
+	},
 }
 
 func init() {
@@ -74,72 +118,33 @@ func init() {
 			gorelic.InitNewrelicAgent("ef64d80f06826b61c849b959f48b9c2a52dc4ac8", "George Moura Site", true)
 		  m.Use(gorelic.Handler)
 	*/
-
-	feed.Items = []*feeds.Item{
-		&feeds.Item{
-			Title:       "Criando VMs na Google Cloud Platform",
-			Link:        &feeds.Link{Href: "http://georgemoura.com.br/criando-vms-na-google-cloud-platform/"},
-			Description: "<![CDATA[<p>Neste tutorial vou mostrar como criar VMs na nuvem da Google (Google Cloud Platform). O primeiro passo é acessar: cloud.google.com e clicar em &#8220;Sign in&#8221; no canto superior direito. Após o login (com sua conta google) clique em &#8220;My Console&#8221; no canto superior direito. Ao clicar nesse link você irá para a página de projetos. [&#8230;]</p> <p>The post <a rel=\"nofollow\" href=\"http://georgemoura.com.br/criando-vms-na-google-cloud-platform/\">Criando VMs na Google Cloud Platform</a> appeared first on <a rel=\"nofollow\" href=\"http://georgemoura.com.br\">George Moura</a>.</p>]]>",
-			Author:      &feeds.Author{authorName, authorEmail},
-			Created:     time.Date(2015, time.March, 17, 18, 2, 37, 0, time.UTC).Local(),
-		},
-		&feeds.Item{
-			Title:       "Iniciando com o Docker",
-			Link:        &feeds.Link{Href: "http://georgemoura.com.br/iniciando-com-o-docker/"},
-			Description: "<![CDATA[<p>O que é o Docker? &#8220;An open platform for distributed applications&#8221; -&#160;Uma plataforma aberta para aplicativos distribuídos. Essa é a definição no site, mas não fica muito clara no início, porém faz sentido depois. O Docker é uma ferramenta para distribuir aplicações em containers de forma rápida e leve, ou seja você não precisa mais [&#8230;]</p> <p>The post <a rel=\"nofollow\" href=\"http://georgemoura.com.br/iniciando-com-o-docker/\">Iniciando com o Docker</a> appeared first on <a rel=\"nofollow\" href=\"http://georgemoura.com.br\">George Moura</a>.</p>]]>",
-			Author:      &feeds.Author{authorName, authorEmail},
-			Created:     time.Date(2014, time.October, 13, 19, 6, 47, 0, time.UTC).Local(),
-		},
-		&feeds.Item{
-			Title:       "Chrome OS no meu pc",
-			Link:        &feeds.Link{Href: "http://georgemoura.com.br/chrome-os-no-meu-pc/"},
-			Description: "<![CDATA[<p>Atenção faça os testes usando uma máquina virtual ou um pc que não tenha utilidade Aí galera venho falar para vocês sobre o Chrome OS, o sistema operacional da Google, acabei de instalar ele no meu pen-drive e já estou utilizando, a propósito estou escrevendo este post nele. Eu estava empolgado para comprar um chromebook, [&#8230;]</p> <p>The post <a rel=\"nofollow\" href=\"http://georgemoura.com.br/chrome-os-no-meu-pc/\">Chrome OS no meu pc</a> appeared first on <a rel=\"nofollow\" href=\"http://georgemoura.com.br\">George Moura</a>.</p>]]>",
-			Author:      &feeds.Author{authorName, authorEmail},
-			Created:     time.Date(2013, time.October, 12, 15, 53, 22, 0, time.UTC).Local(),
-		},
-
-		&feeds.Item{
-			Title:       "Como deletar registros duplicados no banco de dados, deixando apenas um",
-			Link:        &feeds.Link{Href: "http://georgemoura.com.br/como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um/"},
-			Description: "<![CDATA[<p>Pessoal, vim deixar um post bem pequeno, mas que foi minha salvação e achei legal compartilhar. Estou em um projeto e acabei precisando fazer uma migração de dados, o problema é que meu script acabou duplicando as informações no banco de dados, imagine o problema, a sorte é que era um banco de desenvolvimento e [&#8230;]</p> <p>The post <a rel=\"nofollow\" href=\"http://georgemoura.com.br/como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um/\">Como deletar registros duplicados no banco de dados, deixando apenas um</a> appeared first on <a rel=\"nofollow\" href=\"http://georgemoura.com.br\">George Moura</a>.</p>]]>",
-			Author:      &feeds.Author{authorName, authorEmail},
-			Created:     time.Date(2013, time.October, 5, 9, 20, 19, 0, time.UTC).Local(),
-		},
-		&feeds.Item{
-			Title:       "Uma boa IDE para Ruby on Rails",
-			Link:        &feeds.Link{Href: "http://georgemoura.com.br/uma-boa-ide-para-ruby-on-rails/"},
-			Description: "<![CDATA[<p>Meus caros estou escrevendo esse post para falar sobre uma dificuldade que tive logo quando resolvi programar para ruby &#8211; uma IDE. Comecei meus primeiros estudos utilizando o Eclipse e fazendo os teste em meu próprio notebook, mas assim que comecei a testar meu códigos em servidores me deparei com problemas: A versão do rails [&#8230;]</p> <p>The post <a rel=\"nofollow\" href=\"http://georgemoura.com.br/uma-boa-ide-para-ruby-on-rails/\">Uma boa IDE para Ruby on Rails</a> appeared first on <a rel=\"nofollow\" href=\"http://georgemoura.com.br\">George Moura</a>.</p>]]>",
-			Author:      &feeds.Author{authorName, authorEmail},
-			Created:     time.Date(2013, time.July, 3, 21, 23, 47, 0, time.UTC).Local(),
-		},
+	for _, post := range getPosts() {
+		feed.Add(
+			&feeds.Item{
+				Title:       post.Title,
+				Link:        &feeds.Link{Href: "http://" + domain + "" + post.Link},
+				Description: post.Description,
+				Author:      &feeds.Author{authorName, authorEmail},
+				Created:     post.CreatedAt,
+			})
 	}
 
 	m.Get("/", func(r render.Render) {
 		s := struct {
 			Description string
 			Keywords    string
-			Posts       []*feeds.Item
-		}{metaTags["home"].Description, metaTags["home"].Keywords, feed.Items}
+			Posts       []Post
+		}{posts[0].Description, posts[0].Keywords, getPosts()}
 		r.HTML(200, "home", s)
 	})
 
 	m.Get("/blog", func(r render.Render) {
-		/*var posts_names []string
-		for _, item := range feed.Items {
-			template_name := strings.Replace(item.Link.Href, "http://georgemoura.com.br/", "", -1)
-			template_name = strings.Replace(template_name, "/", "", -1)
-			page, err := ioutil.ReadFile("./templates/posts/" + template_name + ".html")
-			if err != nil {
-				panic(err)
-			}
-			posts_names = append(posts_names, string(page))
-		}*/
 		s := struct {
 			Description string
 			Keywords    string
-			//Posts       []string
-		}{metaTags["home"].Description, metaTags["home"].Keywords}
-		//{metaTags["home"].Description, metaTags["home"].Keywords, posts_names}
+			Posts       []Post
+		}{posts[0].Description, posts[0].Keywords, getPosts()}
+
 		r.HTML(200, "blog", s)
 	})
 
@@ -147,7 +152,7 @@ func init() {
 		s := struct {
 			Description string
 			Keywords    string
-		}{metaTags["home"].Description, metaTags["home"].Keywords}
+		}{posts[0].Description, posts[0].Keywords}
 		r.HTML(200, "contact", s)
 	})
 
@@ -158,7 +163,7 @@ func init() {
 			YearsOld    int
 			Description string
 			Keywords    string
-		}{yearsOld, metaTags["cv"].Description, metaTags["cv"].Keywords}
+		}{yearsOld, posts[1].Description, posts[1].Keywords}
 
 		r.HTML(200, "cv", s)
 	})
@@ -168,9 +173,12 @@ func init() {
 		return rss
 	})
 
-	m.Get("/:postname", func(params martini.Params, r render.Render) {
-		postname := params["postname"]
-		r.HTML(200, "posts/"+postname, metaTags[postname])
+	m.Get("/:postname", func(params martini.Params, r render.Render) (int, string) {
+		post := getPostByName(params["postname"])
+		if post.FriendlyId != "" {
+			r.HTML(200, "posts/"+post.FriendlyId, post)
+		}
+		return 404, "Post not found!"
 	})
 
 	m.NotFound(func() string {
@@ -194,7 +202,27 @@ func getFeed() string {
 	if err != nil {
 		fmt.Print("Errors!")
 	}
-
 	//fmt.Fprint(w, rss)
 	return rss
+}
+
+func getPosts() []Post {
+	var p []Post
+	for _, post := range posts {
+		if post.PostType != "page" {
+			p = append(p, post)
+		}
+	}
+	return p
+}
+
+func getPostByName(name string) Post {
+	var p Post
+	for _, post := range posts {
+		if post.FriendlyId == name {
+			p = post
+		}
+	}
+
+	return p
 }
