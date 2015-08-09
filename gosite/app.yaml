@@ -20,8 +20,8 @@ handlers:
 - url: /images
   static_dir: public/images/
 
-- url: /wp-includes
-  static_dir: public/wp-includes/images/smiles
+- url: /wp-includes/images/smilies/
+  static_dir: public/wp-includes/images/smilies
 
 - url: /(.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg))$
   static_files: public/images\1

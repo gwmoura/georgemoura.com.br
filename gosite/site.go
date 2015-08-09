@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"github.com/go-martini/martini"
 	"github.com/gorilla/feeds"
+	"github.com/martini-contrib/gzip"
 	"github.com/martini-contrib/render"
 	"net/http"
 	"time"
-	//"github.com/martini-contrib/gzip"
 	//"github.com/martini-contrib/gorelic"
 )
 
@@ -110,11 +110,12 @@ func init() {
 		Layout:     "layout",
 		Extensions: []string{".tmpl", ".html"},
 	}))
+	m.Use(func(res http.ResponseWriter, req *http.Request) {
+		res.Header().Set("Cache-Control", "public, max-age=2592000")
+	})
+	m.Use(gzip.All())
 	/*
-			m.Use(func(res http.ResponseWriter, req *http.Request) {
-				res.Header().Set("Cache-Control", "public, max-age=2592000")
-			})
-			m.Use(gzip.All())
+
 			gorelic.InitNewrelicAgent("ef64d80f06826b61c849b959f48b9c2a52dc4ac8", "George Moura Site", true)
 		  m.Use(gorelic.Handler)
 	*/
