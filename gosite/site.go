@@ -178,6 +178,7 @@ func init() {
 		post := getPostByName(params["postname"])
 		if post.FriendlyId != "" {
 			r.HTML(200, "posts/"+post.FriendlyId, post)
+			return 200, ""
 		}
 		return 404, "Post not found!"
 	})
