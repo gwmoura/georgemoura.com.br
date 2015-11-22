@@ -53,6 +53,14 @@ var posts = []Post{
 		FriendlyId:  "cv",
 	},
 	{
+		Description: "Neste tutorial irei mostrar como instalar o docker no ubuntu 14.04",
+		Keywords: "docker,ubuntu",
+		Title: "Instalando Docker no Ubuntu 14.04",
+		Link: "/instalando-docker-no-ubuntu-1404",
+		CreatedAt: time.Date(2015, time.November, 22, 17, 15,0,0, time.UTC).Local(),
+		FriendlyId: "instalando-docker-no-ubuntu-1404",
+	},
+	{
 		Description: "Neste tutorial vou mostrar como criar VMs na nuvem da Google (Google Cloud Platform). O primeiro passo é acessar: cloud.google.com e clicar em \"Sign in\" no canto superior direito. Após o login (com sua conta google) clique em \"My Console\" no canto superior direito. Ao clicar nesse link você irá para a página de projetos.",
 		Keywords:    "google,cloud,vm,google cloud platform,compute engine",
 		Title:       "Criando VMs na Google Cloud Platform",
