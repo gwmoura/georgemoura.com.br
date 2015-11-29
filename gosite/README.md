@@ -2,6 +2,8 @@ repos
 
 * https://github.com/go-martini/martini
 * https://github.com/martini-contrib/render
+* github.com/gorilla/feeds
+* github.com/martini-contrib/gzip
 
 front-end
 
