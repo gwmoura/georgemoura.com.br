@@ -1,7 +1,0 @@
-{
-  "name": "george-site",
-  "version": "1.0.0",
-  "dependencies": {
-    "polymer": "Polymer/polymer#^1.0.0"
-  }
-}

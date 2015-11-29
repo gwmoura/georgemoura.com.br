@@ -1,1 +1,0 @@
-python "C:\Program Files (x86)\Google\google_appengine\dev_appserver.py" dispatch.yaml default/app.yaml feed/feed.yaml curriculum/curriculum.yaml
