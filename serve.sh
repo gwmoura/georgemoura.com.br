@@ -1,2 +1,2 @@
 #!/bin/bash
-dev_appserver.py gosite/
+goapp serve gosite/

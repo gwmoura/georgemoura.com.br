@@ -1,7 +1,5 @@
 package site
 
-//package main
-
 import (
 	"fmt"
 	"github.com/go-martini/martini"
@@ -112,7 +110,11 @@ var posts = []Post{
 	},
 }
 
-func init() {
+func init(){
+	start()
+}
+
+func start() {
 	m := martini.Classic()
 	m.Use(render.Renderer(render.Options{
 		Layout:     "layout",
@@ -123,9 +125,8 @@ func init() {
 	})
 	m.Use(gzip.All())
 	/*
-
-			gorelic.InitNewrelicAgent("ef64d80f06826b61c849b959f48b9c2a52dc4ac8", "George Moura Site", true)
-		  m.Use(gorelic.Handler)
+	gorelic.InitNewrelicAgent("ef64d80f06826b61c849b959f48b9c2a52dc4ac8", "George Moura Site", true)
+	m.Use(gorelic.Handler)
 	*/
 	for _, post := range getPosts() {
 		feed.Add(
