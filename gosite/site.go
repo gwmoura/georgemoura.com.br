@@ -213,7 +213,6 @@ func getFeed() string {
 	if err != nil {
 		fmt.Print("Errors!")
 	}
-	//fmt.Fprint(w, rss)
 	return rss
 }
 

@@ -6,6 +6,7 @@ import (
         "net/http/httptest"
         "time"
         "strings"
+        // "fmt"
 )
 
 
@@ -66,4 +67,26 @@ func TestAge(t *testing.T) {
         if years != 25 {
                 t.Fatalf("Year different from %d", 25)
         }
+}
+
+func TestGetFeed(t *testing.T) {
+    feed := getFeed()
+    if !strings.Contains(feed, "Programador Web e Mobile "){
+        t.Fatalf("Response body not contais %v", "Programador Web e Mobile ")
+    }
+}
+
+func TestGetPosts(t *testing.T){
+    allPosts := getPosts()
+    totalposts := len(allPosts)
+    if allPosts[totalposts-1].Title != "Uma boa IDE para Ruby on Rails"{
+        t.Fatalf("Post Title is diferrent. expected: %v\n actual: %v", "Uma boa IDE para Ruby on Rails", allPosts[totalposts-1].Title)
+    }
+}
+
+func TestGetPostByName(t *testing.T){
+    p := getPostByName("chrome-os-no-meu-pc")
+    if p.Title!="Chrome OS no meu pc"{
+        t.Fatalf("Post Title different. expected: %v\n actual", "Chrome OS no meu pc", p.Title)
+    }
 }
