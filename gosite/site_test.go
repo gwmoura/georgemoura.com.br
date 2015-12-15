@@ -21,43 +21,44 @@ func DoRequest(method string, path string) *httptest.ResponseRecorder{
 func TestSite(t *testing.T){
     response := DoRequest("GET","/")
     if response.Code != http.StatusOK {
-        t.Fatalf("Response body did not contain expected %v:\n\tbody: %v", "200", response.Code)
+        t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
     }
 
     response = DoRequest("GET","/feed")
     if response.Code != http.StatusOK{
-        t.Fatalf("Response body did not contain expected %v:\n\tbody: %v", "200", response.Code)
+        t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
     }
 
     response = DoRequest("GET","/blog")
     if response.Code != http.StatusOK{
-        t.Fatalf("Response body did not contain expected %v:\n\tbody: %v", "200", response.Code)
+        t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
     }
 
     response = DoRequest("GET","/contatos")
     if response.Code != http.StatusOK{
-        t.Fatalf("Response body did not contain expected %v:\n\tbody: %v", "200", response.Code)
+        t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
     }
 
     response = DoRequest("GET","/curriculo")
     if response.Code != http.StatusOK{
-        t.Fatalf("Response body did not contain expected %v:\n\tbody: %v", "200", response.Code)
+        t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
     }
 
-    //test to view a post
-    response = DoRequest("GET",posts[2].Link)
-    if response.Code != http.StatusOK{
-        t.Fatalf("Response body did not contain expected %v:\n\tbody: %v", "200", response.Code)
-    }
-
-    if !strings.Contains(response.Body.String(), posts[2].Title){
-        t.Fatalf("Response body did not contain expected %v:\n\t", posts[2].Title)
+   // test if all posts not have a broken link and test show for post
+    for _, post := range getPosts() {
+        response = DoRequest("GET",post.Link)
+        if response.Code != http.StatusOK {
+            t.Fatalf("Response code did not contain expected %v:\n\tCode: %v \t URL: %v", "200", response.Code, post.Link)
+        }
+        if !strings.Contains(response.Body.String(), post.Title){
+            t.Fatalf("Response body did not contain expected %v:\n\t", post.Title)
+        }
     }
 
     //test page not found
     response = DoRequest("GET","/xyz")
     if response.Code != http.StatusNotFound{
-        t.Fatalf("Response body did not contain expected %v:\n\tbody: %v", "404", response.Code)
+        t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "404", response.Code)
     }
 }
 
