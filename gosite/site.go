@@ -191,6 +191,14 @@ func start() {
 		return rss
 	})
 
+	m.Get("/natal", func(r render.Render) {
+		s := struct {
+			Description string
+			Keywords 	string
+		}{"Página para o natal da família", "natal, família"}
+		r.HTML(200, "natal", s)
+	})
+
 	m.Get("/:postname", func(params martini.Params, r render.Render) (int, string) {
 		post := getPostByName(params["postname"])
 		if post.FriendlyId != "" {
