@@ -51,6 +51,14 @@ var posts = []Post{
 		FriendlyId:  "cv",
 	},
 	{
+		Description: "Ruby 2.3.0 foi lançado recentemente e eu resolvi entender um pouco sobre benchmark e fazer um comparando as versões 2.2.3 e a 2.3.0",
+		Keywords: "ruby, benchmark",
+		Title: "Ruby Benchmark 2.2.3 VS 2.3.0",
+		Link: "/ruby-benchmark-223-vs-230/",
+		CreatedAt: time.Date(2015, time.December, 26, 11, 22, 0, 0, time.UTC).Local(),
+		FriendlyId: "ruby-benchmark-223-vs-230",
+	},
+	{
 		Description: "Estou escrevendo este post para não esquecer como configurar novas resoluções de monitores no meu ubuntu.",
 		Keywords: "ubuntu, monitor",
 		Title: "Adicionando resolução do monitor no ubuntu 14.04",
