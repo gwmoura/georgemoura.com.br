@@ -37,14 +37,14 @@ type Post struct {
 
 var posts = []Post{
 	{
-		Title:       "George Moura Blog",
+		Title:       "Desenvolvedor Web e Mobile",
 		Description: "Blog de George Moura",
 		Keywords:    "",
 		PostType:    "page",
 		FriendlyId:  "home",
 	},
 	{
-		Title:       "George Moura | Currículo",
+		Title:       "Currículo",
 		Description: "Currículo George Moura",
 		Keywords:    "",
 		PostType:    "page",
@@ -52,27 +52,27 @@ var posts = []Post{
 	},
 	{
 		Description: "Ruby 2.3.0 foi lançado recentemente e eu resolvi entender um pouco sobre benchmark e fazer um comparando as versões 2.2.3 e a 2.3.0",
-		Keywords: "ruby, benchmark",
-		Title: "Ruby Benchmark 2.2.3 VS 2.3.0",
-		Link: "/ruby-benchmark-223-vs-230/",
-		CreatedAt: time.Date(2015, time.December, 26, 11, 22, 0, 0, time.UTC).Local(),
-		FriendlyId: "ruby-benchmark-223-vs-230",
+		Keywords:    "ruby, benchmark",
+		Title:       "Ruby Benchmark 2.2.3 VS 2.3.0",
+		Link:        "/ruby-benchmark-223-vs-230/",
+		CreatedAt:   time.Date(2015, time.December, 26, 11, 22, 0, 0, time.UTC).Local(),
+		FriendlyId:  "ruby-benchmark-223-vs-230",
 	},
 	{
 		Description: "Estou escrevendo este post para não esquecer como configurar novas resoluções de monitores no meu ubuntu.",
-		Keywords: "ubuntu, monitor",
-		Title: "Adicionando resolução do monitor no ubuntu 14.04",
-		Link: "/adicionando-resolucao-do-monitor-no-ubuntu-1404/",
-		CreatedAt: time.Date(2015, time.December, 15, 10, 46, 0, 0, time.UTC).Local(),
-		FriendlyId: "adicionando-resolucao-do-monitor-no-ubuntu-1404",
+		Keywords:    "ubuntu, monitor",
+		Title:       "Adicionando resolução do monitor no ubuntu 14.04",
+		Link:        "/adicionando-resolucao-do-monitor-no-ubuntu-1404/",
+		CreatedAt:   time.Date(2015, time.December, 15, 10, 46, 0, 0, time.UTC).Local(),
+		FriendlyId:  "adicionando-resolucao-do-monitor-no-ubuntu-1404",
 	},
 	{
 		Description: "Neste tutorial irei mostrar como instalar o docker no ubuntu 14.04",
-		Keywords: "docker,ubuntu",
-		Title: "Instalando Docker no Ubuntu 14.04",
-		Link: "/instalando-docker-no-ubuntu-1404/",
-		CreatedAt: time.Date(2015, time.November, 22, 17, 15,0,0, time.UTC).Local(),
-		FriendlyId: "instalando-docker-no-ubuntu-1404",
+		Keywords:    "docker,ubuntu",
+		Title:       "Instalando Docker no Ubuntu 14.04",
+		Link:        "/instalando-docker-no-ubuntu-1404/",
+		CreatedAt:   time.Date(2015, time.November, 22, 17, 15, 0, 0, time.UTC).Local(),
+		FriendlyId:  "instalando-docker-no-ubuntu-1404",
 	},
 	{
 		Description: "Neste tutorial vou mostrar como criar VMs na nuvem da Google (Google Cloud Platform). O primeiro passo é acessar: cloud.google.com e clicar em \"Sign in\" no canto superior direito. Após o login (com sua conta google) clique em \"My Console\" no canto superior direito. Ao clicar nesse link você irá para a página de projetos.",
@@ -126,7 +126,7 @@ var posts = []Post{
 	},
 }
 
-func init(){
+func init() {
 	start()
 }
 
@@ -141,8 +141,8 @@ func start() {
 	})
 	m.Use(gzip.All())
 	/*
-	gorelic.InitNewrelicAgent("ef64d80f06826b61c849b959f48b9c2a52dc4ac8", "George Moura Site", true)
-	m.Use(gorelic.Handler)
+		gorelic.InitNewrelicAgent("ef64d80f06826b61c849b959f48b9c2a52dc4ac8", "George Moura Site", true)
+		m.Use(gorelic.Handler)
 	*/
 	for _, post := range getPosts() {
 		feed.Add(
@@ -157,28 +157,31 @@ func start() {
 
 	m.Get("/", func(r render.Render) {
 		s := struct {
+			Title       string
 			Description string
 			Keywords    string
 			Posts       []Post
-		}{posts[0].Description, posts[0].Keywords, getPosts()}
+		}{posts[0].Title, posts[0].Description, posts[0].Keywords, getPosts()}
 		r.HTML(200, "home", s)
 	})
 
 	m.Get("/blog", func(r render.Render) {
 		s := struct {
+			Title       string
 			Description string
 			Keywords    string
 			Posts       []Post
-		}{posts[0].Description, posts[0].Keywords, getPosts()}
+		}{posts[0].Title, posts[0].Description, posts[0].Keywords, getPosts()}
 
 		r.HTML(200, "blog", s)
 	})
 
 	m.Get("/contatos", func(r render.Render) {
 		s := struct {
+			Title       string
 			Description string
 			Keywords    string
-		}{posts[0].Description, posts[0].Keywords}
+		}{posts[0].Title, posts[0].Description, posts[0].Keywords}
 		r.HTML(200, "contact", s)
 	})
 
@@ -187,9 +190,10 @@ func start() {
 
 		s := struct {
 			YearsOld    int
+			Title       string
 			Description string
 			Keywords    string
-		}{yearsOld, posts[1].Description, posts[1].Keywords}
+		}{yearsOld, posts[1].Title, posts[1].Description, posts[1].Keywords}
 
 		r.HTML(200, "cv", s)
 	})
@@ -201,9 +205,10 @@ func start() {
 
 	m.Get("/natal", func(r render.Render) {
 		s := struct {
+			Title       string
 			Description string
-			Keywords 	string
-		}{"Página para o natal da família", "natal, família"}
+			Keywords    string
+		}{"Página para o natal da família", "Página para o natal da família", "natal, família"}
 		r.HTML(200, "natal", s)
 	})
 
