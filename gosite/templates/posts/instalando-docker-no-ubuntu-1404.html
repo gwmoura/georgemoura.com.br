@@ -1,10 +1,10 @@
 <article>
   <header>
-    <h1 class="entry-title">Instalando Docker no Ubuntu 14.04</h1>
+    <h1 class="entry-title">{{ .Title }}</h1>
     <div class="entry-meta">
       <span class="date">
-        <a href="http://georgemoura.com.br/instalando-docker-no-ubuntu-1404" title="Link permanente para Intalando Docker no Ubuntu 14.04" rel="bookmark">
-          <time class="entry-date" datetime="22/11/2015 17:15">22/11/2015 17:15</time>
+        <a href="{{ .Link }}" title="Link permanente para {{ .Title }}" rel="bookmark">
+          <time class="entry-date" datetime="{{ .CreatedAt }}">{{ .CreatedAt }}</time>
         </a>
       </span>
     </div><!-- .entry-meta -->

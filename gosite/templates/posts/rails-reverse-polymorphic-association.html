@@ -1,14 +1,14 @@
 <article>
   <header>
-    <h1 class="entry-title">[post-title]</h1>
+    <h1 class="entry-title">{{ .Title }}</h1>
     <div class="entry-meta">
       <span class="date">
-        <a href="[post-link]" title="Link permanente para [post-title]" rel="bookmark">
-          <time class="entry-date" datetime="[post-created_at]">[post-created_at]</time>
+        <a href="{{ .Link }}" title="Link permanente para {{ .Title }}" rel="bookmark">
+          <time class="entry-date" datetime="{{ .CreatedAt }}">{{ .CreatedAt }}</time>
         </a>
       </span>
     </div><!-- .entry-meta -->
-  </header> 
+  </header>
 
   <div class="entry-content">
     [post-content]
@@ -18,8 +18,8 @@
     http://guides.rubyonrails.org/association_basics.html#polymorphic-associations
     http://stackoverflow.com/questions/14422101/reverse-polymorphic-association-in-rails-accessing-the-parents-attributes
     http://stackoverflow.com/questions/10198727/rails-reverse-polymorphic-association
-  </div> 
+  </div>
   <footer>
-    
+
   </footer>>
 </article>

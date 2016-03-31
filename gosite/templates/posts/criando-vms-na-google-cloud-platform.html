@@ -1,31 +1,31 @@
 <article id="post-328" class="post-328 post type-post status-publish format-standard hentry category-sem-categoria">
-	<header class="entry-header">
-		
-				<h1 class="entry-title">Criando VMs na Google Cloud Platform</h1>
-		
-		<div class="entry-meta">
-			<span class="date"><a href="http://georgemoura.com.br/criando-vms-na-google-cloud-platform/" title="Link permanente para Criando VMs na Google Cloud Platform" rel="bookmark"><time class="entry-date" datetime="2015-03-17T18:02:37+00:00">17 de março de 2015</time></a></span>
-		</div><!-- .entry-meta -->
-	</header><!-- .entry-header -->
+  <header>
+    <h1 class="entry-title">{{ .Title }}</h1>
+    <div class="entry-meta">
+      <span class="date">
+        <a href="{{ .Link }}" title="Link permanente para {{ .Title }}" rel="bookmark">
+          <time class="entry-date" datetime="{{ .CreatedAt }}">{{ .CreatedAt }}</time>
+        </a>
+      </span>
+    </div><!-- .entry-meta -->
+  </header>
 
-		<div class="entry-content">
-		<p>Neste tutorial vou mostrar como criar VMs na nuvem da Google (Google Cloud Platform). O primeiro passo é acessar: <a title="Google Cloud Platform" href="cloud.google.com" target="_blank">cloud.google.com</a> e clicar em “Sign in” no canto superior direito.</p>
-<p>Após o login (com sua conta google) clique em “My Console” no canto superior direito. Ao clicar nesse link você irá para a página de projetos.</p>
-<p>Nesta página clique em “Criar projeto”, será aberto um modal com o nome do projeto e um ID gerado automaticamente pela Google, você pode alterá-lo se quiser, é só digitar um novo nome e clicar no ícone de <em>reload</em>. Após definir o nome do projeto clique no botão “Criar” e aguarde o projeto ser criado.</p>
-<p><a href="http://george-moura-site-bucket.storage.googleapis.com/2015/03/new-projetc-gcloud.png"><img class="alignnone wp-image-329 size-medium" src="http://george-moura-site-bucket.storage.googleapis.com/2015/03/new-projetc-gcloud-300x205.png" alt="new-projetc-gcloud" width="300" height="205"></a></p>
-<p>Após a criação do projeto, acesse-o clicando no link na lista de projetos ou na janelinha que ficará no canto&nbsp;inferior direito. Você verá uma janela como essa:</p>
-<p><a href="http://george-moura-site-bucket.storage.googleapis.com/2015/03/dashboard-gcloud.png"><img class="alignnone wp-image-330 size-medium" src="http://george-moura-site-bucket.storage.googleapis.com/2015/03/dashboard-gcloud-300x143.png" alt="dashboard-gcloud" width="300" height="143"></a></p>
-<p>Agora acesse: <strong>Computação &gt; Google Compute Engine &gt; Instâncias da VM</strong> e você verá uma página como essa:</p>
-<p><a href="http://george-moura-site-bucket.storage.googleapis.com/2015/03/gce-index-gclod.png"><img class="alignnone wp-image-331 size-medium" src="http://george-moura-site-bucket.storage.googleapis.com/2015/03/gce-index-gclod-300x113.png" alt="gce-index-gclod" width="300" height="113"></a></p>
-<p>Clique em “Criar instância” e será exibido um formulário com as configurações básicas da VM, preencha o campo NOME com um nome para sua VM, em FIREWALL selecione Permitir tráfego HTTP, selecione a ZONA que desejar, escolha o tipo de VM&nbsp;em TIPO DE MÁQUINA, em IMAGEM, escolha a imagem do SO que você achar melhor. Clique no botão “Criar” e aguarde a sua máquina ser criada, após a criação você verá uma tela como essa:</p>
-<p><a href="http://george-moura-site-bucket.storage.googleapis.com/2015/03/newvm-gcloud.png"><img class="alignnone wp-image-332 size-medium" src="http://george-moura-site-bucket.storage.googleapis.com/2015/03/newvm-gcloud-300x156.png" alt="newvm-gcloud" width="300" height="156"></a></p>
-<p>Pronto! Sua maquina virtual já esta pronta e você pode acessá-la via ssh, pelo browser ou usando a ferramenta <a title="Gcloud Tool" href="https://cloud.google.com/compute/docs/gcloud-compute/?hl=pt_BR" target="_blank">gcloud</a>.</p>
-<p><a href="http://george-moura-site-bucket.storage.googleapis.com/2015/03/ssh-gcloud.png"><img class="alignnone wp-image-333 size-medium" src="http://george-moura-site-bucket.storage.googleapis.com/2015/03/ssh-gcloud-300x138.png" alt="ssh-gcloud" width="300" height="138"></a></p>
-<p>Perceba que você não conseguirá acessar nenhuma página web da sua VM, isso porque só fizemos habilitar o tráfego http no firewall, mas ainda é necessário colocar algum servidor web rodando na porta 80, então meu caro leitor, agora é só acessar sua VM com umas das opções listadas acima se divertir instalando e rodando suas aplicações.</p>
-<p> <img src="http://georgemoura.com.br/wp-includes/images/smilies/icon_wink.gif" alt=";)" class="wp-smiley"> </p>
+<div class="entry-content">
+  <p>Neste tutorial vou mostrar como criar VMs na nuvem da Google (Google Cloud Platform). O primeiro passo é acessar: <a title="Google Cloud Platform" href="cloud.google.com" target="_blank">cloud.google.com</a> e clicar em “Sign in” no canto superior direito.</p>
+  <p>Após o login (com sua conta google) clique em “My Console” no canto superior direito. Ao clicar nesse link você irá para a página de projetos.</p>
+  <p>Nesta página clique em “Criar projeto”, será aberto um modal com o nome do projeto e um ID gerado automaticamente pela Google, você pode alterá-lo se quiser, é só digitar um novo nome e clicar no ícone de <em>reload</em>. Após definir o nome do projeto clique no botão “Criar” e aguarde o projeto ser criado.</p>
+  <p><a href="{{ assetsHost }}/2015/03/new-projetc-gcloud.png"><img class="alignnone wp-image-329 size-medium" src="{{ assetsHost }}/2015/03/new-projetc-gcloud-300x205.png" alt="new-projetc-gcloud" width="300" height="205"></a></p>
+  <p>Após a criação do projeto, acesse-o clicando no link na lista de projetos ou na janelinha que ficará no canto&nbsp;inferior direito. Você verá uma janela como essa:</p>
+  <p><a href="{{ assetsHost }}/2015/03/dashboard-gcloud.png"><img class="alignnone wp-image-330 size-medium" src="{{ assetsHost }}/2015/03/dashboard-gcloud-300x143.png" alt="dashboard-gcloud" width="300" height="143"></a></p>
+  <p>Agora acesse: <strong>Computação &gt; Google Compute Engine &gt; Instâncias da VM</strong> e você verá uma página como essa:</p>
+  <p><a href="{{ assetsHost }}/2015/03/gce-index-gclod.png"><img class="alignnone wp-image-331 size-medium" src="{{ assetsHost }}/2015/03/gce-index-gclod-300x113.png" alt="gce-index-gclod" width="300" height="113"></a></p>
+  <p>Clique em “Criar instância” e será exibido um formulário com as configurações básicas da VM, preencha o campo NOME com um nome para sua VM, em FIREWALL selecione Permitir tráfego HTTP, selecione a ZONA que desejar, escolha o tipo de VM&nbsp;em TIPO DE MÁQUINA, em IMAGEM, escolha a imagem do SO que você achar melhor. Clique no botão “Criar” e aguarde a sua máquina ser criada, após a criação você verá uma tela como essa:</p>
+  <p><a href="{{ assetsHost }}/2015/03/newvm-gcloud.png"><img class="alignnone wp-image-332 size-medium" src="{{ assetsHost }}/2015/03/newvm-gcloud-300x156.png" alt="newvm-gcloud" width="300" height="156"></a></p>
+  <p>Pronto! Sua maquina virtual já esta pronta e você pode acessá-la via ssh, pelo browser ou usando a ferramenta <a title="Gcloud Tool" href="https://cloud.google.com/compute/docs/gcloud-compute/?hl=pt_BR" target="_blank">gcloud</a>.</p>
+  <p><a href="{{ assetsHost }}/2015/03/ssh-gcloud.png"><img class="alignnone wp-image-333 size-medium" src="{{ assetsHost }}/2015/03/ssh-gcloud-300x138.png" alt="ssh-gcloud" width="300" height="138"></a></p>
+  <p>Perceba que você não conseguirá acessar nenhuma página web da sua VM, isso porque só fizemos habilitar o tráfego http no firewall, mas ainda é necessário colocar algum servidor web rodando na porta 80, então meu caro leitor, agora é só acessar sua VM com umas das opções listadas acima se divertir instalando e rodando suas aplicações.</p>
+  <p> <img src="//{{ host }}/wp-includes/images/smilies/icon_wink.gif" alt=";)" class="wp-smiley"> </p>
 </div><!-- .entry-content -->
-	
-	<footer class="entry-meta">
-		
-			</footer><!-- .entry-meta -->
+
+  <footer class="entry-meta"></footer><!-- .entry-meta -->
 </article>

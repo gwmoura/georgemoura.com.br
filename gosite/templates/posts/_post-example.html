@@ -1,10 +1,10 @@
 <article>
   <header>
-    <h1 class="entry-title">[post-title]</h1>
+    <h1 class="entry-title">{{ .Title }}</h1>
     <div class="entry-meta">
       <span class="date">
-        <a href="[post-link]" title="Link permanente para [post-title]" rel="bookmark">
-          <time class="entry-date" datetime="[post-created_at]">[post-created_at]</time>
+        <a href="{{ .Link }}" title="Link permanente para {{ .Title }}" rel="bookmark">
+          <time class="entry-date" datetime="{{ .CreatedAt }}">{{ .CreatedAt }}</time>
         </a>
       </span>
     </div><!-- .entry-meta -->
