@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/feeds"
 	"github.com/martini-contrib/gzip"
 	"github.com/martini-contrib/render"
+	"io/ioutil"
 	"net/http"
 	"time"
 	//"github.com/martini-contrib/gorelic"
@@ -137,7 +138,7 @@ func start() {
 		Extensions: []string{".tmpl", ".html"},
 	}))
 	m.Use(func(res http.ResponseWriter, req *http.Request) {
-		res.Header().Set("Cache-Control", "public, max-age=2592000")
+		res.Header().Set("Cache-Control", "public, max-age=3600")
 	})
 	m.Use(gzip.All())
 	/*
@@ -219,6 +220,14 @@ func start() {
 			return 200, ""
 		}
 		return 404, "Post not found!"
+	})
+
+	m.Get("/.well-known/acme-challenge/:code", func(params martini.Params, r render.Render) (int, string) {
+		data, err := ioutil.ReadFile("certificates/" + params["code"])
+		if err != nil {
+			return 404, "Post not found!"
+		}
+		return 200, string(data)
 	})
 
 	m.NotFound(func() string {

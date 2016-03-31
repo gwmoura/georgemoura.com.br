@@ -1,9 +1,8 @@
 application: george-moura-site
-version: 1
+version: 20160331
 runtime: go
 api_version: go1
 
-#default_expiration: "4d 5h"
 default_expiration: "30m"
 
 handlers:
