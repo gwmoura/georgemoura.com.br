@@ -55,6 +55,14 @@ var posts = []Post{
 		FriendlyId:  "cv",
 	},
 	{
+		Description: "Neste post vou falar um pouco sobre Docker Compose e como usá-lo em desenvolvimento",
+		Keywords:    "ruby,php,docker,docker-compose,desenvolvimento",
+		Title:       "Desenvolvendo com Docker Compose",
+		Link:        "/desenvolvendo-com-docker-compose/",
+		CreatedAt:   time.Date(2016, time.April, 4, 10, 05, 0, 0, time.UTC).Local(),
+		FriendlyId:  "desenvolvendo-com-docker-compose",
+	},
+	{
 		Description: "Ruby 2.3.0 foi lançado recentemente e eu resolvi entender um pouco sobre benchmark e fazer um comparando as versões 2.2.3 e a 2.3.0",
 		Keywords:    "ruby, benchmark",
 		Title:       "Ruby Benchmark 2.2.3 VS 2.3.0",

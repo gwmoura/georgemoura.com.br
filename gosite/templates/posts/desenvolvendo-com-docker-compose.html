@@ -1,0 +1,225 @@
+<article>
+  <header>
+    <h1 class="entry-title">{{ .Title }}</h1>
+    <div class="entry-meta">
+      <span class="date">
+        <a href="{{ .Link }}" title="Link permanente para {{ .Title }}" rel="bookmark">
+          <time class="entry-date" datetime="{{ .CreatedAt }}">{{ .CreatedAt }}</time>
+        </a>
+      </span>
+    </div><!-- .entry-meta -->
+  </header>
+  <div class="entry-content">
+    <p>
+      Neste post vou falar um pouco sobre Docker Compose e como usá-lo em desenvolvimento, estou usando <code>Docker version 1.10.2</code> e <code>docker-compose version 1.6.2</code>.
+    </p>
+    <p>
+      <h4>Que diabos é Docker Compose?</h4>
+      O Docker Compose é uma ferramenta para definição e execução de aplicações Docker multi-container. Isso significa que com ele você pode definir várias aplicações como container e executá-las de uma única vez sem precisar executar várias vezes <code>docker build -t [myuser]/[appname] . && docker run [myuser]/[appname]</code>. Isso é uma mão na roda gigante :).
+    </p>
+
+    <p>
+      <h4>Como o Docker  Compose pode me ajudar?</h4>
+      Com o compose acabou aquela situação em que você tem um amigo designer ou front-end e ele tenta rodar a app que ta no repositório, não consegue e você precisa configurar a máquina dele para o trabalho, sem falar no tempo perdido configurando VMs e na diminuição do consumo de ram da sua máquina... Usando o compose em apenas um arquivo você define as <b>dependências do seu ambiente</b>: banco de dados, bancos nosql, variáveis de ambiente, serviços e etc e em seguida com apenas um comando você sobe todo essa pilha e já pode usar. Sua equipe de front-end agora apenas da um <code>git clone [repo] && docker-compose run --service-ports web</code> e já pode trabalhar.
+    </p>
+
+    <p>
+      <h4>Hands ON</h4>
+      Vamos imaginar uma app simples, um hello world por exemplo :D, farei este teste usando PHP e Ruby, Primeiro de tudo temos que criar um <code>Dockerfile</code>, nele iremos definir a imagem que iremos usar e os comandos necessários para importar nossa app em um container.
+    </p>
+    <p>
+      <h4>PHP - Dockerfile</h4>
+      <pre>
+        <code class="dockerfile">
+        FROM php
+        RUN mkdir /app
+        WORKDIR /app
+        RUN wget https://getcomposer.org/composer.phar
+        ADD composer.json /app/composer.json
+        ADD composer.lock /app/composer.lock
+        RUN ./composer.phar install
+        ADD . /app/
+        </code>
+      </pre>
+    </p>
+    <p>
+      <h4>RUBY - Dockerfile</h4>
+      <pre>
+        <code class="dockerfile">
+        FROM ruby
+        RUN mkdir /app
+        WORKDIR /app
+        ADD Gemfile /app/Gemfile
+        ADD Gemfile.lock /app/Gemfile.lock
+        RUN bundle install
+        ADD . /app/
+        </code>
+      </pre>
+    </p>
+    <p>
+      Em seguida vamos criar um arquivo chamado <code>docker-compose.yml</code> e definir os serviços nele. Serviços são uma espécie de alias para o containers que vão ser criados ex: web - para aplicações web, db - para banco de dados. Você pode definir quantos serviços quiser, desde que possuam nomes diferentes, pois quando os containers forem levantados esses "apelidos" poderão ser usandos na comunicação entre eles.
+    </p>
+    <p>
+      Obs: para saber mais sobre a questão de versão do docker-compose acesse <a href="https://docs.docker.com/compose/compose-file/#versioning">https://docs.docker.com/compose/compose-file/#versioning</a>
+    </p>
+    <p>
+      <h4>PHP - docker-compose.yml</h4>
+      <pre>
+        <code class="yml">
+        version: '2'
+        services:
+          web:
+            build: .
+            command: php -S 0.0.0.0:8000 -t /app/web/ # comando a ser executado quando o conatiner web terminar o build
+            ports:
+              - "8000:8000" # porta que será mapeada com o host
+            volumes:
+              - .:/app # volume que será mapeado "." - root da aplicação, "/app" - diretório no container
+        </code>
+      </pre>
+    </p>
+    <p>
+      <h4>Ruby - docker-compose.yml</h4>
+      <pre>
+        <code class="yml">
+        version: '2'
+        services:
+          web:
+            build: .
+            command: bundle exec ruby hello.rb
+            ports:
+              - "3000:3000"
+            volumes:
+              - .:/app
+            environment:
+              PORT: 3000
+        </code>
+      </pre>
+    </p>
+
+    <p>
+      Depois de definido o <code>Dockerfile</code> e o <code>docker-compose.yml</code> vamos agora fazer nossos apps helloworld.
+    </p>
+
+    <p>Para PHP irei usar o Silex e para ruby o Sinatra.</p>
+
+    <p>
+      <h4>PHP - Estrutura do diretório</h4>
+      <pre>
+        <code class="tds">
+        .
+        ├── composer.json
+        ├── composer.lock
+        ├── docker-compose.yml
+        ├── Dockerfile
+        ├── scripts
+        │   └── run
+        └── web
+            └── index.php
+        </code>
+      </pre>
+      <h4>PHP - composer.json</h4>
+      <pre>
+        <code class="json">
+        {
+            "require": {
+                "silex/silex": "^1.3"
+            }
+        }
+        </code>
+      </pre>
+      <h4>PHP - web/index.php</h4>
+      <pre>
+        <code class="php">
+            <?php
+            require_once __DIR__.'/../vendor/autoload.php';
+
+            $app = new Silex\Application();
+
+            $app->get('/', function() use($app) {
+              return "You are in home";
+            });
+
+            $app->get('/{name}', function($name) use($app) {
+                return 'Hello '.$app->escape($name);
+            });
+
+            $app->run();
+            ?>
+          </code>
+      </pre>
+    </p>
+
+    <p>
+      <h4>Ruby - estrutura do diretório</h4>
+      <pre>
+        <code class="dts">
+         .
+        ├── docker-compose.yml
+        ├── Dockerfile
+        ├── Gemfile
+        ├── Gemfile.lock
+        ├── hello.rb
+        └── scripts
+            └── run
+        </code>
+      </pre>
+      <h4>Ruby - Gemfile</h4>
+      <pre>
+        <code class="ruby">
+        source 'https://rubygems.org'
+
+        gem 'sinatra'
+        gem 'sinatra-contrib'
+        </code>
+      </pre>
+      <h4>Ruby - hello.app</h4>
+      <pre>
+        <code class="ruby">
+          require 'sinatra'
+          require "sinatra/reloader" if development?
+
+          set :bind, '0.0.0.0'
+          set :port, ENV['PORT']
+
+          get '/' do
+            "You are in home"
+          end
+          get '/:name' do
+            "Hello #{params['name']}!"
+          end
+        </code>
+      </pre>
+    </p>
+    <p>
+      <h4>Executando os containers</h4>
+      Para executar os containers vamos rodar o seguinte o comando no root da aplicação <code>docker-compose run --service-ports web</code>. Esse comando fara com que os containers sejam levantados e os comandos definidos no docker-compose.yml e no DOckerfile sejam executados, a opção <code>--service-ports</code> com o comando run serve para mapear as portas do container com as portas do host, se você utilizar o <code>docker-compose build</code> essa opção não é necessária e nem disponível.
+    </p>
+    <p>
+      Como vocês devem ter percebido na estrutura de diretórios tem uma pasta chamada <code>scripts</code>, com um script chamado <code>run</code>. Eu faço isso para facilitar minha vida, nesse script tem apenas uma linha com o comando citado acima, então quando quero rodar os containers apenas faço <code>./scripts/run</code>.
+    </p>
+    <p>
+      Após rodar o comando é só acessar localhost:8000 para a aplicação PHP e localhost:3000 para a aplicação Ruby, qualquer alteração feita na aplicação será replicada no container por conta do mapeamento de volumes que fizemos no docker-compose.yml
+    <code>
+      volumes:
+                - .:/app
+    </code>
+    </p>
+    <p>
+      <h4>Executando comandos dentro do container</h4>
+      Caso precisem executar comandos dentro do container vocês pode fazer da seguinte maneira: <code>docker-compose run web [comando]</code> ex:
+      <pre>
+        <code class="bash">
+          $ docker-compose run web ruby -v
+          ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-linux]
+
+          $ docker-compose run web php -v
+          PHP 7.0.4 (cli) (built: Mar 19 2016 00:06:16) ( NTS )
+          Copyright (c) 1997-2016 The PHP Group
+          Zend Engine v3.0.0, Copyright (c) 1998-2016 Zend Technologies
+        </code>
+      </pre>
+    </p>
+    <p>É isso aí pessoal, divirtam-se!!! ;)</p>
+  </div>
+</article>
