@@ -189,16 +189,11 @@ func start() {
 	})
 
 	m.Get("/curriculo", func(r render.Render) {
-		yearsOld := age(time.Date(1990, 5, 14, 0, 0, 0, 0, time.UTC))
+		showCVPage(r)
+	})
 
-		s := struct {
-			YearsOld    int
-			Title       string
-			Description string
-			Keywords    string
-		}{yearsOld, posts[1].Title, posts[1].Description, posts[1].Keywords}
-
-		r.HTML(200, "cv", s)
+	m.Get("/cv", func(r render.Render) {
+		showCVPage(r)
 	})
 
 	m.Get("/feed", func() string {
@@ -275,4 +270,17 @@ func getPostByName(name string) Post {
 	}
 
 	return p
+}
+
+func showCVPage(r render.Render) {
+	yearsOld := age(time.Date(1990, 5, 14, 0, 0, 0, 0, time.UTC))
+
+	s := struct {
+		YearsOld    int
+		Title       string
+		Description string
+		Keywords    string
+	}{yearsOld, posts[1].Title, posts[1].Description, posts[1].Keywords}
+
+	r.HTML(200, "cv", s)
 }
