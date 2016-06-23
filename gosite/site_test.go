@@ -67,10 +67,11 @@ func TestSite(t *testing.T) {
 }
 
 func TestAge(t *testing.T) {
+	myage := 26
 	years := age(time.Date(1990, 5, 14, 0, 0, 0, 0, time.UTC))
 
-	if years != 25 {
-		t.Fatalf("Year different from %d", 25)
+	if years != myage {
+		t.Fatalf("Year different from %d", myage)
 	}
 }
 
