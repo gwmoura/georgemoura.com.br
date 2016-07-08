@@ -193,7 +193,7 @@
     </p>
     <p>
       <h4>Executando os containers</h4>
-      Para executar os containers vamos rodar o seguinte o comando no root da aplicação <code>docker-compose run --service-ports web</code>. Esse comando fara com que os containers sejam levantados e os comandos definidos no docker-compose.yml e no DOckerfile sejam executados, a opção <code>--service-ports</code> com o comando run serve para mapear as portas do container com as portas do host, se você utilizar o <code>docker-compose build</code> essa opção não é necessária e nem disponível.
+      Para executar os containers vamos rodar o seguinte o comando no root da aplicação <code>docker-compose up</code>. Esse comando fara com que os containers sejam levantados e os comandos definidos no docker-compose.yml e no DOckerfile sejam executados.
     </p>
     <p>
       Como vocês devem ter percebido na estrutura de diretórios tem uma pasta chamada <code>scripts</code>, com um script chamado <code>run</code>. Eu faço isso para facilitar minha vida, nesse script tem apenas uma linha com o comando citado acima, então quando quero rodar os containers apenas faço <code>./scripts/run</code>.
@@ -219,6 +219,10 @@
           Zend Engine v3.0.0, Copyright (c) 1998-2016 Zend Technologies
         </code>
       </pre>
+    </p>
+    <p>
+      <h4>Instalando novas depedências no projeto</h4>
+      Sempre que uma nova dependência for adicionada ao projeto é necessário executar <code>docker-compose build</code> para que uma nova imagem seja criada com as dependências instaladas.
     </p>
     <p>É isso aí pessoal, divirtam-se!!! O reposótio com os exemplos está aqui: <a href="https://github.com/gwmoura/hello-docker-compose">https://github.com/gwmoura/hello-docker-compose</a>;)</p>
   </div>
