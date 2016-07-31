@@ -6,7 +6,6 @@ import (
 	"strings"
 	"testing"
 	"time"
-	// "fmt"
 )
 
 func DoRequest(method string, path string) *httptest.ResponseRecorder {
@@ -43,7 +42,17 @@ func TestSite(t *testing.T) {
 		t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
 	}
 
+	response = DoRequest("GET", "/curriculo/en")
+	if response.Code != http.StatusOK {
+		t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
+	}
+
 	response = DoRequest("GET", "/cv")
+	if response.Code != http.StatusOK {
+		t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
+	}
+
+	response = DoRequest("GET", "/cv/br")
 	if response.Code != http.StatusOK {
 		t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
 	}

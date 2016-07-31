@@ -9,6 +9,7 @@ import (
 	"html/template"
 	"io/ioutil"
 	"net/http"
+	"strings"
 	"time"
 	//"github.com/martini-contrib/gorelic"
 )
@@ -18,6 +19,9 @@ var authorEmail string = "gwmoura@gmail.com"
 var domain string = "georgemoura.com.br"
 var AssetsHost = template.FuncMap{"assetsHost": func() string { return "https://storage.googleapis.com/george-moura-site.appspot.com" }}
 var Host = template.FuncMap{"host": func() string { return domain }}
+var hasString = template.FuncMap{"hasString": func(word string, prefix string) bool {
+	return strings.Contains(word, prefix)
+}}
 
 var feed = &feeds.Feed{
 	Title:       "George Moura Blog",
@@ -137,7 +141,7 @@ func start() {
 	m.Use(render.Renderer(render.Options{
 		Layout:     "layout",
 		Extensions: []string{".tmpl", ".html"},
-		Funcs:      []template.FuncMap{AssetsHost, Host},
+		Funcs:      []template.FuncMap{AssetsHost, Host, hasString},
 	}))
 	m.Use(func(res http.ResponseWriter, req *http.Request) {
 		res.Header().Set("Cache-Control", "public, max-age=3600")
@@ -188,13 +192,10 @@ func start() {
 		r.HTML(200, "contact", s)
 	})
 
-	m.Get("/curriculo", func(r render.Render) {
-		showCVPage(r)
-	})
-
-	m.Get("/cv", func(r render.Render) {
-		showCVPage(r)
-	})
+	m.Get("/curriculo/:locale", showCVPage)
+	m.Get("/curriculo", showCVPage)
+	m.Get("/cv/:locale", showCVPage)
+	m.Get("/cv", showCVPage)
 
 	m.Get("/feed", func() string {
 		rss := getFeed()
@@ -272,7 +273,13 @@ func getPostByName(name string) Post {
 	return p
 }
 
-func showCVPage(r render.Render) {
+func showCVPage(params martini.Params, r render.Render) {
+	locale := params["locale"]
+	template_name := "cv/br"
+	fmt.Println("Locale", locale)
+	if locale != "" {
+		template_name = "cv/" + locale
+	}
 	yearsOld := age(time.Date(1990, 5, 14, 0, 0, 0, 0, time.UTC))
 
 	s := struct {
@@ -281,6 +288,5 @@ func showCVPage(r render.Render) {
 		Description string
 		Keywords    string
 	}{yearsOld, posts[1].Title, posts[1].Description, posts[1].Keywords}
-
-	r.HTML(200, "cv", s)
+	r.HTML(200, template_name, s)
 }

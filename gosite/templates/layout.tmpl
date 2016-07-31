@@ -16,7 +16,7 @@
     <link type="text/css" rel="stylesheet" media="all" href="/css/style.css" />
   </head>
   <body>
-    {{if ne current "cv"}}
+    {{if ne (hasString current "cv") true}}
     <nav class="cyan darken-4">
       <div class="nav-wrapper">
         <a href="/" title="George Moura" class="brand-logo">George Moura</a>
@@ -41,7 +41,7 @@
       {{end}}
         <!-- Render the current template here -->
         {{ yield }}
-      {{if ne current "cv"}}
+      {{if ne (hasString current "cv") true}}
       <div>
         <div class="anuncio">
           anúncio
