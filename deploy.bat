@@ -1,2 +1,0 @@
-python "C:\Program Files (x86)\Google\google_appengine\appcfg.py" update default/app.yaml feed/feed.yaml curriculum/curriculum.yaml
-python "C:\Program Files (x86)\Google\google_appengine\appcfg.py" update_dispatch .
