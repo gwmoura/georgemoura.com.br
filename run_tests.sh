@@ -1,1 +1,1 @@
-goapp test -v ./gosite/
+go test -race -v ./gosite/

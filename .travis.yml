@@ -1,0 +1,17 @@
+language: go
+go:
+  - 1.6
+  - tip
+install: ./get_dependencies.sh
+script: ./run_tests.sh
+before_install:
+- openssl aes-256-cbc -K $encrypted_0e2ffed888ec_key -iv $encrypted_0e2ffed888ec_iv
+  -in service-account.json.enc -out service-account.json -d
+deploy:
+  provider: gae
+  keyfile: "$(pwd)/service-account.json"
+  project: "george-moura-site"
+  config: "gosite/app.yaml"
+  on: master
+  no_promote: true
+  no_stop_previous_version: true
