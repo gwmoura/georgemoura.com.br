@@ -1,4 +1,3 @@
-application: george-moura-site
 runtime: go
 api_version: go1
 

@@ -1,7 +1,6 @@
 language: go
 go:
   - 1.6
-  - tip
 install: ./get_dependencies.sh
 script: ./run_tests.sh
 before_install:
