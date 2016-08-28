@@ -7,8 +7,12 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_0e2ffed888ec_key -iv $encrypted_0e2ffed888ec_iv -in service-account.json.enc -out service-account.json -d
 - ./scripts/configure_gcloud.sh
 - ./scripts/install_go_appengine.sh
-install: ./scripts/get_dependencies.sh
-script: ./scripts/run_tests.sh
+install:
+- go get -v -t -d google.golang.org/appengine/..
+- ./scripts/get_dependencies.sh
+script:
+- go version
+- ./scripts/run_tests.sh
 deploy:
   provider: script
   script: scripts/deploy.sh
