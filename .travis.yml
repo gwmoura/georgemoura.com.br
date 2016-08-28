@@ -2,9 +2,7 @@ language: go
 go:
   - 1.6
 env:
-  - APPENGINE_VERSION=1.9.40
-  - PROJECT_ID="george-moura-site"
-  - APPLICATION_CREDENTIALS="$(pwd)/service-account.json"
+  - APPENGINE_VERSION=1.9.40 PROJECT_ID="george-moura-site" APPLICATION_CREDENTIALS="$(pwd)/service-account.json"
 before_install:
 - openssl aes-256-cbc -K $encrypted_0e2ffed888ec_key -iv $encrypted_0e2ffed888ec_iv -in service-account.json.enc -out service-account.json -d
 - ./scripts/configure_gcloud.sh

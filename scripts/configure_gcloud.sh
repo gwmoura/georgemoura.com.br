@@ -12,6 +12,8 @@ rm $TARFILE
   --path-update false \
   --command-completion false
 
+source ./google-cloud-sdk/path.bash.inc
+
 gcloud components update
 
 # Set config.
