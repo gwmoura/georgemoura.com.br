@@ -1,16 +1,19 @@
 language: go
 go:
   - 1.6
-install: ./get_dependencies.sh
-script: ./run_tests.sh
+env:
+  - APPENGINE_VERSION=1.9.40
+  - PROJECT_ID="george-moura-site"
+  - APPLICATION_CREDENTIALS="$(pwd)/service-account.json"
 before_install:
-- openssl aes-256-cbc -K $encrypted_0e2ffed888ec_key -iv $encrypted_0e2ffed888ec_iv
-  -in service-account.json.enc -out service-account.json -d
+- openssl aes-256-cbc -K $encrypted_0e2ffed888ec_key -iv $encrypted_0e2ffed888ec_iv -in service-account.json.enc -out service-account.json -d
+- ./scripts/configure_gcloud.sh
+- wget "https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_linux_amd64-$APPENGINE_VERSION.zip" -nv
+- unzip -q "go_appengine_sdk_linux_amd64-$APPENGINE_VERSION.zip"
+- export PATH="$(pwd)/go_appengine/:$PATH"
+install: ./scripts/get_dependencies.sh
+script: ./scripts/run_tests.sh
 deploy:
-  provider: gae
-  keyfile: "$(pwd)/service-account.json"
-  project: "george-moura-site"
-  config: "gosite/app.yaml"
+  provider: script
+  script: scripts/deploy.sh
   on: master
-  no_promote: true
-  no_stop_previous_version: true
