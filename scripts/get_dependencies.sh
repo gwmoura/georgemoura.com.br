@@ -1,1 +1,1 @@
-goapp get -v ./
+go get -v ./
