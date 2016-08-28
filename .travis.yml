@@ -15,7 +15,9 @@ install:
 - ./scripts/get_dependencies.sh
 script:
 - go version
-- ./scripts/run_tests.sh
+- go test -v google.golang.org/appengine/...
+- go test -v -race google.golang.org/appengine/...
+- $GO_APPENGINE/goapp test -race -v ./...
 deploy:
   provider: script
   script: scripts/deploy.sh
