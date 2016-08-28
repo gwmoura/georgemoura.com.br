@@ -20,7 +20,7 @@ gcloud components update
 gcloud config set disable_prompts True
 gcloud config set project $PROJECT_ID
 gcloud config set app/promote_by_default false
-gcloud auth activate-service-account --key-file "$APPLICATION_CREDENTIALS"
+gcloud auth activate-service-account --key-file "service-account.json"
 
 # Diagnostic information.
 gcloud info

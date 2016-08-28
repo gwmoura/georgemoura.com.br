@@ -31,3 +31,8 @@ handlers:
 - url: /.*
   script: _go_app
   secure: always
+
+skip_files:
+- google-cloud-sdk/
+- go_appengine
+- .git
