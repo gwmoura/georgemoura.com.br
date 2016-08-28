@@ -8,7 +8,7 @@ before_install:
 - ./scripts/configure_gcloud.sh
 - ./scripts/install_go_appengine.sh
 install:
-- go get -v -t -d google.golang.org/appengine/..
+- go get -v -t -d google.golang.org/appengine/...
 - ./scripts/get_dependencies.sh
 script:
 - go version
