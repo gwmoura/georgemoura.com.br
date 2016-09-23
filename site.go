@@ -2,15 +2,16 @@ package site
 
 import (
 	"fmt"
-	"github.com/go-martini/martini"
-	"github.com/gorilla/feeds"
-	"github.com/martini-contrib/gzip"
-	"github.com/martini-contrib/render"
 	"html/template"
 	"io/ioutil"
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/go-martini/martini"
+	"github.com/gorilla/feeds"
+	"github.com/martini-contrib/gzip"
+	"github.com/martini-contrib/render"
 	//"github.com/martini-contrib/gorelic"
 )
 
@@ -147,10 +148,7 @@ func start() {
 		res.Header().Set("Cache-Control", "public, max-age=3600")
 	})
 	m.Use(gzip.All())
-	/*
-		gorelic.InitNewrelicAgent("ef64d80f06826b61c849b959f48b9c2a52dc4ac8", "George Moura Site", true)
-		m.Use(gorelic.Handler)
-	*/
+
 	for _, post := range getPosts() {
 		feed.Add(
 			&feeds.Item{
