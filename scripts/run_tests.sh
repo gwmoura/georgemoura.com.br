@@ -1,1 +1,1 @@
-go test -race -v ./
+go test -race -v ./gosite
