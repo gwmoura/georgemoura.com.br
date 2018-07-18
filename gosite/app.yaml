@@ -1,10 +1,13 @@
-application: george-moura-site
+# application: george-moura-site
 runtime: go
 api_version: go1
 
 default_expiration: "30m"
 
 handlers:
+
+- url: /.well-known/acme-challenge
+  static_dir: letsencrypt
 
 - url: /css
   static_dir: public/css/
