@@ -1,6 +1,6 @@
 language: go
 go:
-  - 1.6
+  - 1.12
 env:
   - APPENGINE_VERSION=1.9.40 PROJECT_ID="george-moura-site"
 before_install:
