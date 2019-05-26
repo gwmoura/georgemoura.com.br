@@ -2,15 +2,16 @@ package site
 
 import (
 	"fmt"
-	"github.com/go-martini/martini"
-	"github.com/gorilla/feeds"
-	"github.com/martini-contrib/gzip"
-	"github.com/martini-contrib/render"
 	"html/template"
 	"io/ioutil"
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/go-martini/martini"
+	"github.com/gorilla/feeds"
+	"github.com/martini-contrib/gzip"
+	"github.com/martini-contrib/render"
 	//"github.com/martini-contrib/gorelic"
 )
 
@@ -60,11 +61,19 @@ var posts = []Post{
 	},
 	{
 		Description: "Neste post vou falar um pouco sobre Docker Compose e como usá-lo em desenvolvimento",
-		Keywords:    "ruby,php,docker,docker-compose,desenvolvimento",
-		Title:       "Desenvolvendo com Docker Compose",
-		Link:        "/desenvolvendo-com-docker-compose/",
+		Keywords:    "php,docker,docker-compose,desenvolvimento",
+		Title:       "Desenvolvendo com Docker Compose PHP",
+		Link:        "/desenvolvendo-com-docker-compose-php/",
 		CreatedAt:   time.Date(2016, time.April, 4, 10, 05, 0, 0, time.UTC).Local(),
-		FriendlyId:  "desenvolvendo-com-docker-compose",
+		FriendlyId:  "desenvolvendo-com-docker-compose-php",
+	},
+	{
+		Description: "Neste post vou falar um pouco sobre Docker Compose e como usá-lo em desenvolvimento",
+		Keywords:    "ruby,docker,docker-compose,desenvolvimento",
+		Title:       "Desenvolvendo com Docker Compose Ruby",
+		Link:        "/desenvolvendo-com-docker-compose-ruby/",
+		CreatedAt:   time.Date(2016, time.April, 4, 10, 05, 0, 0, time.UTC).Local(),
+		FriendlyId:  "desenvolvendo-com-docker-compose-ruby",
 	},
 	{
 		Description: "Ruby 2.3.0 foi lançado recentemente e eu resolvi entender um pouco sobre benchmark e fazer um comparando as versões 2.2.3 e a 2.3.0",
