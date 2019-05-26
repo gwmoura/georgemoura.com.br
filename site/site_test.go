@@ -6,77 +6,61 @@ import (
 	"strings"
 	"testing"
 	"time"
-
-	"github.com/go-martini/martini"
-	"github.com/martini-contrib/render"
 )
 
-func DoRequest(method string, path string, f func(martini.Params, render.Render)) *httptest.ResponseRecorder {
-	// req, _ := http.NewRequest(method, path, nil)
-	// rr := httptest.NewRecorder()
-	// m := martini.New()
-	// MyInstance.ServeHTTP(rr, req)
-
-	// http.DefaultServeMux.ServeHTTP(rr, req)
-
-	// handler := http.HandlerFunc(f)
-	// handler.ServeHTTP(rr, req)
-
-	// return rr
-
-	rr := httptest.NewRecorder()
-	// m := martini.New()
+func DoRequest(method string, path string) *httptest.ResponseRecorder {
 	setUp()
 	setRoutes()
-	MyInstance.ServeHTTP(rr, (*http.Request)(nil))
-
-	return rr
+	req, _ := http.NewRequest(method, path, nil)
+	response := httptest.NewRecorder()
+	MyInstance.ServeHTTP(response, req)
+	return response
 }
 
 func TestSite(t *testing.T) {
-	response := DoRequest("GET", "/", index)
+	response := DoRequest("GET", "/")
 	if response.Code != http.StatusOK {
 		t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
 	}
 
-	response = DoRequest("GET", "/feed", pageFeed)
+	response = DoRequest("GET", "/feed")
 	if response.Code != http.StatusOK {
 		t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
 	}
 
-	response = DoRequest("GET", "/blog", blog)
+	response = DoRequest("GET", "/blog")
 	if response.Code != http.StatusOK {
 		t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
 	}
 
-	response = DoRequest("GET", "/contatos", contatos)
+	response = DoRequest("GET", "/contatos")
 	if response.Code != http.StatusOK {
 		t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
 	}
 
-	response = DoRequest("GET", "/curriculo", showCVPage)
+	response = DoRequest("GET", "/curriculo")
 	if response.Code != http.StatusOK {
 		t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
 	}
 
-	response = DoRequest("GET", "/curriculo/en", showCVPage)
+	response = DoRequest("GET", "/curriculo/en")
 	if response.Code != http.StatusOK {
 		t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
 	}
 
-	response = DoRequest("GET", "/cv", showCVPage)
+	response = DoRequest("GET", "/cv")
 	if response.Code != http.StatusOK {
 		t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
 	}
 
-	response = DoRequest("GET", "/cv/br", showCVPage)
+	response = DoRequest("GET", "/cv/br")
 	if response.Code != http.StatusOK {
 		t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
 	}
 
 	// test if all posts not have a broken link and test show for post
 	for _, post := range getPosts() {
-		response = DoRequest("GET", post.Link, getPost)
+		response = DoRequest("GET", post.Link)
 		if response.Code != http.StatusOK {
 			t.Fatalf("Response code did not contain expected %v:\n\tCode: %v \t URL: %v", "200", response.Code, post.Link)
 		}
@@ -87,9 +71,10 @@ func TestSite(t *testing.T) {
 	}
 
 	//test page not found
-	response = DoRequest("GET", "/xyz", getPost)
+	response = DoRequest("GET", "/xyz")
+	body := response.Body.String()
 	if response.Code != http.StatusNotFound {
-		t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "404", response.Code)
+		t.Fatalf("Response code did not contain expected %v:\n\tfound: %v - body: %v", "404", response.Code, body)
 	}
 }
 
