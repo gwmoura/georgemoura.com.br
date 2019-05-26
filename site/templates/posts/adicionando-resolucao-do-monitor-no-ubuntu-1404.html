@@ -1,0 +1,61 @@
+<article>
+  <header>
+    <h1 class="entry-title">{{ .Title }}</h1>
+    <div class="entry-meta">
+      <span class="date">
+        <a href="{{ .Link }}" title="Link permanente para {{ .Title }}" rel="bookmark">
+          <time class="entry-date" datetime="{{ .CreatedAt }}">{{ .CreatedAt }}</time>
+        </a>
+      </span>
+    </div><!-- .entry-meta -->
+  </header>
+
+  <div class="entry-content">
+    Estou escrevendo este post para não esquecer como configurar novas
+    resoluções de monitores no meu ubuntu. O processo é bem simples e
+    possui 3 passos apenas:
+
+    <ol>
+      <li>Descobrir as configurações ideais para a resolução</li>
+      <li>Adicionar um novo modo com <code>xrandr</code></li>
+      <li>Adicionar os comandos no ~/.bashrc</li>
+    </ol>
+
+    <h4>1 - Descobrir as configurações ideais</h4>
+    Para essa etapa use o comando <code>gtf [altura] [largura] [profundidade]</code>
+    , seguindo o exemplo abaixo você obterá algo desse tipo:
+    <pre>
+     $ gtf 1920 1080 60 -x
+
+     # 1920x1080 @ 60.00 Hz (GTF) hsync: 67.08 kHz; pclk: 172.80 MHz
+     Modeline "1920x1080_60.00"  172.80  1920 2040 2248 2576  1080 1081 1084 1118  -HSync +Vsync
+
+    </pre>
+
+    <h4>2 - Adicionar um novo modo com xrandr</h4>
+    Agora copie a saída do comando gtf, copie apenas a linha após a partir da palavra "Modeline"
+    <pre>
+      $ xrandr --newmode "1920x1080_60.00"  172.80  1920 2040 2248 2576  1080 1081 1084 1118  -HSync +Vsync
+      $ xrandr --addmode VGA1 1920x1080_60.00
+      $ xrandr -s 1920x1080
+    </pre>
+
+    <h4>3 - Adicionar os comando no ~/.bashrc</h4>
+    Abra o terminal <code>ctrl+alt+t</code> e digite <code>nano ~/.bashrc</code>, vá até o final do arquivo e copie os comandos:
+    <pre>
+      # Monitor Config
+
+      xrandr --newmode "1920x1080_60.00"  172.80  1920 2040 2248 2576  1080 1081 1084 1118  -HSync +Vsync
+      xrandr --addmode VGA1 1920x1080_60.00
+      xrandr -s 1920x1080
+    </pre>
+    Aperte <code>ctrl+x</code> e depois "S" para salvar e fechar.
+    <br/>
+    Com isso toda vez que você reiniciar o computador as configurações serão carregadas.<br/>
+
+    Obrigado e até a próxima ;)
+  </div>
+  <footer>
+
+  </footer>
+</article>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{.Description}}">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,PHP,Ruby,Python,Go,Java,{{.Keywords}}">
+    <meta name="author" content="George Moura">
+    <title>George Moura | {{.Title}}</title>
+    <link rel="icon" href="//www.gravatar.com/avatar/563562a5c924aac52c903ddf4fd80fa8">
+    <link rel="canonical" href="//georgemoura.com.br/" />
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css"  media="screen,projection"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/monokai-sublime.min.css">
+    <link type="text/css" rel="stylesheet" media="all" href="/css/style.css" />
+  </head>
+  <body>
+    {{if ne (hasString current "cv") true}}
+    <nav class="cyan darken-4">
+      <div class="nav-wrapper">
+        <a href="/" title="George Moura" class="brand-logo">George Moura</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/" title="Início">Início</a></li>
+          <li><a href="/blog" title="Blog">Blog</a></li>
+          <li><a href="/contatos" title="Contatos">Contatos</a></li>
+          <li><a href="/curriculo" target="_blank" title="Currículo">Currículo</a></li>
+          <li><a href="//feeds.feedburner.com/georgemoura" title="Assinar Posts">RSS</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li><a href="/" title="Início">Início</a></li>
+          <li><a href="/blog" title="Blog">Blog</a></li>
+          <li><a href="/contatos" title="Contatos">Contatos</a></li>
+          <li><a href="/curriculo" target="_blank" title="Currículo">Currículo</a></li>
+          <li><a href="//feeds.feedburner.com/georgemoura" title="Assinar Posts">RSS</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      {{end}}
+        <!-- Render the current template here -->
+        {{ yield }}
+      {{if ne (hasString current "cv") true}}
+      <div>
+        <div class="anuncio">
+          anúncio
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- George Site -->
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-7444396631758040"
+               data-ad-slot="9531772347"
+               data-ad-format="auto"></ins>
+          <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </div>
+    </div><!--/.container-->
+    <!--disqus-->
+    <div id="disqus_thread"></div>
+    <!--/disqus-->
+    <footer class="page-footer cyan darken-4">
+      <div class="container">
+        <center>
+          <a href="//www.facebook.com/gwmoura" target="_blank"><img src="/images/icon-facebook.png"  alt="Facebook"  /></a>
+          <a href="//github.com/gwmoura" target="_blank"><img src="/images/icon-github.png"  alt="Github"  /></a>
+          <a href="//www.twitter.com/georgemoura" target="_blank"><img src="/images/icon-twitter.png"  alt="Twitter"  /></a>
+        </center>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          <center>&copy; George Moura - 2015</center>
+        </div>
+      </div>
+    </footer>
+    {{end}}
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38960674-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/languages/dockerfile.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/languages/yaml.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/languages/json.min.js"></script>
+    <script type="text/javascript" src="/js/site.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <!--<script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = 'georgemourablog';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript> -->
+  </body>
+</html>

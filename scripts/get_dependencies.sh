@@ -1,1 +1,1 @@
-go get -v -t ./gosite
+go get -v -t ./site

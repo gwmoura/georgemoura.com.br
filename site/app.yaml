@@ -1,0 +1,35 @@
+# application: george-moura-site
+runtime: go112
+
+default_expiration: "30m"
+
+handlers:
+
+- url: /.well-known/acme-challenge
+  static_dir: letsencrypt
+
+- url: /css
+  static_dir: public/css/
+
+- url: /js
+  static_dir: public/js/
+
+- url: /font
+  static_dir: public/font/
+
+- url: /images
+  static_dir: public/images/
+
+- url: /wp-includes/images/smilies/
+  static_dir: public/wp-includes/images/smilies
+
+- url: /(.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg))$
+  static_files: public/images\1
+  upload: public/images/.*\.(ico|jpg|jpeg|png|gif|woff|ttf|otf|eot|svg)$
+
+- url: /robots.txt
+  static_dir: public/
+
+- url: /.*
+  script: auto
+  secure: always

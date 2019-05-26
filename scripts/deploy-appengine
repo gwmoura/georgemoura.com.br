@@ -1,1 +1,1 @@
-gcloud app deploy gosite/app.yaml --project george-moura-site
+gcloud app deploy site/app.yaml --project george-moura-site

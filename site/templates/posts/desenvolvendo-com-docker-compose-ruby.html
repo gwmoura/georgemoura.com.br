@@ -1,0 +1,146 @@
+<article>
+  <header>
+    <h1 class="entry-title">{{ .Title }}</h1>
+    <div class="entry-meta">
+      <span class="date">
+        <a href="{{ .Link }}" title="Link permanente para {{ .Title }}" rel="bookmark">
+          <time class="entry-date" datetime="{{ .CreatedAt }}">{{ .CreatedAt }}</time>
+        </a>
+      </span>
+    </div><!-- .entry-meta -->
+  </header>
+  <div class="entry-content">
+    <p>
+      Neste post vou falar um pouco sobre Docker Compose e como usá-lo em desenvolvimento, estou usando <code>Docker version 1.10.2</code> e <code>docker-compose version 1.6.2</code>.
+    </p>
+    <p>
+      <h4>Que diabos é Docker Compose?</h4>
+      O Docker Compose é uma ferramenta para definição e execução de aplicações Docker multi-container. Isso significa que com ele você pode definir várias aplicações como container e executá-las de uma única vez sem precisar executar várias vezes <code>docker build -t [myuser]/[appname] . && docker run [myuser]/[appname]</code>. Isso é uma mão na roda gigante :).
+    </p>
+
+    <p>
+      <h4>Como o Docker  Compose pode me ajudar?</h4>
+      Usando o compose em apenas um arquivo você define as <b>dependências do seu ambiente</b>: banco de dados, bancos nosql, variáveis de ambiente, serviços e etc e em seguida com apenas um comando você sobe todo essa pilha e já pode usar. Sua equipe agora precisa apenas executar: <code>git clone [repo] && docker-compose build && docker-compose up</code> e já pode trabalhar.
+    </p>
+
+    <p>
+      <h4>Hands ON</h4>
+      Vamos imaginar uma app simples, um hello world por exemplo :D, farei este teste usando Ruby, Primeiro de tudo temos que criar um <code>Dockerfile</code>, nele iremos definir a imagem que iremos usar e os comandos necessários para importar nossa app para o container.
+    </p>
+    <p>
+      <h4>RUBY - Dockerfile</h4>
+      <pre>
+        <code class="dockerfile">
+        FROM ruby
+        RUN mkdir /app
+        WORKDIR /app
+        ADD Gemfile /app/Gemfile
+        ADD Gemfile.lock /app/Gemfile.lock
+        RUN bundle install
+        ADD . /app/
+        </code>
+      </pre>
+    </p>
+    <p>
+      Em seguida vamos criar um arquivo chamado <code>docker-compose.yml</code> e definir os serviços nele. Serviços são uma espécie de alias para o containers que vão ser criados ex: web - para aplicações web, db - para banco de dados. Você pode definir quantos serviços quiser, desde que possuam nomes diferentes, pois quando os containers forem levantados esses "apelidos" serão usados na comunicação entre eles.
+    </p>
+    <p>
+      Obs: para saber mais sobre a questão de versão do docker-compose acesse <a href="https://docs.docker.com/compose/compose-file/#versioning">https://docs.docker.com/compose/compose-file/#versioning</a>
+    </p>
+    <p>
+      <h4>Ruby - docker-compose.yml</h4>
+      <pre>
+        <code class="yml">
+        version: '2'
+        services:
+          web:
+            build: .
+            command: bundle exec ruby hello.rb
+            ports:
+              - "3000:3000"
+            volumes:
+              - .:/app
+            environment:
+              PORT: 3000
+        </code>
+      </pre>
+    </p>
+
+    <p>
+      Depois de definido o <code>Dockerfile</code> e o <code>docker-compose.yml</code> vamos agora fazer nossos apps helloworld.
+    </p>
+
+    <p>Para ruby ireo usar o Sinatra.</p>
+
+    <p>
+      <h4>Ruby - estrutura do diretório</h4>
+      <pre>
+        <code class="dts">
+         .
+        ├── docker-compose.yml
+        ├── Dockerfile
+        ├── Gemfile
+        ├── Gemfile.lock
+        ├── hello.rb
+        └── scripts
+            └── run
+        </code>
+      </pre>
+      <h4>Ruby - Gemfile</h4>
+      <pre>
+        <code class="ruby">
+        source 'https://rubygems.org'
+
+        gem 'sinatra'
+        gem 'sinatra-contrib'
+        </code>
+      </pre>
+      <h4>Ruby - hello.app</h4>
+      <pre>
+        <code class="ruby">
+          require 'sinatra'
+          require "sinatra/reloader" if development?
+
+          set :bind, '0.0.0.0'
+          set :port, ENV['PORT']
+
+          get '/' do
+            "You are in home"
+          end
+          get '/:name' do
+            "Hello #{params['name']}!"
+          end
+        </code>
+      </pre>
+    </p>
+    <p>
+      <h4>Executando os containers</h4>
+      Para executar os containers vamos rodar o seguinte o comando no root da aplicação <code>docker-compose up</code>. Esse comando fara com que os containers sejam levantados e os comandos definidos no docker-compose.yml e no Dockerfile sejam executados.
+    </p>
+    <p>
+      Como vocês devem ter percebido na estrutura de diretórios tem uma pasta chamada <code>scripts</code>, com um script chamado <code>run</code>. Eu faço isso para facilitar minha vida, nesse script tem apenas uma linha com o comando citado acima, então quando quero rodar os containers apenas faço <code>./scripts/run</code>.
+    </p>
+    <p>
+      Após rodar o comando é só acessar localhost:3000 para a aplicação Ruby, qualquer alteração feita na aplicação será replicada no container por conta do mapeamento de volumes que fizemos no docker-compose.yml
+    <code>
+      volumes:
+                - .:/app
+    </code>
+    </p>
+    <p>
+      <h4>Executando comandos dentro do container</h4>
+      Caso precisem executar comandos dentro do container vocês pode fazer da seguinte maneira: <code>docker-compose run web [comando]</code> ex:
+      <pre>
+        <code class="bash">
+          $ docker-compose run web ruby -v
+          ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-linux]
+        </code>
+      </pre>
+    </p>
+    <p>
+      <h4>Instalando novas depedências no projeto</h4>
+      Sempre que uma nova dependência for adicionada ao projeto é necessário executar <code>docker-compose build</code> para que uma nova imagem seja criada com as dependências instaladas.
+    </p>
+    <p>É isso aí pessoal, divirtam-se!!! O reposótio com os exemplos está aqui: <a href="https://github.com/gwmoura/hello-docker-compose">https://github.com/gwmoura/hello-docker-compose</a>;)</p>
+  </div>
+</article>

@@ -1,0 +1,8 @@
+<div class="posts">
+  <ul class="collection with-header">
+  <li class="collection-header"><h4>Posts Recentes</h4></li>
+  {{range .Posts}}
+    <li><a class="collection-item" href="{{.Link}}" title="{{.Title}}">{{.Title}}</a></li>
+  {{end}}
+  </ul>
+</div>
