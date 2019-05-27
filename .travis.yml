@@ -3,17 +3,17 @@ go:
   - "1.12"
 env:
   - APPENGINE_VERSION=1.9.40 PROJECT_ID="george-moura-site"
-# before_install:
-# - openssl aes-256-cbc -K $encrypted_0e2ffed888ec_key -iv $encrypted_0e2ffed888ec_iv -in service-account.json.enc -out service-account.json -d
-# - ls -al
-# - sleep 5
-# - ./scripts/configure_gcloud.sh
+before_install:
+- openssl aes-256-cbc -K $encrypted_0e2ffed888ec_key -iv $encrypted_0e2ffed888ec_iv -in service-account.json.enc -out service-account.json -d
+- ls -al
+- sleep 5
+- ./scripts/configure_gcloud.sh
 install:
 - ./scripts/get_dependencies.sh
 script:
 - ./scripts/run_tests.sh
-# deploy:
-#   provider: script
-#   skip_cleanup: true
-#   script: ./scripts/deploy.sh
-#   on: master
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: ./scripts/deploy.sh
+  on: master
