@@ -1,0 +1,70 @@
+<article>
+  <header>
+    <h1 class="entry-title">{{ .Title }}</h1>
+    <div class="entry-meta">
+      <span class="date">
+        <a href="{{ .Link }}" title="Link permanente para {{ .Title }}" rel="bookmark">
+          <time class="entry-date" datetime="{{ .CreatedAt }}">{{ .CreatedAt }}</time>
+        </a>
+      </span>
+    </div><!-- .entry-meta -->
+  </header>
+
+  <div class="entry-content">
+    <h1>Micro serviços ou Monolíticos? Eis a questão!<h1>
+    <p>Após anos sem postar nada, volto a ativa devagar, pretendo a partir de hoje fazer postagens semanais sobre vários assuntos do meu interesse</p>
+    <p>Para começar, vamos falar de um assunto um pouco polémico... :D</p>
+    <p>
+      Micro serviços ou Monolíticos? O que é melhor? A resposta para essa pergunta é a mesma para muitas para muitas perguntas do universo de desenvolvimento de software... -- "Depende" :)
+      E depende porquê? Posso listar alguns motivos:
+      <ul>
+        <li>Do tamanho da sua equipe</li>
+        <li>Do tamanho da sua solução</li>
+        <li>Do problema que você está enfrentando</li>
+        <li>Do trabalho que você quer ter para manter as coisas funcionando</li>
+        <li>Do seu orçamento</li>
+      </ul>
+
+      Esses são alguns fatores que consigo lembrar nesse momento... Antes de continuar vou explicar um pouco sobre o que é microserviços e monolíticos.
+    </p>
+    <p><b>Um microserviço ou microservice é um software como outro qualquer, mas o que o define é o fato de ter apenas uma responsabilidade (enviar e-mail ou autenticar um usuário ou precessar uma imagem) e estar disponível para ser utilizado por outros serviços, quando você vários microserviços se comunicando entre si, temos o que pode ser chamar de uma arquitetura em microserviços. O que caracteriza um microserviço é o fato dele poder ser executado e implantado sem depender de qualquer outro serviço, ou seja você consegue implantar ou remover o serviço na hora que quiser, além disso é importante dizer que ele possui seu próprio banco de dados. Isso lhe permite ter algumas vantagens, que podemos falar mais abaixo.</p>
+    <p>Já um monolito é também um software como qualquer outro que faz TUDO!!! kkkkkkkkkk, isso mesmo os monolitos são conhecidos por serem softwares mais parrudos que possuem muitas responsabilidades e fazem de tudo, enviam e-mail, autenticam usuários, geram relatórios, cadastram coisas e por aí vai, essa seria a característica mais marcante e fidedigna de um monolito. Existem muitas vantagens de usar um monolito e para mim a mais vantajosa é a manutenção, mas de novo, isso depende...</p>
+    <p>Na minha humilde opnião usar microserviços é bom, desde que você realmente precise, sou adepto de começar os projetos com monolitos e se necessário, aos poucos, você vai extraindo as partes do seu monolito em pequenos serviços. Qual a vantagem disso? Você consegue ter um controle melhor do projeto e não tem um esforço incial grande.</p>
+    <p>
+      Vou explicar melhor. Começando um projeto do zero numa arquitetura de microserviços pode prejudicar a entrega em vários aspectos pense no setup inicial de fazer isso.<br/>
+      * Separar responsabilidades em serviços
+      * Codificar a estrutura de cada serviço
+        * Banco de dados
+        * Autenticação
+        * Controle de acesso
+        * Regras de negócio
+      * Deploy de cada serviço
+      * Service discovery
+      * DNS
+      * Testes de integração - Você precisa garantir que as coisas funcionem bem juntas
+      * Compatibilidade da API entre serviços - Ser você a forma como retorna algo em um serviço, precisa refatorar todos os serviços que usam esse endpoint
+      * E muitas outras coisas
+      <br/>
+      Começando com um monolito o setup inicial é o mesmo setup de um microserviço, porém você isso apenas 1 únicas vez e não precisa se preocupar com os outros problemas que uma arquitetura em microserviços exige.
+
+      Se sua preocupação é escalabilidade separação de responsabilidades, você pode fazer isso usando bons padrões de projeto e separando seu monolito em módulos (isso já facilita a extração desse módulo para microserviço caso necessário), existem muitos projetos que trabalham desse jeito, hoje em dia a grande maioria das linguagens dão suporte a instalação de bibliotecas externas ou internas :). Ruby possui as gems, node possui os pacotes npm, php possui os pacotes do composer, java possui os pacotes do Maven e por aí vai, como programador é importante você conhecer como esses pacotes são feitos e como você pode criar bibliotecas internas "instaláveis".
+
+      Comentando um pouco sobre os dependes que citei acima:
+
+      Do tamanho da sua equipe
+
+      Pense num software simples, um sistema que controla as turmas de uma escola, por alto temos aqui um serviço de autenticação, um serviço para gerenciar alunos, um serviço para gerenciar usuários, um serviço para gerenciar turmas, só aqui são 4 serviços, consequentemente 4 softwares rodando, em servidores separados, com seus próprios bancos de dados, manter isso com uma equipe pequena é fácil, mas pense agora na sua realidade como seria.
+
+      Do tamanho da sua solução
+
+      Do problema que você está enfrentando
+
+      Do trabalho que você quer ter para manter as coisas funcionando
+
+      Do seu orçamento
+    </p>
+  </div>
+  <footer>
+
+  </footer>
+</article>
