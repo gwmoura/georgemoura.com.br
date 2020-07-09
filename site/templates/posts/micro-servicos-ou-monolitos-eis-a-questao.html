@@ -12,8 +12,6 @@
 
   <div class="entry-content">
     <h1>Micro serviços ou Monolíticos? Eis a questão!<h1>
-    <p>Após anos sem postar nada, volto a ativa devagar, pretendo a partir de hoje fazer postagens semanais sobre vários assuntos do meu interesse</p>
-    <p>Para começar, vamos falar de um assunto um pouco polémico... :D</p>
     <p>
       Micro serviços ou Monolíticos? O que é melhor? A resposta para essa pergunta é a mesma para muitas para muitas perguntas do universo de desenvolvimento de software... -- "Depende" :)
       E depende porquê? Posso listar alguns motivos:
@@ -51,17 +49,31 @@
 
       Comentando um pouco sobre os dependes que citei acima:
 
-      Do tamanho da sua equipe
+      <b>Do tamanho da sua equipe</b>
 
       Pense num software simples, um sistema que controla as turmas de uma escola, por alto temos aqui um serviço de autenticação, um serviço para gerenciar alunos, um serviço para gerenciar usuários, um serviço para gerenciar turmas, só aqui são 4 serviços, consequentemente 4 softwares rodando, em servidores separados, com seus próprios bancos de dados, manter isso com uma equipe pequena é fácil, mas pense agora na sua realidade como seria.
 
-      Do tamanho da sua solução
+      <b>Do tamanho da sua solução</b>
 
-      Do problema que você está enfrentando
+      Se você possui uma solução pequena, um software com poucas fucnionalidades, não vale a pena você querer quebrar isso em microserviços, pelo mesmo motivo que falei acima.
 
-      Do trabalho que você quer ter para manter as coisas funcionando
+      <b>Do problema que você está enfrentando</b>
 
-      Do seu orçamento
+      Microserviços, na minha visão são muito bem vindos quando partes do seu software grande começam a engasgar, por exemplo, imagine que seu software possui uma funcionalidade de gerar um PDF a partir de uma página HTML, inicialmente o processo era feito na hora, pouco tempo depois, você implementa essa mesma funcionalidade em outra parte do software, já são dois lugares usando a mesma função de renderizar PDF, daí a demanda começa a crescer e gerar esse PDF na hora que o usuário pede começa a ficar lento, então você implementa um mecanismo de fila onde o usuário agora solicita e você envia esse PDF por e-mail, depois de um tempo mais pontos do sistema começam a usar a mesma funcionalidade de gerar PDF e fazer isso detro do mesmo servidor começa a ficar inviável, pois você precisa começa a consumir muito recusro de IO e cpu e isso começa a concorrer com a aplicação principal e etc... Quando você chegar nesse nível talvez seja interessante criar um microserviço responsável por gerar PDFs.
+
+      <b>Do trabalho que você quer ter para manter as coisas funcionando</b>
+
+      Manter vários serviços rodando não é uma tarefa fácil, se preocupar com a segurança de um sistema é diferente de se preocupar com a segurança de vários, a infra de um software rodando na web já é algo complexo, imagine agora lidar com essa complexidade multiplicada, sem falar nos testes de integração para garantir que a mudança no seu serviço não vai quebrar outros, compatibilidade de comunicação entre serviços, em alguns casos você precisa duplicar dados entre os serviços, imagine ter que se preocupar em sincronizar esses dados e na frequência que isso precisa ser feito.
+
+      <b>Do seu orçamento</b>
+
+      De novo, manter vários softwares rodando requer custo por cada um, mesmo que você rode cada serviço em um container docker, seus serviços juntos vão consumir mais do que um monolito consumiria, isso sem falar nos custos relacionados infra de rede necessária para manter a comunicação entre os serviços.
+    </p>
+    <p>Então é isso, na minha opnião começar o projeto de cara usando microserviços é loucura e principalmente pelo fato de que o setup inicial é custoso e manter isso é muito trabalhoso, começar rápido e simples é a melhor opção, com o monolito em poucas semanas você já tem algo funcional e a medida que sua necessidade for aumentado comece a pensar em novas arquiteturas. Software é maleável, você pode evoluí-lo aos poucos, se preocupe em fazê-lo de uma forma que seja fácil manter e evoluir.</p>
+    <p>Arquitetura em microserviços é uma ferramenta que precisa ser usada por quem entende, estude as ferramentas disponíveis e use a que mais se adequar ao problema a ser resolvido.</p>
+    <p>
+      É isso aí, espero ter ajudado e contrubuído com algo.<br/>
+      Um forte abraço.
     </p>
   </div>
   <footer>
