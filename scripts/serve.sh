@@ -1,2 +1,2 @@
 #!/bin/bash
-goapp serve ./site
+cd ./site && go run ./

@@ -97,12 +97,12 @@ var posts = []Post{
 		CreatedAt:   time.Date(2013, time.July, 3, 21, 23, 47, 0, time.UTC).Local(),
 		FriendlyId:  "uma-boa-ide-para-ruby-on-rails",
 	},
-	// {
-	// 	Description: "",
-	// 	Keywords:    "microservices,monolithics,micro-servicos,monolitos,arquitetura",
-	// 	Title:       "Micro serviços ou monolitos? Eis a questão",
-	// 	Link:        "/micro-servicos-ou-monolitos-eis-a-questao/",
-	// 	CreatedAt:   time.Date(2020, time.July, 8, 22, 27, 00, 0, time.UTC).Local(),
-	// 	FriendlyId: "micro-servicos-ou-monolitos-eis-a-questao"
-	// }
+	{
+		Description: "",
+		Keywords:    "microservices,monolithics,micro-servicos,monolitos,arquitetura",
+		Title:       "Micro serviços ou monolitos? Eis a questão",
+		Link:        "/micro-servicos-ou-monolitos-eis-a-questao/",
+		CreatedAt:   time.Date(2020, time.July, 8, 22, 27, 00, 0, time.UTC).Local(),
+		FriendlyId:  "micro-servicos-ou-monolitos-eis-a-questao",
+	},
 }
