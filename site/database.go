@@ -18,6 +18,14 @@ var posts = []Post{
 		FriendlyId:  "cv",
 	},
 	{
+		Description: "Micro serviços ou Monolíticos? O que é melhor? A resposta para essa pergunta é a mesma para muitas para muitas perguntas do universo de desenvolvimento de software: Depende :)",
+		Keywords:    "microservices,monolithics,micro-servicos,monolitos,arquitetura",
+		Title:       "Micro serviços ou monolitos? Eis a questão",
+		Link:        "/micro-servicos-ou-monolitos-eis-a-questao/",
+		CreatedAt:   time.Date(2020, time.July, 12, 20, 35, 00, 0, time.UTC).Local(),
+		FriendlyId:  "micro-servicos-ou-monolitos-eis-a-questao",
+	},
+	{
 		Description: "Neste post vou falar um pouco sobre Docker Compose e como usá-lo em desenvolvimento",
 		Keywords:    "php,docker,docker-compose,desenvolvimento",
 		Title:       "Desenvolvendo com Docker Compose PHP",
@@ -96,13 +104,5 @@ var posts = []Post{
 		Link:        "/uma-boa-ide-para-ruby-on-rails/",
 		CreatedAt:   time.Date(2013, time.July, 3, 21, 23, 47, 0, time.UTC).Local(),
 		FriendlyId:  "uma-boa-ide-para-ruby-on-rails",
-	},
-	{
-		Description: "",
-		Keywords:    "microservices,monolithics,micro-servicos,monolitos,arquitetura",
-		Title:       "Micro serviços ou monolitos? Eis a questão",
-		Link:        "/micro-servicos-ou-monolitos-eis-a-questao/",
-		CreatedAt:   time.Date(2020, time.July, 12, 20, 35, 00, 0, time.UTC).Local(),
-		FriendlyId:  "micro-servicos-ou-monolitos-eis-a-questao",
 	},
 }

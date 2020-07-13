@@ -97,7 +97,7 @@ func TestGetFeed(t *testing.T) {
 func TestGetPosts(t *testing.T) {
 	allPosts := getPosts()
 	totalposts := len(allPosts)
-	postTitle := "Micro serviços ou monolitos? Eis a questão"
+	postTitle := "Uma boa IDE para Ruby on Rails"
 	if allPosts[totalposts-1].Title != postTitle {
 		t.Fatalf("Post Title is diferrent. expected: %v\n actual: %v", postTitle, allPosts[totalposts-1].Title)
 	}
