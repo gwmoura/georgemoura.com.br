@@ -79,11 +79,11 @@ func TestSite(t *testing.T) {
 }
 
 func TestAge(t *testing.T) {
-	myage := 29
+	myage := 30
 	years := age(time.Date(1990, 5, 14, 0, 0, 0, 0, time.UTC))
 
 	if years != myage {
-		t.Fatalf("Year different from %d", myage)
+		t.Fatalf("Age expected %d but receive %d", myage, years)
 	}
 }
 
@@ -97,8 +97,9 @@ func TestGetFeed(t *testing.T) {
 func TestGetPosts(t *testing.T) {
 	allPosts := getPosts()
 	totalposts := len(allPosts)
-	if allPosts[totalposts-1].Title != "Uma boa IDE para Ruby on Rails" {
-		t.Fatalf("Post Title is diferrent. expected: %v\n actual: %v", "Uma boa IDE para Ruby on Rails", allPosts[totalposts-1].Title)
+	postTitle := "Micro serviços ou monolitos? Eis a questão"
+	if allPosts[totalposts-1].Title != postTitle {
+		t.Fatalf("Post Title is diferrent. expected: %v\n actual: %v", postTitle, allPosts[totalposts-1].Title)
 	}
 }
 

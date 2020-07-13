@@ -1,1 +1,0 @@
-gcloud app deploy site/app.yaml --project george-moura-site
