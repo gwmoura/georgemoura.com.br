@@ -36,16 +36,16 @@
 
     <p>
         Após a instalação é só acessar <a href="http://localhost">http://localhost</a> e verá uma tela como essa:<br/>
-        <img src="/images/posts/nginx-01.png" />
+        <img class="materialboxed" src="/images/posts/nginx-01.png" />
     </p>
 
     <h4>Instalando com Docker</h4>
     <p>
         Para instalar o nginx usando o Docker rode no terminal <code>docker run -v "`pwd`/nginx:/usr/share/nginx/html" -p "8080:80" -d nginx</code>. Após o download e o terminal for liberado, acesse <a href="http://localhost:8080">http://localhost:8080</a>, você verá uma tela como essa:<br/><br/>
-        <img src="/images/posts/nginx-02-localhost8080.png" /><br/>
+        <img class="materialboxed" src="/images/posts/nginx-02-localhost8080.png" /><br/>
 
         O erro ocorreu pois mapeamos uma pasta vazia para o nginx, agora vamos adicionar um conteúdo. Digite no terminal <code>echo &#x22;&#x3C;h1&#x3E;Hello George&#x3C;/h1&#x3E;&#x22; &#x3E; nginx/index.html</code> e recarregue a página, você verá algo assim:<br/><br/>
-        <img src="/images/posts/nginx-03.png" />
+        <img class="materialboxed" src="/images/posts/nginx-03.png" />
     </p>
 
     <h2>Como usar o NGINX</h2>
@@ -77,7 +77,7 @@
         </code></pre>
 
         Ao recarregar a página deverá ver algo como:<br/>
-        <img src="/images/posts/nginx-04.png" />
+        <img class="materialboxed" src="/images/posts/nginx-04.png" />
 
         <h5>Como configurar um virtual host</h5>
         Com o NGINX instalado, navegue até o diretório <code>/var/www/</code> ou <code>/usr/share/nginx</code>, dentro do diretório, crie uma nova pasta chamada tutorial <code>mkdir tutorial</code>, crie também um arquivo <code>index.html</code> e cole o seguinte conteúdo:
@@ -155,7 +155,7 @@
         <br/>
         Em resumo, o que fizemos foi dizer ao nginx o seguinte: "Tudo que chegar na porta 80 pelo caminho /, usando o domínio em server_name, faça proxy para url x".<br/>
         Para testarmos se tudo funciona bem é só acessar <a href="http://app1.localhost/">http://app1.localhost/</a> e <a href="http://app2.localhost/">http://app2.localhost/</a>, então veremos hello APP1 e hello APP2 respectivamente.<br/>
-        <img src="/images/posts/apps.png" />
+        <img class="materialboxed" src="/images/posts/apps.png" />
     </p>
 
     <h4 id="como-usar-o-nginx-como-balanceador-de-carga">3 - NGINX como Balanceador de carga</h4>
