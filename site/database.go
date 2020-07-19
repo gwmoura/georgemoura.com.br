@@ -18,12 +18,12 @@ var posts = []Post{
 		FriendlyId:  "cv",
 	},
 	{
-		Description: "NGINX um webser parrudão",
-		Keywords:    "nginx,webserver,load balancer, reverse proxy",
-		Title:       "NGINX",
-		Link:        "/nginx/",
+		Description: "NGINX é um servidor web que também pode ser usado como proxy reverso e balanceador de carga, proxy de e-mail e servidor de cache. O Nginx é conhecido por ser um servidor de alta performance, estável, de fácil configuração e baixo consumo de recursos",
+		Keywords:    "nginx,web server,load balancer,reverse proxy",
+		Title:       "NGINX - O que é e como usar",
+		Link:        "/nginx-o-que-e-e-como-usar/",
 		CreatedAt:   time.Date(2020, time.July, 18, 21, 9, 10, 0, time.UTC).Local(),
-		FriendlyId:  "nginx",
+		FriendlyId:  "nginx-o-que-e-e-como-usar",
 	},
 	{
 		Description: "Micro serviços ou Monolíticos? O que é melhor? A resposta para essa pergunta é a mesma para muitas para muitas perguntas do universo de desenvolvimento de software: Depende :)",
