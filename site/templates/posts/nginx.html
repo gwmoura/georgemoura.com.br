@@ -23,7 +23,7 @@
     </p>
     <h2 id="o-que-e-o-nginx">O que é o nginx</h2>
 
-    <p>Como citei acima, o nginx (se pronuncia no inglês "engine x") é um servidor web que também pode ser usado como proxy reverso e balanceador de carga, proxy de e-mail e servidor de cache. O Nginx é conhecido por ser um servidor de alta performance, estável, de fácil configuração e baixo consumo de recursos. Escrito em C como vocês podem ver no <a href="https://github.com/nginx/nginx">github</a>, é um servidor amplamente usado em toda a web e foi criado para solucionar o <a href="http://www.kegel.com/c10k.html">problema do C10k</a> — o desafio de gerenciar dez mil conexões ao mesmo tempo.</p>
+    <p>Como citei acima, o nginx (se pronuncia no inglês "engine x") é um servidor web que também pode ser usado como proxy reverso e balanceador de carga, proxy de e-mail e servidor de cache. O Nginx é conhecido por ser um servidor de alta performance, estável, de fácil configuração e baixo consumo de recursos. Escrito em C como vocês podem ver no <a target="_blank" href="https://github.com/nginx/nginx">github</a>, é um servidor amplamente usado em toda a web e foi criado para solucionar o <a target="_blank" href="http://www.kegel.com/c10k.html">problema do C10k</a> — o desafio de gerenciar dez mil conexões ao mesmo tempo.</p>
 
     <h2 id="como-instalar-o-nginx">Instalando o NGINX</h2>
 
@@ -50,7 +50,7 @@
 
     <h2>Como usar o NGINX</h2>
 
-    <p>O nginx possui muitas utilidades, mas normalmente é usado como proxy reverso e load balancer, a partir de agora vou mostrar como configurar o nginx para servir de servidor web, proxy reverso e balanceador de carga. O exemplos de como configurá-lo como proxy e-mail e servidor de cache podem ser encontrados <a href="https://docs.nginx.com/nginx/admin-guide/mail-proxy/mail-proxy/" title="Link para tutorial de como configurar nginx como proxy de e-mail">aqui</a> e <a href="https://www.nginx.com/blog/nginx-caching-guide/" title="Link para tutorial de como configurar nginx como servidor de cache">aqui</a></p>
+    <p>O nginx possui muitas utilidades, mas normalmente é usado como proxy reverso e load balancer, a partir de agora vou mostrar como configurar o nginx para servir de servidor web, proxy reverso e balanceador de carga. O exemplos de como configurá-lo como proxy e-mail e servidor de cache podem ser encontrados <a href="https://docs.nginx.com/nginx/admin-guide/mail-proxy/mail-proxy/" target="_blank" title="Link para tutorial de como configurar nginx como proxy de e-mail">aqui</a> e <a href="https://www.nginx.com/blog/nginx-caching-guide/" target="_blank" title="Link para tutorial de como configurar nginx como servidor de cache">aqui</a></p>
 
     <h4 id="como-usar-o-nginx-como-service-web">1 - NGINX como Servidor web</h4>
     <p>
@@ -160,7 +160,7 @@
 
     <h4 id="como-usar-o-nginx-como-balanceador-de-carga">3 - NGINX como Balanceador de carga</h4>
     <p>
-        O balanceamento de carga é uma técnica para distribuir a carga de trabalho uniformemente entre dois ou mais computadores - <a href="https://pt.wikipedia.org/wiki/Balanceamento_de_carga">Obrigado  Wikipedia</a>. É possível configurar de forma muito fácil um load balancer no nginx. Primeiro navegue até o diretório <code>/etc/nginx/sites-enabled/</code> ou <code>/etc/nginx/conf.d/</code>, cria um arquivo chamado <code>loadbalancer.conf</code> e coloque o seguinte conteúdo:
+        O balanceamento de carga é uma técnica para distribuir a carga de trabalho uniformemente entre dois ou mais computadores - <a href="https://pt.wikipedia.org/wiki/Balanceamento_de_carga" target="_blank">Obrigado  Wikipedia</a>. É possível configurar de forma muito fácil um load balancer no nginx. Primeiro navegue até o diretório <code>/etc/nginx/sites-enabled/</code> ou <code>/etc/nginx/conf.d/</code>, cria um arquivo chamado <code>loadbalancer.conf</code> e coloque o seguinte conteúdo:
         <pre><code>
             upstream backend  {
                 server localhost:8001;
@@ -186,7 +186,7 @@
         Com essa configuração estamos dizendo ao NGINX: "Teho um pool de servidores chamado backend e toda requisição que chegar na porta 80 pelo domínio app3.localhost redirecione para o pool backend".<br/>
     </p>
     <p>
-        Com isso chegamos ao fim, criei um repositório no github (<a href="https://github.com/gwmoura/nginx-reverse-proxy">https://github.com/gwmoura/nginx-reverse-proxy</a>) com os códigos e as aplicações que citei acima, pode servir de estudo. Eu utilizei Docker e Docker Compose para montar o ambiente de desenvolvimento, se ainda não conhece o Docker recomendo dar passada <a href="https://georgemoura.com.br/iniciando-com-o-docker/">aqui</a> e se não conhece o Docker Compose recomendo dar uma lida <a href="https://georgemoura.com.br/desenvolvendo-com-docker-compose-php/">nesse post</a>.
+        Com isso chegamos ao fim, criei um repositório no github (<a target="_blank" href="https://github.com/gwmoura/nginx-reverse-proxy">https://github.com/gwmoura/nginx-reverse-proxy</a>) com os códigos e as aplicações que citei acima, pode servir de estudo. Eu utilizei Docker e Docker Compose para montar o ambiente de desenvolvimento, se ainda não conhece o Docker recomendo dar passada <a href="https://georgemoura.com.br/iniciando-com-o-docker/">aqui</a> e se não conhece o Docker Compose recomendo dar uma lida <a href="https://georgemoura.com.br/desenvolvendo-com-docker-compose-php/">nesse post</a>.
     </p>
     <p>
         Espero ter ajudado e qualquer dúvida é só entrar em <a href="/contatos">contato</a>.
