@@ -18,6 +18,14 @@ var posts = []Post{
 		FriendlyId:  "cv",
 	},
 	{
+		Description: "NGINX um webser parrudão",
+		Keywords:    "nginx,webserver,load balancer, reverse proxy",
+		Title:       "NGINX",
+		Link:        "/nginx/",
+		CreatedAt:   time.Date(2020, time.July, 18, 21, 9, 10, 0, time.UTC).Local(),
+		FriendlyId:  "nginx",
+	},
+	{
 		Description: "Micro serviços ou Monolíticos? O que é melhor? A resposta para essa pergunta é a mesma para muitas para muitas perguntas do universo de desenvolvimento de software: Depende :)",
 		Keywords:    "microservices,monolithics,micro-servicos,monolitos,arquitetura",
 		Title:       "Micro serviços ou monolitos? Eis a questão",

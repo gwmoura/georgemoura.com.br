@@ -1,0 +1,198 @@
+<article>
+  <header>
+    <h1 class="entry-title">{{ .Title }}</h1>
+    <div class="entry-meta">
+      <span class="date">
+        <a href="{{ .Link }}" title="Link permanente para {{ .Title }}" rel="bookmark">
+          <time class="entry-date" datetime="{{ .CreatedAt }}">{{ .CreatedAt }}</time>
+        </a>
+      </span>
+    </div><!-- .entry-meta -->
+  </header>
+
+  <div class="entry-content">
+    <p>
+        Hoje irei falar um pouco sobre o NGINX. Para quem não sabe o nginx é um servidor web, amplamente usado por toda a web. Nesse post irei falar sobre os seguintes tópicos:
+        <ul>
+            <li><a href="#o-que-e-o-nginx">O que é o nginx</a></li>
+            <li><a href="#como-instalar-o-nginx">Como instalar o nginx</a></li>
+            <li><a href="#como-usar-o-nginx-como-service-web">Como usar o nginx como service web</a></li>
+            <li><a href="#como-usar-o-nginx-como-proxy-reverso">Como usar o nginx como proxy reverso</a></li>
+            <li><a href="#como-usar-o-nginx-como-balanceador-de-carga">Como usar o nginx como balanceador de carga</a></li>
+        </ul>
+    </p>
+    <h2 id="o-que-e-o-nginx">O que é o nginx</h2>
+
+    <p>Como citei acima, o nginx (se pronuncia no inglês "engine x") é um servidor web que também pode ser usado como proxy reverso e balanceador de carga, proxy de e-mail e servidor de cache. O Nginx é conhecido por ser um servidor de alta performance, estável, de fácil configuração e baixo consumo de recursos. Escrito em C como vocês podem ver no <a href="https://github.com/nginx/nginx">github</a>, é um servidor amplamente usado em toda a web e foi criado para solucionar o <a href="http://www.kegel.com/c10k.html">problema do C10k</a> — o desafio de gerenciar dez mil conexões ao mesmo tempo.</p>
+
+    <h2 id="como-instalar-o-nginx">Instalando o NGINX</h2>
+
+    <h4>Instalando no ubuntu</h4>
+    <pre><code>
+        sudo apt update
+        sudo apt install nginx
+        sudo service nginx start
+    </code></pre>
+
+    <p>
+        Após a instalação é só acessar <a href="http://localhost">http://localhost</a> e verá uma tela como essa:<br/>
+        <img src="/images/posts/nginx-01.png" />
+    </p>
+
+    <h4>Instalando com Docker</h4>
+    <p>
+        Para instalar o nginx usando o Docker rode no terminal <code>docker run -v "`pwd`/nginx:/usr/share/nginx/html" -p "8080:80" -d nginx</code>. Após o download e o terminal for liberado, acesse <a href="http://localhost:8080">http://localhost:8080</a>, você verá uma tela como essa:<br/><br/>
+        <img src="/images/posts/nginx-02-localhost8080.png" /><br/>
+
+        O erro ocorreu pois mapeamos uma pasta vazia para o nginx, agora vamos adicionar um conteúdo. Digite no terminal <code>echo &#x22;&#x3C;h1&#x3E;Hello George&#x3C;/h1&#x3E;&#x22; &#x3E; nginx/index.html</code> e recarregue a página, você verá algo assim:<br/><br/>
+        <img src="/images/posts/nginx-03.png" />
+    </p>
+
+    <h2>Como usar o NGINX</h2>
+
+    <p>O nginx possui muitas utilidades, mas normalmente é usado como proxy reverso e load balancer, a partir de agora vou mostrar como configurar o nginx para servir de servidor web, proxy reverso e balanceador de carga. O exemplos de como configurá-lo como proxy e-mail e servidor de cache podem ser encontrados <a href="https://docs.nginx.com/nginx/admin-guide/mail-proxy/mail-proxy/" title="Link para tutorial de como configurar nginx como proxy de e-mail">aqui</a> e <a href="https://www.nginx.com/blog/nginx-caching-guide/" title="Link para tutorial de como configurar nginx como servidor de cache">aqui</a></p>
+
+    <h4 id="como-usar-o-nginx-como-service-web">1 - NGINX como Servidor web</h4>
+    <p>
+        Com o nginx é possível servir arquivos estáticos como imagens, css, javascript e HTML, além de conteúdos dinâmicos usando com manipuladores FastCGI, uwsgi e SCGI.<br/>
+        Por padrão o nginx já serve qualquer arquivo estático, então para um teste simples você pode navegar até o dirtório <code>/var/www/html</code> ou <code>/usr/share/nginx/html</code>, a depender da distribuição linux, e altere o arquivo <code>index.html</code> com o seguinte conteúdo:
+        <pre><code>
+            &lt;!doctype html&gt;
+            &lt;html&gt;
+                &lt;head&gt;
+                    &lt;meta charset="utf-8"&gt;
+                    &lt;title&gt;Hello, Nginx!&lt;/title&gt;
+                    &lt;link rel="stylesheet" href="estilo.css"&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                    &lt;h1&gt;Hello, Nginx!&lt;/h1&gt;
+                    &lt;p&gt;We have just configured our Nginx web server on Ubuntu Server!&lt;/p&gt;
+                &lt;/body&gt;
+            &lt;/html&gt;
+        </code></pre>
+        Crie o arquivo <code>estilo.css</code> com o seguinte conteúdo:
+        <pre><code>
+            p { background-color: cornflowerblue; }
+            body { background-color: darkgray; }
+        </code></pre>
+
+        Ao recarregar a página deverá ver algo como:<br/>
+        <img src="/images/posts/nginx-04.png" />
+
+        <h5>Como configurar um virtual host</h5>
+        Com o NGINX instalado, navegue até o diretório <code>/var/www/</code> ou <code>/usr/share/nginx</code>, dentro do diretório, crie uma nova pasta chamada tutorial <code>mkdir tutorial</code>, crie também um arquivo <code>index.html</code> e cole o seguinte conteúdo:
+
+        <pre><code>
+            &lt;!doctype html&gt;
+            &lt;html&gt;
+                &lt;head&gt;
+                    &lt;meta charset="utf-8"&gt;
+                    &lt;title&gt;Hello, Nginx!&lt;/title&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                    &lt;h1&gt;Hello, Nginx!&lt;/h1&gt;
+                    &lt;p&gt;We have just configured our Nginx web server on Ubuntu Server!&lt;/p&gt;
+                &lt;/body&gt;
+            &lt;/html&gt;
+        </code></pre>
+
+        Vamos agora configurar um virtual host. Para este tutorial iremos criar um site que fique disponível na porta 81. Navegue até o diretório <code>/etc/nginx/sites-enabled/</code> ou <code>/etc/nginx/conf.d/</code> e crie um arquivo chamado <code>tutorial.conf</code> com o seguinte conteúdo:
+        <pre><code>
+            server {
+                listen 81;
+                listen [::]:81;
+
+                server_name example.localhost;
+
+                root /usr/share/nginx/tutorial; # diretório onde ficará o conteúdo do site
+                index index.html;
+
+                location / {
+                        try_files $uri $uri/ =404;
+                }
+            }
+        </code></pre>
+        Feito isso, apenas reinicie o nginx <code>sudo service nginx restart</code> e ao acessar <a href="http://localhost:81/">http://localhost:81/</a> verá a página que criamos.<br/>
+        Alguns pontos importantes:<br/>
+        <code>root</code> diretório raiz onde ficaram os arquivos HTML.<br/>
+        <code>index</code> é usado para especificar o arquivo disponível ao visitar o diretório raiz do site.<br/>
+        <code>server_name</code> pode ser o que você quiser, geralmente é usado para especificar qual domínio o nginx vai interpretar as requisições.
+    </p>
+
+    <h4 id="como-usar-o-nginx-como-proxy-reverso">2 - NGINX como Proxy reverso</h4>
+    <p>
+        O nginx também pode ser usado como um proxy reverso para suas aplicações, ele pode ser usado como um orquestrador de requisições onde receberia todas as requisições e as entregaria para seus "donos". Pense que você poderia ter uma ou mais aplicações sendo executadas em portas ou domínios diferentes, você poderia configurar o ngnix para que ao receber uma requisição no domínio app1.meudominio.com ele a redirecionasse para 192.168.1.10:9000 e ao receber uma requisição no domínio app2.dominio.com ele a redirecionasse para 189.55.44.30:8001. Vamos mostrar num exemplo.<br/>
+
+        Para este tutorial iremos ter duas aplicações em PHP cada uma rodando em portas diferentes, uma na porta 8001 e a outra na porta 8002. Navegue até o diretório <code>/etc/nginx/sites-enabled/</code> ou <code>/etc/nginx/conf.d/</code> e crie um arquivo chamado <code>reverseproxy.conf</code>, nele coloque o seguinte o conteúdo:
+        <pre><code>
+            server {
+                listen 80;
+                listen [::]:80;
+
+                server_name app1.localhost;
+
+                location / {
+                    proxy_pass  http://localhost:8001;
+                }
+            }
+
+            server {
+                listen 80;
+                listen [::]:80;
+
+                server_name app2.localhost;
+
+                location / {
+                    proxy_pass  http://localhost:8002;
+                }
+            }
+        </code></pre>
+
+        Feito isso, apenas reinicie o nginx <code>sudo service nginx restart</code>.<br/>
+        Perceba as mudanças:<br/>
+        1 - Em <code>server_name</code> adicionamos os domínios que o nginx deve reconhecer.<br/>
+        2 - Em <code>proxy_pass</code> indicamos qual a url o nginx deve redirecionar as requisções.<br/>
+        <br/>
+        Em resumo, o que fizemos foi dizer ao nginx o seguinte: "Tudo que chegar na porta 80 pelo caminho /, usando o domínio em server_name, faça proxy para url x".<br/>
+        Para testarmos se tudo funciona bem é só acessar <a href="http://app1.localhost/">http://app1.localhost/</a> e <a href="http://app2.localhost/">http://app2.localhost/</a>, então veremos hello APP1 e hello APP2 respectivamente.<br/>
+        <img src="/images/posts/apps.png" />
+    </p>
+
+    <h4 id="como-usar-o-nginx-como-balanceador-de-carga">3 - NGINX como Balanceador de carga</h4>
+    <p>
+        O balanceamento de carga é uma técnica para distribuir a carga de trabalho uniformemente entre dois ou mais computadores - <a href="https://pt.wikipedia.org/wiki/Balanceamento_de_carga">Obrigado  Wikipedia</a>. É possível configurar de forma muito fácil um load balancer no nginx. Primeiro navegue até o diretório <code>/etc/nginx/sites-enabled/</code> ou <code>/etc/nginx/conf.d/</code>, cria um arquivo chamado <code>loadbalancer.conf</code> e coloque o seguinte conteúdo:
+        <pre><code>
+            upstream backend  {
+                server localhost:8001;
+                server localhost:8002;
+            }
+
+            server {
+                listen 80;
+                listen [::]:80;
+
+                server_name app3.localhost;
+
+                location / {
+                    proxy_pass  http://backend;
+                }
+            }
+        </code></pre>
+
+        Agora acesse <a href="http://app3.localhost/">http://app3.localhost/</a> e fique dando recarregando na página, perceba que o conteúdo da tela alterna entre a APP1 e APP2.<br/>
+        Para configurar o load balancer no NGINX precisamos ajustar algumas coisas:<br/>
+        1 - Usar o módulo de <code>upstream</code> para adicionar nossos backends. Você pode ter quantos backends quiser e usar o formato que quiser, você pode usar um domínio público, um domínio interno ou um IP<br/>
+        2 - Em <code>proxy_pass</code> veja que colocamos o alias <code>backend</code>.<br/>
+        Com essa configuração estamos dizendo ao NGINX: "Teho um pool de servidores chamado backend e toda requisição que chegar na porta 80 pelo domínio app3.localhost redirecione para o pool backend".<br/>
+    </p>
+    <p>
+        Com isso chegamos ao fim, criei um repositório no github (<a href="https://github.com/gwmoura/nginx-reverse-proxy">https://github.com/gwmoura/nginx-reverse-proxy</a>) com os códigos e as aplicações que citei acima, pode servir de estudo. Eu utilizei Docker e Docker Compose para montar o ambiente de desenvolvimento, se ainda não conhece o Docker recomendo dar passada <a href="https://georgemoura.com.br/iniciando-com-o-docker/">aqui</a> e se não conhece o Docker Compose recomendo dar uma lida <a href="https://georgemoura.com.br/desenvolvendo-com-docker-compose-php/">nesse post</a>.
+    </p>
+    <p>
+        Espero ter ajudado e qualquer dúvida é só entrar em <a href="/contatos">contato</a>.
+    </p>
+  </div>
+  <footer>
+
+  </footer>
+</article>
