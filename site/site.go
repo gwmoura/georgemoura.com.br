@@ -30,6 +30,24 @@ var AssetsHost = template.FuncMap{"assetsHost": func() string { return "https://
 // Host - var to set site url
 var Host = template.FuncMap{"host": func() string { return domain }}
 
+// Env - app env
+var Env = template.FuncMap{"env": func() string { return env() }}
+
+var inProduction = template.FuncMap{"inProduction": func() bool { return env() == "production" }}
+
+// GaAccount - return Google Analytics ID
+var GaAccount = template.FuncMap{"gaAccount": func() string {
+	if env() == "production" {
+		return "UA-38960674-1"
+	}
+
+	return ""
+}}
+
+func env() string {
+	return os.Getenv("ENV")
+}
+
 // MyInstance - Martini innstace used on the app
 var MyInstance *martini.ClassicMartini
 
@@ -51,7 +69,7 @@ func setUp() {
 	MyInstance.Use(render.Renderer(render.Options{
 		Layout:     "layout",
 		Extensions: []string{".tmpl", ".html"},
-		Funcs:      []template.FuncMap{AssetsHost, Host, hasString},
+		Funcs:      []template.FuncMap{AssetsHost, Host, hasString, Env, GaAccount, inProduction},
 	}))
 	MyInstance.Use(func(res http.ResponseWriter, req *http.Request) {
 		res.Header().Set("Cache-Control", "public, max-age=3600")
