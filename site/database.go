@@ -18,11 +18,11 @@ var posts = []Post{
 		FriendlyId:  "cv",
 	},
 	{
-		Description: "Gosto muito da ideia de automatizar algumas tarefas e sempre que me vejo fazendo alguma coisa repetidas vezes fico imaginando formas de automatizar aquela tarefa. Isso me ajuda a ser mais produtivo e a fazer coisas mais rápido",
+		Description: "Gosto muito de ser preguiçoso e sempre que me vejo fazendo alguma coisa repetidas vezes fico imaginando formas de automatizar. Isso me ajuda a ser mais produtivo.",
 		Keywords:    "scripts,automatização,bash,shell,ambiente de desenvolvimento",
 		Title:       "Automatizando seu ambiente de desenvolvimento",
 		Link:        "/automatizando-seu-ambiente-de-desenvolvimento/",
-		CreatedAt:   time.Date(2020, time.July, 29, 20, 11, 15, 0, time.UTC).Local(),
+		CreatedAt:   time.Date(2020, time.August, 5, 8, 20, 39, 0, time.UTC).Local(),
 		FriendlyId:  "automatizando-seu-ambiente-de-desenvolvimento",
 	},
 	{
