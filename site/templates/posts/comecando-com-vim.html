@@ -1,0 +1,70 @@
+<article>
+  <header>
+    <h1 class="entry-title">{{ .Title }}</h1>
+    <div class="entry-meta">
+      <span class="date">
+        <a href="{{ .Link }}" title="Link permanente para {{ .Title }}" rel="bookmark">
+          <time class="entry-date" datetime="{{ .CreatedAt }}">{{ .CreatedAt }}</time>
+        </a>
+      </span>
+    </div><!-- .entry-meta -->
+  </header>
+
+  <div class="entry-content">
+    <p>O vim é um editor de texto via terminal muito poderoso, vou relatar abaixo um pouco do que aprendi utilizando ele.</p>
+
+    <div>
+      <h2>Como instalar</h2>
+      <code>sudo apt-get install vim</code>. digitando <code>vim</code> no terminal você verá essa tela.
+      <p><img class="materialboxed" src="{{ assetsHost }}/2020/08/vim-start-screen.png" alt="Tela inicial do Vim"></p>
+    </div>
+
+    <div>
+      <h2>Comandos básicos</h2>
+
+      <p>Para começar a usar o vim você precisa gravar e treinar alguns comandos básicos:</p>
+      <ul>
+        <li><kbd>i</kbd> para iniciar o modo de edicão</li>
+        <li><kbd>v</kbd> para iniciar o modo de visualizacao</li>
+        <li><kbd>esc</kbd> para sair de qualquer modo</li>
+        <li><code>:q</code> para fechar o editor</li>
+        <li><code>:w</code> para grvar as akteracoes</li>
+        <li><kbd>u</kbd> para desfazer</li>
+        <li><kbd>y</kbd> para copiar</li>
+        <li><kbd>p</kbd> para colar</li>
+        <li><kbd>x</kbd> para recortar</li>
+      </ul>
+
+      <h3>Criadno e editando um arquivo</h3>
+
+      <p>Acesse o diretório pelo terminal e digite <code>vim .</code> para abrir o diretorio atual, selecione o arquivo e comece a editar ou digite <code>vim [arquivo]</code> para abrir o arquivo. O vim abre o arquivo no modo leitura.<br/>
+        Para começar a editar aperte a tecla <kbd>i</kbd> e o vim entrará em modo de INSERÇÃO, então é só alterar o que precisar. Para salvar, aperte <kbd>esc</kbd> e depois digite <code>:w</code> e enter para confirmar.<br/>
+        Para fechar o arquivo aperte <code>:q</code>
+
+      <h3>Desfazendo alteraçõess</h3>
+
+      <p>Abra o arquivo e aperte a tecla <kbd>i</kbd>, digite qualquer palavra, aperte <kbd>esc</kbd> e depois <kbd>u</kbd>, as alterações serão desfeitas.</p>
+
+      <h3>Copiando e colando coisas</h3>
+
+      <p>Como o vim é no terminal, por padrão o <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>C</kbd> copia os dados e <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>V</kbd> cola os dados, mas a depender do que você selecione muito lixo será levado para a área de transferência, o ideal para o vim é usar a tecla <kbd>y</kbd> para copiar, a <kbd>x</kbd> para recortar e <kbd>p</kbd> para colar. <b>ATENCÃO</b>, esses atalhos funcionam apenas no modo visual do vim. Então, vamos ao exemplo.<br/>
+        Abra o arquivo, navegue até a linha que deseja selecionar, depois aperte a tecla <kbd>v</kbd>, com isso o vim entra em modo VISUAL, esse modo é como se você tivesse com a tecla SHIFT selecionada, então selecione o que precisar e depois basta clicar na tecla <kbd>y</kbd>, em seguida aperte <kbd>esc</kbd> para sair do modo visual, navegue até onde deseja colar e aperte <kbd>p</kbd>. Para recortar é só seguir o mesmo procedimento.<br/>
+    </div>
+    <div>
+      <h2>Personalizando o vim</h2>
+
+      <p>O vim como todos os editores usados por programadores possuie plugins e pode ser customizado. Essas personalizações ficam registradas no arquivo <code>.vimrc</code> que fica na pasta home do seu usuário.<br/>
+        Esse arquivo é utilizado para guaedar as suas preferências, atalhos personalizados, configurações de plugins e esquemas de cores. Esse arquivo não é criado por padrão na instalação do vim, então é só criar digitando <code>vim ~/.vimrc</code>. Vamos agora fazer pequenas personalizações:</p>
+
+      <p>Digite <code>vim ~/.vimrc</code>. Aperte <kbd>i</kbd> para entrar no modeo de INSERÇÃO e digite <code>set number</code>, depois salve as alterações e feche o arquivo: <kbd>esc</kbd> + <code>:wq</code> + <kbd>enter</kbd>. Esse comando faz com que o vim exiba o número de linhas no documento, abrindo o documento novamente você verá o número de linhas.</p>
+      <p><b>Antes</b><br/><img class="materialboxed" src="{{ assetsHost }}/2020/08/vim-without-number-lines.png" alt="Vim sem número de linhas"></p>
+      <p><b>Depois</b><br/><img class="materialboxed" src="{{ assetsHost }}/2020/08/vim-with-number-lines.png" alt="Vim com número de linhas"></p>
+    </div>
+    <div>
+      <h2>Vim bootstrap</h2>
+      <p>O <a href="https://vim-bootstrap.com/">Vim Bootstrap</a> é um gerador que fornece um método simples de gerar uma configuração para o vim. O Vim bootstrap possui uma série de atalhos pré-configurados que você pode consultar <a href="https://github.com/editor-bootstrap/vim-bootstrap#commands">aqui</a> e processo de instalação é bem simples basta substituir o arquivo <code>.vimrc</code> pelo conteúdo do arquivo gerado no site e depois executar <code>vim</code> para instalar os plugins automaticamente.</p>
+    </div>
+  </div>
+  <footer>
+  </footer>
+</article>

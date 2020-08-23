@@ -18,6 +18,14 @@ var posts = []Post{
 		FriendlyId:  "cv",
 	},
 	{
+		Description: "Vim é um editor de texto muito poderoso",
+		Keywords:    "vim,editor de textos",
+		Title:       "Começando com Vim",
+		Link:        "/comecando-com-vim/",
+		CreatedAt:   time.Date(2020, time.August, 23, 16, 10, 0, 0, time.UTC).Local(),
+		FriendlyId:  "comecando-com-vim",
+	},
+	{
 		Description: "Gosto muito de ser preguiçoso e sempre que me vejo fazendo alguma coisa repetidas vezes fico imaginando formas de automatizar. Isso me ajuda a ser mais produtivo.",
 		Keywords:    "scripts,automatização,bash,shell,ambiente de desenvolvimento",
 		Title:       "Automatizando seu ambiente de desenvolvimento",
