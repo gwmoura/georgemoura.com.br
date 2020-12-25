@@ -1,6 +1,8 @@
 package main
 
-import "time"
+import (
+	"time"
+)
 
 var posts = []Post{
 	{
@@ -22,7 +24,7 @@ var posts = []Post{
 		Keywords:    "mysql,database,bancode de daods,mysql explain",
 		Title:       "Explicando o MySQL Explain",
 		Link:        "/explicando-mysql-explain/",
-		CreatedAt:   time.Date(2020, time.December, 13, 21, 43, 0, 0, time.UTC).Local(),
+		CreatedAt:   time.Date(2020, time.December, 25, 17, 07, 17, 0, time.UTC).Local(),
 		FriendlyId:  "explicando-mysql-explain",
 	},
 	{
@@ -30,7 +32,7 @@ var posts = []Post{
 		Keywords:    "vim,editor de textos",
 		Title:       "Começando com Vim",
 		Link:        "/comecando-com-vim/",
-		CreatedAt:   time.Date(2020, time.August, 23, 16, 10, 0, 0, time.UTC).Local(),
+		CreatedAt:   time.Date(2020, time.August, 23, 19, 10, 0, 0, time.UTC).Local(),
 		FriendlyId:  "comecando-com-vim",
 	},
 	{
@@ -38,7 +40,7 @@ var posts = []Post{
 		Keywords:    "scripts,automatização,bash,shell,ambiente de desenvolvimento",
 		Title:       "Automatizando seu ambiente de desenvolvimento",
 		Link:        "/automatizando-seu-ambiente-de-desenvolvimento/",
-		CreatedAt:   time.Date(2020, time.August, 5, 8, 20, 39, 0, time.UTC).Local(),
+		CreatedAt:   time.Date(2020, time.August, 5, 11, 20, 39, 0, time.UTC).Local(),
 		FriendlyId:  "automatizando-seu-ambiente-de-desenvolvimento",
 	},
 	{
@@ -46,7 +48,7 @@ var posts = []Post{
 		Keywords:    "nginx,web server,load balancer,reverse proxy",
 		Title:       "NGINX - O que é e como usar",
 		Link:        "/nginx-o-que-e-e-como-usar/",
-		CreatedAt:   time.Date(2020, time.July, 18, 21, 9, 10, 0, time.UTC).Local(),
+		CreatedAt:   time.Date(2020, time.July, 19, 0, 9, 10, 0, time.UTC).Local(),
 		FriendlyId:  "nginx-o-que-e-e-como-usar",
 	},
 	{
@@ -54,7 +56,7 @@ var posts = []Post{
 		Keywords:    "microservices,monolithics,micro-servicos,monolitos,arquitetura",
 		Title:       "Micro serviços ou monolitos? Eis a questão",
 		Link:        "/micro-servicos-ou-monolitos-eis-a-questao/",
-		CreatedAt:   time.Date(2020, time.July, 12, 20, 35, 00, 0, time.UTC).Local(),
+		CreatedAt:   time.Date(2020, time.July, 12, 23, 35, 00, 0, time.UTC).Local(),
 		FriendlyId:  "micro-servicos-ou-monolitos-eis-a-questao",
 	},
 	{
@@ -62,7 +64,7 @@ var posts = []Post{
 		Keywords:    "php,docker,docker-compose,desenvolvimento",
 		Title:       "Desenvolvendo com Docker Compose PHP",
 		Link:        "/desenvolvendo-com-docker-compose-php/",
-		CreatedAt:   time.Date(2016, time.April, 4, 10, 05, 0, 0, time.UTC).Local(),
+		CreatedAt:   time.Date(2016, time.April, 4, 13, 05, 0, 0, time.UTC).Local(),
 		FriendlyId:  "desenvolvendo-com-docker-compose-php",
 	},
 	{
@@ -70,7 +72,7 @@ var posts = []Post{
 		Keywords:    "ruby,docker,docker-compose,desenvolvimento",
 		Title:       "Desenvolvendo com Docker Compose Ruby",
 		Link:        "/desenvolvendo-com-docker-compose-ruby/",
-		CreatedAt:   time.Date(2016, time.April, 4, 10, 05, 0, 0, time.UTC).Local(),
+		CreatedAt:   time.Date(2016, time.April, 4, 13, 05, 0, 0, time.UTC).Local(),
 		FriendlyId:  "desenvolvendo-com-docker-compose-ruby",
 	},
 	{
@@ -78,7 +80,7 @@ var posts = []Post{
 		Keywords:    "ruby, benchmark",
 		Title:       "Ruby Benchmark 2.2.3 VS 2.3.0",
 		Link:        "/ruby-benchmark-223-vs-230/",
-		CreatedAt:   time.Date(2015, time.December, 26, 11, 22, 0, 0, time.UTC).Local(),
+		CreatedAt:   time.Date(2015, time.December, 26, 14, 22, 0, 0, time.UTC).Local(),
 		FriendlyId:  "ruby-benchmark-223-vs-230",
 	},
 	{
@@ -86,7 +88,7 @@ var posts = []Post{
 		Keywords:    "ubuntu, monitor",
 		Title:       "Adicionando resolução do monitor no ubuntu 14.04",
 		Link:        "/adicionando-resolucao-do-monitor-no-ubuntu-1404/",
-		CreatedAt:   time.Date(2015, time.December, 15, 10, 46, 0, 0, time.UTC).Local(),
+		CreatedAt:   time.Date(2015, time.December, 15, 13, 46, 0, 0, time.UTC).Local(),
 		FriendlyId:  "adicionando-resolucao-do-monitor-no-ubuntu-1404",
 	},
 	{
@@ -94,7 +96,7 @@ var posts = []Post{
 		Keywords:    "docker,ubuntu",
 		Title:       "Instalando Docker no Ubuntu 14.04",
 		Link:        "/instalando-docker-no-ubuntu-1404/",
-		CreatedAt:   time.Date(2015, time.November, 22, 17, 15, 0, 0, time.UTC).Local(),
+		CreatedAt:   time.Date(2015, time.November, 22, 20, 15, 0, 0, time.UTC).Local(),
 		FriendlyId:  "instalando-docker-no-ubuntu-1404",
 	},
 	{
@@ -102,7 +104,7 @@ var posts = []Post{
 		Keywords:    "google,cloud,vm,google cloud platform,compute engine",
 		Title:       "Criando VMs na Google Cloud Platform",
 		Link:        "/criando-vms-na-google-cloud-platform/",
-		CreatedAt:   time.Date(2015, time.March, 17, 18, 2, 37, 0, time.UTC).Local(),
+		CreatedAt:   time.Date(2015, time.March, 17, 21, 2, 37, 0, time.UTC).Local(),
 		FriendlyId:  "criando-vms-na-google-cloud-platform",
 	},
 	{
@@ -110,7 +112,7 @@ var posts = []Post{
 		Keywords:    "docker,nodejs",
 		Title:       "Iniciando com o Docker",
 		Link:        "/iniciando-com-o-docker/",
-		CreatedAt:   time.Date(2014, time.October, 13, 19, 6, 47, 0, time.UTC).Local(),
+		CreatedAt:   time.Date(2014, time.October, 13, 22, 6, 47, 0, time.UTC).Local(),
 		FriendlyId:  "iniciando-com-o-docker",
 	},
 	{
@@ -118,7 +120,7 @@ var posts = []Post{
 		Keywords:    "chrome os,chrome,virtualbox",
 		Title:       "Chrome OS no meu pc",
 		Link:        "/chrome-os-no-meu-pc/",
-		CreatedAt:   time.Date(2013, time.October, 12, 15, 53, 22, 0, time.UTC).Local(),
+		CreatedAt:   time.Date(2013, time.October, 12, 18, 53, 22, 0, time.UTC).Local(),
 		FriendlyId:  "chrome-os-no-meu-pc",
 	},
 	{
@@ -126,7 +128,7 @@ var posts = []Post{
 		Keywords:    "mysql,banco de dados",
 		Title:       "Como deletar registros duplicados no banco de dados, deixando apenas um",
 		Link:        "/como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um/",
-		CreatedAt:   time.Date(2013, time.October, 5, 9, 20, 19, 0, time.UTC).Local(),
+		CreatedAt:   time.Date(2013, time.October, 5, 12, 20, 19, 0, time.UTC).Local(),
 		FriendlyId:  "como-deletar-registros-duplicados-no-banco-de-dados-deixando-apenas-um",
 	},
 	{
@@ -134,7 +136,7 @@ var posts = []Post{
 		Keywords:    "ide,ruby,rails,sublimetext,eclipse,netbeans",
 		Title:       "Uma boa IDE para Ruby on Rails",
 		Link:        "/uma-boa-ide-para-ruby-on-rails/",
-		CreatedAt:   time.Date(2013, time.July, 3, 21, 23, 47, 0, time.UTC).Local(),
+		CreatedAt:   time.Date(2013, time.July, 4, 0, 23, 47, 0, time.UTC).Local(),
 		FriendlyId:  "uma-boa-ide-para-ruby-on-rails",
 	},
 }
