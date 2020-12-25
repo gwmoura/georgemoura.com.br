@@ -1,0 +1,215 @@
+<article>
+  <header>
+    <h1 class="entry-title">{{ .Title }}</h1>
+    <div class="entry-meta">
+      <span class="date">
+        <a href="{{ .Link }}" title="Link permanente para {{ .Title }}" rel="bookmark">
+          <time class="entry-date" datetime="{{ .CreatedAt }}">{{ .CreatedAt }}</time>
+        </a>
+      </span>
+    </div><!-- .entry-meta -->
+  </header>
+
+  <div class="entry-content">
+    <p>
+      O MySQL Explain é uma ferramenta usada explicar o plano de execução que o SGBD do MySQL usa para executar uma query.
+      Com essa ferramenta é possível entender quais índices o banco utiliza na query, quais os relacionamentos usados,
+      quantas linhas foram examidas para retornar os dados, se foi ou não necessário ler todos os dados da tabela.
+    </p>
+    <p>
+      <h4>Em que momentos posso usar o explain?</h4>
+      O EXPLAIN é muito útil nos seguintes cenários:
+      <ul>
+         <li>Quando você quer melhorar o desempenho de uma query</li>
+         <li>Quando você quer verificar se a query está utilizando o melhor plano de execução</li>
+         <li>Quando você quer verificar se a query está utilizando os índices corretos ou múltiplos índices</li>
+         <li>A query começa a ficar lenta para listar os registros de uma tela</li>
+         <li>A query performa bem em alguns momentos e outros nem tanto</li>
+         <li>O update de um ou mais registros começa a ficar lento</li>
+      </ul>
+    </p>
+    <div>
+      <h4>Como usar o EXPLAIN?</h4>
+      <p>
+        A syntaxe para o explain é simples, apenas adicione <code>EXPLAIN</code> antes da query que você quer estudar.
+        Ex: <code>EXPLAIN SELECT coluna1, coluna2 FROM tabela WHERE coluna3 = valor;</code>.
+        Pode ser qualquer tipo de query: <code>SELECT, UPDATE, DELETE, INSERT</code>.
+      </p>
+      <p>
+        Mas, temos também outras formas de usar como: <code>EXPLAIN FORMAT=json QUERY</code>;  ou  <code>EXPLAIN FORMAT=json QUERY\G;</code> para trazer o resultado formatado.
+      </p>
+    </div>
+    <div>
+      <h4>Campos do explain</h4>
+      <p>
+        Ao executar o EXPLAIN no MySQL, você verá um reusltado com os seguintes campos: id, select_type, table, possible_keys, key, key_len, ref, rows, filtered e extra. No formato json os campos mudam um pouco, mas trazem as mesmas informações, veja na tabela abaixo.
+        <table class="striped" summary="Output columns produced by the EXPLAIN statement.">
+          <colgroup>
+            <col width="25%"><col width="25%"><col width="50%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">Column</th>
+              <th scope="col">JSON Name</th>
+              <th scope="col">Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><a class="link" href="explain-output.html#explain_id"><code class="literal">id</code></a></th>
+              <td><code class="literal">select_id</code></td>
+              <td>The <code class="literal">SELECT</code> identifier</td>
+            </tr><tr>
+              <th scope="row"><a class="link" href="explain-output.html#explain_select_type"><code class="literal">select_type</code></a></th>
+              <td>None</td>
+              <td>The <code class="literal">SELECT</code> type</td>
+            </tr><tr>
+              <th scope="row"><a class="link" href="explain-output.html#explain_table"><code class="literal">table</code></a></th>
+              <td><code class="literal">table_name</code></td>
+              <td>The table for the output row</td>
+            </tr><tr>
+              <th scope="row"><a class="link" href="explain-output.html#explain_partitions"><code class="literal">partitions</code></a></th>
+              <td><code class="literal">partitions</code></td>
+              <td>The matching partitions</td>
+            </tr><tr>
+              <th scope="row"><a class="link" href="explain-output.html#explain_type"><code class="literal">type</code></a></th>
+              <td><code class="literal">access_type</code></td>
+              <td>The join type</td>
+            </tr><tr>
+              <th scope="row"><a class="link" href="explain-output.html#explain_possible_keys"><code class="literal">possible_keys</code></a></th>
+              <td><code class="literal">possible_keys</code></td>
+              <td>The possible indexes to choose</td>
+            </tr><tr>
+              <th scope="row"><a class="link" href="explain-output.html#explain_key"><code class="literal">key</code></a></th>
+              <td><code class="literal">key</code></td>
+              <td>The index actually chosen</td>
+            </tr><tr>
+              <th scope="row"><a class="link" href="explain-output.html#explain_key_len"><code class="literal">key_len</code></a></th>
+              <td><code class="literal">key_length</code></td>
+              <td>The length of the chosen key</td>
+            </tr><tr>
+              <th scope="row"><a class="link" href="explain-output.html#explain_ref"><code class="literal">ref</code></a></th>
+              <td><code class="literal">ref</code></td>
+              <td>The columns compared to the index</td>
+            </tr><tr>
+              <th scope="row"><a class="link" href="explain-output.html#explain_rows"><code class="literal">rows</code></a></th>
+              <td><code class="literal">rows</code></td>
+              <td>Estimate of rows to be examined</td>
+            </tr><tr>
+              <th scope="row"><a class="link" href="explain-output.html#explain_filtered"><code class="literal">filtered</code></a></th>
+              <td><code class="literal">filtered</code></td>
+              <td>Percentage of rows filtered by table condition</td>
+            </tr>
+            <tr>
+              <th scope="row"><a class="link" href="explain-output.html#explain_extra"><code class="literal">Extra</code></a></th>
+              <td>None</td>
+              <td>Additional information</td>
+            </tr>
+          </tbody>
+        </table>
+
+        Para mais detalhes acesse <a title="link para documentação do mysql" href="https://dev.mysql.com/doc/refman/5.6/en/explain-output.html#explain-output-columns">https://dev.mysql.com/doc/refman/5.6/en/explain-output.html#explain-output-columns</a>
+      </p>
+    </div>
+    <div>
+      <h4>Como analisar uma query com o MySQL Explain?</h4>
+      <p>
+        Primeiro, execute a query com o <code>EXPLAIN</code>.
+        <pre>
+        <code class="sql">
+          explain
+          select
+            a.first_name,
+            a.last_name,
+            f.title,
+            f.description
+          from
+            actor a
+          join film_actor fa ON
+            fa.actor_id = a.actor_id
+          join film f ON
+            f.film_id = fa.film_id
+          where
+            a.first_name like 'A%';
+        </code>
+        </pre>
+      </p>
+      <p>
+        <table class="striped">
+          <thead><tr><th>id</th><th>select_type</th><th>table</th><th>partitions</th><th>type</th><th>possible_keys</th><th>key</th><th>key_len</th><th>ref</th><th>rows</th><th>filtered</th><th>Extra</th></tr></thead>
+          <tbody><tr class="odd"><td>1</td><td>SIMPLE</td><td>a</td><td>&nbsp;</td><td>ALL</td><td>PRIMARY</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>200</td><td>11,11</td><td>Using where</td></tr>
+          <tr><td>1</td><td>SIMPLE</td><td>fa</td><td>&nbsp;</td><td>ref</td><td>PRIMARY,idx_fk_film_id</td><td>PRIMARY</td><td>2</td><td>sakila.a.actor_id</td><td>27</td><td>100</td><td>Using index</td></tr>
+          <tr class="odd"><td>1</td><td>SIMPLE</td><td>f</td><td>&nbsp;</td><td>eq_ref</td><td>PRIMARY</td><td>PRIMARY</td><td>2</td><td>sakila.fa.film_id</td><td>1</td><td>100</td><td>&nbsp;</td></tr></tbody>
+        </table>
+      </p>
+      <p>
+        Com o resultado em mãos é hora de analisar os dados:
+      </p>
+      <p>
+        A coluna <code>select_type</code> indica qual o tipo de select foi feito. Ela é importante para saber se foi um select simpes, um union, uma subquery. Veja a lista completa <a target="_blank" href="https://dev.mysql.com/doc/refman/5.6/en/explain-output.html#explain_select_type">aqui</a>.
+      </p>
+      <p>
+        A coluna <code>table</code> indica a tabela examinada. Nessa coluna traz o alias utilizado para atabela ou nome da tabela caso nenhum alias seja utilizado.
+      </p>
+      <p>
+        A coluna <code>type</code> descreve como as tabelas são unidas. Essa coluna te ajuda a saber se na consulta está ocorrendo algum <i>full table scan</i> (escaneamento completo em alguma tabela) ou se os dados estão sendo selecionados por valor constante, index, por um range de valores. Entre os melhores valores para essa coluna temos <code>system, const e eq_ref</code> e entre os piores temos <code>ALL e index</code>, sendo <code>ALL</code> o pior de todos. Veja a lista completa <a target="_blank" href="https://dev.mysql.com/doc/refman/5.6/en/explain-output.html#explain-join-types">aqui</a>.
+      </p>
+      <p>
+        Outro campo que deve ser observado é o <code>possible_keys</code> e o <code>key</code>, eles indicam respectivamente quais os índices que o mysql pode usar para achar os registros e qual o índice o mysql usou para achar os registros.
+      </p>
+      <p>
+        Depois, olhe o campo <code>ref</code>, ela mostra quais colunas ou constantes são comparadas ao índice que aparece na coluna <code>key</code> que foram utilizados para selecionar as linhas da tabela.
+      </p>
+      <p>
+        Além desses, é importante olhar os campos <code>rows</code> e <code>filtered</code>.
+        A coluna <code>rows</code> indica quantas linhas o MySQL acredita que precisa examinar para executar a query, enquanto que a coluna <code>filtered</code> indica uma porcentagem estimada de linhas da tabela que são filtradas pela condição da tabela.
+      </p>
+    </div>
+    <div>
+      <h4>Algumas dicas</h4>
+      <ol>
+        <li>A coluna <code>rows x filtered</code> indica a quantidade de linhas examinadas. Ex: no caso acima a primeira linha traz que 200 na coluna <code>rows</code> e 11.11 (11.11%) na coluna <code>filtered</code>, então, a quantidade de linhas examinadas foi <code>200 x 11.11% = 22,22</code>.
+        </li>
+        <li>O número total de linhas examinadas é o produto da coluna <code>rows</code> de cada linha. No caso acima a conta seria <code>200 x 27 x 1 = 5400</code>.</li>
+        <li>
+          Fique atento a coluna <code>key_len</code>, ela indica o tamnho do índice. O MySQL pode usar índices em colunas com mais eficiência se forem declarados como do mesmo tipo e tamanho.
+          <ol><li><code>VARCHAR</code> e <code>CHAR</code> são considerados os mesmos se declarados com o mesmo tamanho. ex: <code>VARCHAR(10) e CHAR(10)</code></li></ol>
+        </li>
+        <li>Verifique se o índice usado na consulta é o ideal. O MySQL trabalha para usar sempre o melhor índice, mas é sempre bom verificar.</li>
+        <li>Nem sempre adicionar um novo íncide vai ajudar, então faça sempre testes.</li>
+        <li>Nos testes de query use <code>SHOW STATUS LIKE 'Last_Query_Cost';</code> (dica do meu brother <a href="https://twitter.com/felipeborgez" target="_blank">Felipe Borges</a>). Execute esse comando após ter executado alguma query, o query cost não tem uma unidade de medida, o que você precisa saber é que quanto maior pior, a partir do MySQL 5.7, esse valor é exibido na coluna <code>cost</code> ao executar o <code>EXPLAIN</code></li>
+        <li>
+          Verifique se a consulta pode ser feita usado algum outro campo que possúi índice. No caso acima se mudarmos a pesquisa para usar o campo <code>last_name</code> o número de linhas examinadas deiminui drasticamente <code>7×27×1 = 189</code>.
+          <pre>
+          <code class="sql">
+            explain
+            select
+              a.first_name,
+              a.last_name,
+              f.title,
+              f.description
+            from
+              actor a
+            join film_actor fa ON
+              fa.actor_id = a.actor_id
+            join film f ON
+              f.film_id = fa.film_id
+            where
+              a.last_name like 'A%';
+          </code>
+          </pre>
+          <table class="striped">
+            <thead><tr><th>id</th><th>select_type</th><th>table</th><th>partitions</th><th>type</th><th>possible_keys</th><th>key</th><th>key_len</th><th>ref</th><th>rows</th><th>filtered</th><th>Extra</th></tr></thead>
+            <tbody><tr class="odd"><td>1</td><td>SIMPLE</td><td>a</td><td>&nbsp;</td><td>range</td><td>PRIMARY,idx_actor_last_name</td><td>idx_actor_last_name</td><td>137</td><td>&nbsp;</td><td>7</td><td>100</td><td>Using index condition</td></tr>
+            <tr><td>1</td><td>SIMPLE</td><td>fa</td><td>&nbsp;</td><td>ref</td><td>PRIMARY,idx_fk_film_id</td><td>PRIMARY</td><td>2</td><td>sakila.a.actor_id</td><td>27</td><td>100</td><td>Using index</td></tr>
+            <tr class="odd"><td>1</td><td>SIMPLE</td><td>f</td><td>&nbsp;</td><td>eq_ref</td><td>PRIMARY</td><td>PRIMARY</td><td>2</td><td>sakila.fa.film_id</td><td>1</td><td>100</td><td>&nbsp;</td></tr></tbody>
+          </table>
+        </li>
+      </ol>
+    </div>
+    <p>Por hoje é só...</p>
+  </div>
+  <footer>
+
+  </footer>
+</article>

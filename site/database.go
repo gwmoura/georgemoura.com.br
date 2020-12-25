@@ -18,6 +18,14 @@ var posts = []Post{
 		FriendlyId:  "cv",
 	},
 	{
+		Description: "O MySQL Explain é uma ferramenta usada explicar o plano de execução que o SGBD do MySQL usa para executar uma query. Com essa ferramenta é possível entender quais índices o banco utiliza na query, quais os relacionamentos usados, quantas linhas foram examidas para retornar os dados, se foi ou não necessário ler todos os dados da tabela.",
+		Keywords:    "mysql,database,bancode de daods,mysql explain",
+		Title:       "Explicando o MySQL Explain",
+		Link:        "/explicando-mysql-explain/",
+		CreatedAt:   time.Date(2020, time.December, 13, 21, 43, 0, 0, time.UTC).Local(),
+		FriendlyId:  "explicando-mysql-explain",
+	},
+	{
 		Description: "Vim é um editor de texto muito poderoso",
 		Keywords:    "vim,editor de textos",
 		Title:       "Começando com Vim",
