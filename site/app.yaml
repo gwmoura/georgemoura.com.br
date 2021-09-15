@@ -1,5 +1,5 @@
 # application: george-moura-site
-runtime: go112
+runtime: go115
 
 default_expiration: "30m"
 
@@ -34,5 +34,15 @@ handlers:
   script: auto
   secure: always
 
+error_handlers:
+  - file: public/error.html
+
+  - error_code: over_quota
+    file: public/over_quota.html
+
 env_variables:
   ENV: 'production'
+
+automatic_scaling:
+  max_instances: 1
+  max_concurrent_requests: 15
