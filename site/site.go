@@ -94,6 +94,8 @@ func setUp() {
 func setRoutes() {
 	MyInstance.Get("/", index)
 	MyInstance.Get("/blog", blog)
+	MyInstance.Get("/euli", euli)
+	MyInstance.Get("/euli/:bookname", getBook)
 	MyInstance.Get("/contatos", contatos)
 	MyInstance.Get("/curriculo/:locale", showCVPage)
 	MyInstance.Get("/curriculo", showCVPage)
@@ -239,4 +241,34 @@ func showCVPage(params martini.Params, r render.Render) {
 		Keywords    string
 	}{yearsOld, posts[1].Title, posts[1].Description, posts[1].Keywords}
 	r.HTML(200, templateName, s)
+}
+
+func euli(params martini.Params, r render.Render) {
+	s := struct {
+		Title       string
+		Description string
+		Keywords    string
+	}{posts[0].Title, posts[0].Description, posts[0].Keywords}
+
+	r.HTML(200, "euli", s)
+}
+
+func getBook(params martini.Params, r render.Render) {
+	post := getBookByName(params["bookname"])
+	if post.FriendlyId != "" {
+		r.HTML(200, "euli/"+post.FriendlyId, post)
+	} else {
+		r.Text(404, "Not found")
+	}
+}
+
+func getBookByName(name string) Post {
+	var p Post
+	for _, post := range books {
+		if post.FriendlyId == name {
+			p = post
+		}
+	}
+
+	return p
 }

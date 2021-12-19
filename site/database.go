@@ -140,3 +140,15 @@ var posts = []Post{
 		FriendlyId:  "uma-boa-ide-para-ruby-on-rails",
 	},
 }
+
+var books = []Post{
+	{
+		Title:       "Implantação de Help Desk e Service Desk",
+		Description: "",
+		Keywords:    "",
+		PostType:    "book",
+		FriendlyId:  "implantacao-de-help-desk-e-service-desk",
+		Link:        "/implantacao-de-help-desk-e-service-desk/",
+		CreatedAt:   time.Date(2021, time.December, 18, 21, 24, 0, 0, time.UTC).Local(),
+	},
+}

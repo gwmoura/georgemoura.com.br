@@ -38,6 +38,11 @@ func TestSite(t *testing.T) {
 		t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
 	}
 
+	response = DoRequest("GET", "/euli")
+	if response.Code != http.StatusOK {
+		t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
+	}
+
 	response = DoRequest("GET", "/curriculo")
 	if response.Code != http.StatusOK {
 		t.Fatalf("Response code did not contain expected %v:\n\tbody: %v", "200", response.Code)
@@ -79,7 +84,7 @@ func TestSite(t *testing.T) {
 }
 
 func TestAge(t *testing.T) {
-	myage := 30
+	myage := 31
 	years := age(time.Date(1990, 5, 14, 0, 0, 0, 0, time.UTC))
 
 	if years != myage {
@@ -106,6 +111,13 @@ func TestGetPosts(t *testing.T) {
 func TestGetPostByName(t *testing.T) {
 	p := getPostByName("chrome-os-no-meu-pc")
 	if p.Title != "Chrome OS no meu pc" {
+		t.Fatalf("Post Title different. expected: %v\n actual: %v", "Chrome OS no meu pc", p.Title)
+	}
+}
+
+func TestGetBookByName(t *testing.T) {
+	p := getBookByName("implantacao-de-help-desk-e-service-desk")
+	if p.Title != "Implantação de Help Desk e Service Desk" {
 		t.Fatalf("Post Title different. expected: %v\n actual: %v", "Chrome OS no meu pc", p.Title)
 	}
 }
