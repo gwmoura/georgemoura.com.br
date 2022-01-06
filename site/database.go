@@ -151,4 +151,13 @@ var books = []Post{
 		Link:        "/implantacao-de-help-desk-e-service-desk/",
 		CreatedAt:   time.Date(2021, time.December, 18, 21, 24, 0, 0, time.UTC).Local(),
 	},
+	{
+		Title:       "Os segredos da mente milionária",
+		Description: "",
+		Keywords:    "",
+		PostType:    "book",
+		FriendlyId:  "os-segredos-da-mente-milionaria",
+		Link:        "/os-segredos-da-mente-milionaria/",
+		CreatedAt:   time.Date(2022, time.January, 5, 21, 14, 0, 0, time.UTC).Local(),
+	},
 }
