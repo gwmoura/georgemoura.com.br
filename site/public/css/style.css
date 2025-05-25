@@ -1,21 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+:root {
+  --bg-color: #fff;
+  --text-color: #000;
+  --link-color: #0000EE; /* Standard link blue */
+  --pre-bg-color: #23241f;
+  --pre-text-color: #fff;
+  --code-bg-color: #ddd;
+  --code-text-color: #000;
+  --title-bg-color: #D9D9D9;
+  --kbd-text-color: #444d56;
+  --kbd-bg-color: #fafbfc;
+  --kbd-border-color: #d1d5da;
+  --kbd-shadow-color: #d1d5da;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --link-color: #8ab4f8; /* Lighter blue for dark mode */
+  --pre-bg-color: #23241f; /* Keep pre background dark */
+  --pre-text-color: #e0e0e0;
+  --code-bg-color: #333;
+  --code-text-color: #e0e0e0;
+  --title-bg-color: #444;
+  --kbd-text-color: var(--text-color);
+  --kbd-bg-color: var(--code-bg-color);
+  --kbd-border-color: #555;
+  --kbd-shadow-color: #555;
+}
+
 body{
   font-family: 'Ubuntu', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 pre{
 	word-wrap: break-word;
+  background-color: var(--pre-bg-color);
+  color: var(--pre-text-color);
 }
 article{
 	word-wrap: break-word;
 }
-ul li,a{
+ul li, a{
 	padding-bottom: 10px;
+}
+a {
+  color: var(--link-color);
 }
 .anuncio{width: 50%; margin: 5px; margin-left: auto; margin-right: auto;}
 /* cv css */
 .header{ text-align: center; }
 .title{
-  background: #D9D9D9 !important;
+  background: var(--title-bg-color) !important; /* Important is kept as it was in original */
   font-weight: bold;
   text-align: center;
   padding-top: 5px;
@@ -28,8 +66,13 @@ ul li,a{
 }
 /* end cv css */
 
-pre{background-color: #23241f; color:#fff; border-radius: 3px;}
-code{background-color: #ddd; color: #000; padding: 5px;border-radius: 3px;}
+pre{border-radius: 3px;} /* removed background and color as it's defined above */
+code{
+  background-color: var(--code-bg-color);
+  color: var(--code-text-color);
+  padding: 5px;
+  border-radius: 3px;
+}
 #disqus_thread{width:90%;margin: 0 auto;}
 .cnt-letra{font-size: 19px; line-height: 1.6;}
 .profissional-xp ul li ul li{ padding-bottom: 0 }
@@ -43,10 +86,10 @@ kbd {
     padding: 3px 5px;
     font: 11px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
     line-height: 10px;
-    color: #444d56;
+    color: var(--kbd-text-color);
     vertical-align: middle;
-    background-color: #fafbfc;
-    border: 1px solid #d1d5da;
+    background-color: var(--kbd-bg-color);
+    border: 1px solid var(--kbd-border-color);
     border-radius: 6px;
-    box-shadow: inset 0 -1px 0 #d1d5da;
+    box-shadow: inset 0 -1px 0 var(--kbd-shadow-color);
 }
