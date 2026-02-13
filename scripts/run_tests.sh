@@ -1,1 +1,1 @@
-go test -race -v ./site
+cd ./site && go test -race -v ./... && cd ../

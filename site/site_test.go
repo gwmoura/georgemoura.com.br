@@ -84,7 +84,7 @@ func TestSite(t *testing.T) {
 }
 
 func TestAge(t *testing.T) {
-	myage := 31
+	myage := 35
 	years := age(time.Date(1990, 5, 14, 0, 0, 0, 0, time.UTC))
 
 	if years != myage {
