@@ -1,12 +1,9 @@
 # application: george-moura-site
-runtime: go115
+runtime: go123
 
 default_expiration: "30m"
 
 handlers:
-
-- url: /.well-known/acme-challenge
-  static_dir: letsencrypt
 
 - url: /css
   static_dir: public/css/
