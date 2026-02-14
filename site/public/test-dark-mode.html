@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Teste Dark Mode - George Moura</title>
+    <style>
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-section {
+            border: 2px solid #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #fff;
+            border: 2px solid #000;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 3px;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #2196f3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <h3>Controles de Teste</h3>
+        <button onclick="toggleTheme()">🌓 Alternar Dark Mode</button>
+        <button onclick="testColors()">🎨 Testar Cores</button>
+        <div id="current-theme" style="margin-top: 10px; font-weight: bold;"></div>
+    </div>
+
+    <h1>Teste de Dark Mode - georgemoura.com.br</h1>
+
+    <div class="info">
+        <strong>Instruções:</strong> Use os botões no canto superior direito para alternar entre light e dark mode e testar as cores.
+    </div>
+
+    <div class="test-section">
+        <h2>Teste de Tabela (para verificar linhas pares)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Header 1</th>
+                    <th>Header 2</th>
+                    <th>Header 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Linha 1 (ímpar) - deve ter cor normal</td>
+                    <td>Dados</td>
+                    <td>Mais dados</td>
+                </tr>
+                <tr>
+                    <td>Linha 2 (par) - deve ter texto PRETO no dark mode</td>
+                    <td>Dados</td>
+                    <td>Mais dados</td>
+                </tr>
+                <tr>
+                    <td>Linha 3 (ímpar) - deve ter cor normal</td>
+                    <td>Dados</td>
+                    <td>Mais dados</td>
+                </tr>
+                <tr>
+                    <td>Linha 4 (par) - deve ter texto PRETO no dark mode</td>
+                    <td>Dados</td>
+                    <td>Mais dados</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="test-section">
+        <h2>Teste de Links</h2>
+        <ul class="collection">
+            <li class="collection-item"><a href="#" class="collection-item">Link de teste 1</a></li>
+            <li class="collection-item"><a href="#" class="collection-item">Link de teste 2</a></li>
+            <li class="collection-item"><a href="#" class="collection-item">Link de teste 3</a></li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>Teste de Código</h2>
+        <pre>function exemplo() {
+    console.log("Teste de código");
+    return true;
+}</pre>
+        <p>Código inline: <code>var x = 10;</code></p>
+    </div>
+
+    <div class="test-section">
+        <h2>Teste de Kbd</h2>
+        <p>Pressione <kbd>Ctrl</kbd> + <kbd>C</kbd> para copiar</p>
+    </div>
+
+    <div id="test-results" style="margin-top: 20px; padding: 20px; background: #f5f5f5; border-radius: 5px; display: none;">
+        <h3>Resultados do Teste de Cores</h3>
+        <div id="results-content"></div>
+    </div>
+
+    <link rel="stylesheet" href="/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script>
+        function updateThemeDisplay() {
+            const theme = document.documentElement.getAttribute('data-theme') || 'light';
+            document.getElementById('current-theme').textContent = `Tema atual: ${theme}`;
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            if (newTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+            } else {
+                html.removeAttribute('data-theme');
+            }
+
+            updateThemeDisplay();
+        }
+
+        function testColors() {
+            const results = document.getElementById('test-results');
+            const content = document.getElementById('results-content');
+            const theme = document.documentElement.getAttribute('data-theme') || 'light';
+
+            // Pegar cores dos elementos de teste
+            const tableEvenRow = document.querySelector('table tr:nth-child(even) td');
+            const tableOddRow = document.querySelector('table tr:nth-child(odd) td');
+            const tableHeader = document.querySelector('table th');
+            const link = document.querySelector('a.collection-item');
+            const code = document.querySelector('code');
+            const kbd = document.querySelector('kbd');
+
+            const evenRowColor = window.getComputedStyle(tableEvenRow).color;
+            const evenRowBg = window.getComputedStyle(tableEvenRow).backgroundColor;
+            const oddRowColor = window.getComputedStyle(tableOddRow).color;
+            const headerBg = window.getComputedStyle(tableHeader).backgroundColor;
+            const linkColor = window.getComputedStyle(link).color;
+            const codeColor = window.getComputedStyle(code).color;
+            const codeBg = window.getComputedStyle(code).backgroundColor;
+            const kbdColor = window.getComputedStyle(kbd).color;
+
+            content.innerHTML = `
+                <p><strong>Tema: ${theme}</strong></p>
+                <hr>
+                <p><strong>Tabela - Linha Par (even):</strong></p>
+                <ul>
+                    <li>Cor do texto: <span style="color: ${evenRowColor}; font-weight: bold;">${evenRowColor}</span></li>
+                    <li>Cor de fundo: <span style="background: ${evenRowBg}; padding: 2px 5px;">${evenRowBg}</span></li>
+                    ${theme === 'dark' ? `<li>✓ ${evenRowColor === 'rgb(0, 0, 0)' ? '✅ CORRETO: Texto preto!' : '❌ ERRO: Deveria ser preto (rgb(0, 0, 0))'}</li>` : ''}
+                </ul>
+                <p><strong>Tabela - Linha Ímpar (odd):</strong></p>
+                <ul>
+                    <li>Cor do texto: <span style="color: ${oddRowColor}; font-weight: bold;">${oddRowColor}</span></li>
+                </ul>
+                <p><strong>Tabela - Header:</strong></p>
+                <ul>
+                    <li>Cor de fundo: <span style="background: ${headerBg}; padding: 2px 5px;">${headerBg}</span></li>
+                </ul>
+                <p><strong>Link:</strong></p>
+                <ul>
+                    <li>Cor: <span style="color: ${linkColor}; font-weight: bold;">${linkColor}</span></li>
+                </ul>
+                <p><strong>Code:</strong></p>
+                <ul>
+                    <li>Cor do texto: <span style="color: ${codeColor}; font-weight: bold;">${codeColor}</span></li>
+                    <li>Cor de fundo: <span style="background: ${codeBg}; padding: 2px 5px;">${codeBg}</span></li>
+                </ul>
+                <p><strong>Kbd:</strong></p>
+                <ul>
+                    <li>Cor do texto: <span style="color: ${kbdColor}; font-weight: bold;">${kbdColor}</span></li>
+                </ul>
+            `;
+
+            results.style.display = 'block';
+        }
+
+        // Atualizar display ao carregar
+        updateThemeDisplay();
+    </script>
+</body>
+</html>
