@@ -19,8 +19,8 @@
     </p>
 
     <p>
-      <h4>Como o Docker  Compose pode me ajudar?</h4>
-      Usando o compose em apenas um arquivo você define as <b>dependências do seu ambiente</b>: banco de dados, bancos nosql, variáveis de ambiente, serviços e etc e em seguida com apenas um comando você sobe todo essa pilha e já pode usar. Sua equipe agora precisa apenas executar: <code>git clone [repo] && docker-compose build && docker-compose up</code> e já pode trabalhar.
+      <h4>Como o Docker Compose pode me ajudar?</h4>
+      Usando o compose em apenas um arquivo você define as <b>dependências do seu ambiente</b>: banco de dados, bancos nosql, variáveis de ambiente, serviços etc. e em seguida com apenas um comando você sobe toda essa pilha e já pode usar. Sua equipe agora precisa apenas executar: <code>git clone [repo] && docker-compose build && docker-compose up</code> e já pode trabalhar.
     </p>
 
     <p>
@@ -43,7 +43,7 @@
       </pre>
     </p>
     <p>
-      Em seguida vamos criar um arquivo chamado <code>docker-compose.yml</code> e definir os serviços nele. Serviços são uma espécie de alias para o containers que vão ser criados ex: web - para aplicações web, db - para banco de dados. Você pode definir quantos serviços quiser, desde que possuam nomes diferentes, pois quando os containers forem levantados esses "apelidos" serão usados na comunicação entre eles.
+      Em seguida vamos criar um arquivo chamado <code>docker-compose.yml</code> e definir os serviços nele. Serviços são uma espécie de alias para os containers que vão ser criados ex: web - para aplicações web, db - para banco de dados. Você pode definir quantos serviços quiser, desde que possuam nomes diferentes, pois quando os containers forem levantados esses "apelidos" serão usados na comunicação entre eles.
     </p>
     <p>
       Obs: para saber mais sobre a questão de versão do docker-compose acesse <a href="https://docs.docker.com/compose/compose-file/#versioning">https://docs.docker.com/compose/compose-file/#versioning</a>
@@ -56,7 +56,7 @@
         services:
           web:
             build: .
-            command: php -S 0.0.0.0:8000 -t /app/web/ # comando a ser executado quando o conatiner web terminar o build
+            command: php -S 0.0.0.0:8000 -t /app/web/ # comando a ser executado quando o container web terminar o build
             ports:
               - "8000:8000" # porta que será mapeada com o host
             volumes:
@@ -120,7 +120,7 @@
 
     <p>
       <h4>Executando os containers</h4>
-      Para executar os containers vamos rodar o seguinte o comando no root da aplicação <code>docker-compose up</code>. Esse comando fara com que os containers sejam levantados e os comandos definidos no docker-compose.yml e no Dockerfile sejam executados.
+      Para executar os containers vamos rodar o seguinte comando no root da aplicação <code>docker-compose up</code>. Esse comando fará com que os containers sejam levantados e os comandos definidos no docker-compose.yml e no Dockerfile sejam executados.
     </p>
     <p>
       Como vocês devem ter percebido na estrutura de diretórios tem uma pasta chamada <code>scripts</code>, com um script chamado <code>run</code>. Eu faço isso para facilitar minha vida, nesse script tem apenas uma linha com o comando citado acima, então quando quero rodar os containers apenas faço <code>./scripts/run</code>.
@@ -134,7 +134,7 @@
     </p>
     <p>
       <h4>Executando comandos dentro do container</h4>
-      Caso precisem executar comandos dentro do container vocês pode fazer da seguinte maneira: <code>docker-compose run web [comando]</code> ex:
+      Caso precisem executar comandos dentro do container vocês podem fazer da seguinte maneira: <code>docker-compose run web [comando]</code> ex:
       <pre>
         <code class="bash">
           $ docker-compose run web php -v
@@ -145,9 +145,9 @@
       </pre>
     </p>
     <p>
-      <h4>Instalando novas depedências no projeto</h4>
+      <h4>Instalando novas dependências no projeto</h4>
       Sempre que uma nova dependência for adicionada ao projeto é necessário executar <code>docker-compose build</code> para que uma nova imagem seja criada com as dependências instaladas.
     </p>
-    <p>É isso aí pessoal, divirtam-se!!! O reposótio com os exemplos está aqui: <a href="https://github.com/gwmoura/hello-docker-compose">https://github.com/gwmoura/hello-docker-compose</a>;)</p>
+    <p>É isso aí pessoal, divirtam-se!!! O repositório com os exemplos está aqui: <a href="https://github.com/gwmoura/hello-docker-compose">https://github.com/gwmoura/hello-docker-compose</a>;)</p>
   </div>
 </article>

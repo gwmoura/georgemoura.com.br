@@ -18,7 +18,7 @@
         Gosto muito de ser preguiçoso e sempre que me vejo fazendo alguma coisa repetidas vezes fico imaginando formas de automatizar. Isso me ajuda a ser mais produtivo.
       </p>
       <p>
-        Muitas vezes, em um projeto de software você tem uma rotina de deploy ou build ou até as duas e normalmente utilizamos um ambiente de produção e outro de teste, mas antes de implantar o sistema em qualquer desses ambientes você precisa fazer uma série de passos... Então, porquê não automatizá-los? Dentre as vantagens de se fazer isso posso listar as seguintes:
+        Muitas vezes, em um projeto de software você tem uma rotina de deploy ou build ou até as duas e normalmente utilizamos um ambiente de produção e outro de teste, mas antes de implantar o sistema em qualquer desses ambientes você precisa fazer uma série de passos... Então, por que não automatizá-los? Dentre as vantagens de se fazer isso posso listar as seguintes:
       </p>
       <ol>
         <li>Ajuda a não esquecer os passos de implantação</li>
@@ -30,18 +30,18 @@
 
     <div>
       <p>Hoje em dia temos muitos serviços de CI e CD onde você cria pipelines de entrega, serviços como <a href="https://travis-ci.com/">Travis CI</a> e <a href="https://circleci.com/">Circle CI</a>, além do software <a href="https://www.jenkins.io/">Jenkins</a> se beneficiam dessa prática.</p>
-      <p>Pouco importa a ferramenta, o importante aqui é o conceito, todas elas utilizam a mesma lógica: definir tarefas para serem executadas a cada passo, sendo que cada tarefa possui um mais comandos para serem executados.</p> 
+      <p>Pouco importa a ferramenta, o importante aqui é o conceito, todas elas utilizam a mesma lógica: definir tarefas para serem executadas a cada passo, sendo que cada tarefa possui um ou mais comandos para serem executados.</p> 
     </div>
 
     <div>
       <p>Para exemplificar melhor vamos pensar num projeto Java que possui um frontend em Vue.js, para colocar esse projeto online teríamos que no mínimo:</p>
       <ol>
         <li>Fazer o build do Java (gerar o .war)</li>
-        <li>Colocar o .war num servidor web Java (Tomcat ou wikdfly)</li>
+        <li>Colocar o .war num servidor web Java (Tomcat ou WildFly)</li>
         <li>Fazer o build do Vue</li>
         <li>Enviar os arquivos gerados para um servidor web (nginx ou Apache)</li>
       </ol>
-      <p>Esses são passos básicos, nem estou colocando na lista, atualização de banco de dados, troca de domínio, envio de assets para um storage(como aws s3 ou google cloud storage), build de imagem Docker e por aí vai... Então, como seria uma pipeline de entrega desse software?</p>
+      <p>Esses são passos básicos, nem estou colocando na lista, atualização de banco de dados, troca de domínio, envio de assets para um storage (como AWS S3 ou google cloud storage), build de imagem Docker e por aí vai... Então, como seria uma pipeline de entrega desse software?</p>
     </div>
 
     <div>
@@ -57,7 +57,7 @@
       <p>Eu particularmente gosto de ter uma pasta chamada scripts em cada projeto que faço. Nessa pasta crio vários scripts bash que automatizam algo para mim e muitas vezes reutilizando eles, por exemplo, se antes de fazer a implantação do sistema eu preciso rodar os testes, depois o build do projeto e só depois enviar o projeto para o servidor, eu crio um script chamado deploy e dentro dele chamo o script de teste, depois o de build e por fim o do deploy. Seria algo assim:</p>
       <pre><code>
       #scripts/deploy
-      #/bin/bash
+      #!/bin/bash
       ./scripts/test
       ./scripts/build
       ./scripts/send-server
@@ -74,7 +74,7 @@
       <ul>
         <li>Fazer o build do projeto</li>
         <li>Enviar o .war para o servidor tomcat</li>
-        <li>Fazer o build o Vue</li>
+        <li>Fazer o build do Vue</li>
         <li>Enviar o conteúdo do build para o nginx</li>
       </ul>
       <b>Isole isso em tarefas</b>
@@ -88,11 +88,11 @@
       <pre><code>
       # scripts/build-java
       #!/bin/bash
-      ./grandlew build
+      ./gradlew build
 
       # scripts/deploy-war
       #!/bin/bash
-      scp app.war deployer@meuhost.com :/opt/tomcat/webapps/ROOT.war
+      scp app.war deployer@meuhost.com:/opt/tomcat/webapps/ROOT.war
       ssh deployer@meuhost.com 'service tomcat restart'
 
       # scripts/build-vue
@@ -101,7 +101,7 @@
 
       # scripts/deploy-frontend
       #!/bin/bash
-      scp ./build/* deployer@meuhost2.com :/var/www/
+      scp ./build/* deployer@meuhost2.com:/var/www/
       </code></pre>
 
       De quebra eu posso criar um script que faz tudo
@@ -120,7 +120,7 @@
     <div>
       <h2>Gerenciadores de dependência que dão suporte a scripts</h2>
 
-      <p>Alguns gerenciadores de dependência como o npm do node dão suporte ao uso e definição de scripts locais. Nos projetos com npm, o arquivo package.json possui uma sessão só para scripts e isso facilita muita coisa, muitos atalhos podem ser definidos lá, por exemplo, você poderia definir no seu package.json um script de deploy e nele você chamaria um ou mais comandos. Dessa forma:</p>
+      <p>Alguns gerenciadores de dependência como o npm do node dão suporte ao uso e definição de scripts locais. Nos projetos com npm, o arquivo package.json possui uma seção só para scripts e isso facilita muita coisa, muitos atalhos podem ser definidos lá, por exemplo, você poderia definir no seu package.json um script de deploy e nele você chamaria um ou mais comandos. Dessa forma:</p>
 
       <pre><code>
         ...
@@ -129,13 +129,13 @@
         }
         ...
       </code></pre>
-    <div>
+    </div>
 
     <div>
-      No ecossistema Ruby temos o rake e aqui vão dois artigos interessantes que achei <a href="https://www.rubyguides.com/2019/02/ruby-rake/ ">https://www.rubyguides.com/2019/02/ruby-rake/</a> e <a href="https://www.akitaonrails.com/2009/02/16/automatizando-tarefas-com-ruby-e-rake">https://www.akitaonrails.com/2009/02/16/automatizando-tarefas-com-ruby-e-rake</a>, no ecossistema PHP tempos o composer que no composer.json, podemos definir alguns scripts  <a href="https://getcomposer.org/doc/articles/scripts.md#writing-custom-commands">https://getcomposer.org/doc/articles/scripts.md#writing-custom-commands</a>. No ecossistema python isso pode ser feito pelo Pipenv <a href="https://pipenv-fork.readthedocs.io/en/lat      est/advanced.html#custom-script-shortcuts">https://pipenv-fork.readthedocs.io/en/latest/advanced.html#custom-script-shortcuts</a> e aqui vai um artigo bem massinha sobre isso <a href="https://dev.to/elanorigby/i-love-pipenvs-custom-script-shortcuts-156k">https://dev.to/elanorigby/i-love-pipenvs-custom-script-shortcuts-156k</a>.
+      No ecossistema Ruby temos o rake e aqui vão dois artigos interessantes que achei <a href="https://www.rubyguides.com/2019/02/ruby-rake/ ">https://www.rubyguides.com/2019/02/ruby-rake/</a> e <a href="https://www.akitaonrails.com/2009/02/16/automatizando-tarefas-com-ruby-e-rake">https://www.akitaonrails.com/2009/02/16/automatizando-tarefas-com-ruby-e-rake</a>, no ecossistema PHP temos o Composer, que permite definir alguns scripts no composer.json  <a href="https://getcomposer.org/doc/articles/scripts.md#writing-custom-commands">https://getcomposer.org/doc/articles/scripts.md#writing-custom-commands</a>. No ecossistema Python isso pode ser feito pelo Pipenv <a href="https://pipenv-fork.readthedocs.io/en/latest/advanced.html#custom-script-shortcuts">https://pipenv-fork.readthedocs.io/en/latest/advanced.html#custom-script-shortcuts</a> e aqui vai um artigo bem massinha sobre isso <a href="https://dev.to/elanorigby/i-love-pipenvs-custom-script-shortcuts-156k">https://dev.to/elanorigby/i-love-pipenvs-custom-script-shortcuts-156k</a>.
     </div>
     <div>
-      <h2>Criando script na sua linguagem prefereida</h2>
+      <h2>Criando script na sua linguagem preferida</h2>
       <p>
         Muitas vezes não temos tanta familiaridade com o bash e as linguagens que usamos tem uma série de recursos e facilidades que gostamos. Então sim, você pode criar scripts na sua linguagem favorita. Basicamente o que você precisa é definir um cabeçalho novo. Por padrão, arquivos bash possuem a primeira linha com <code>#!/bin/bash</code>, basta você alterar para a localização do executável da sua linguagem ex: scripts em PHP <code>#!/usr/bin/php</code>, scripts em ruby <code>#!/usr/bin/ruby</code> e no conteúdo do arquivo é o código da linguagem.
       </p>

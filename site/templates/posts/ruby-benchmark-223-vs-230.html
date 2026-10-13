@@ -13,7 +13,7 @@
   <div class="entry-content">
     <p><a href="https://www.ruby-lang.org/en/news/2015/12/25/ruby-2-3-0-released/">Ruby 2.3.0 foi lançado em 25/12/2015</a> e eu resolvi fazer um comparativo entre as versões 2.2.3 e a 2.3.0 fazendo um benchmark simples.</p>
     <p>
-      Para os testes usei o seguinte código ruby que peguei <a title="How do I benchmark Ruby code?" href="http://rubylearning.com/blog/2013/06/19/how-do-i-benchmark-ruby-code/"target="_blank">neste post</a>
+      Para os testes usei o seguinte código Ruby que peguei <a title="How do I benchmark Ruby code?" href="http://rubylearning.com/blog/2013/06/19/how-do-i-benchmark-ruby-code/" target="_blank">neste post</a>
       <pre>
         require 'benchmark'
         require 'bigdecimal/math'
@@ -69,10 +69,10 @@
     </div>
     <h3>Interpretando os resultados</h3>
     <p>
-      A primeira coluna (User CPU Time) é o tempo gasto pela CPU para processar o códigos do usuário, a segunda (System CPU Time) é o tempo gasto pela CPU para processar códigos do Kernel, a terceira coluna é a soma dessas duas métricas e quarta coluna (Elapsed real time) é tempo decorrido do início ao término da instrução.
+      A primeira coluna (User CPU Time) é o tempo gasto pela CPU para processar os códigos do usuário, a segunda (System CPU Time) é o tempo gasto pela CPU para processar códigos do Kernel, a terceira coluna é a soma dessas duas métricas e a quarta coluna (Elapsed real time) é o tempo decorrido do início ao término da instrução.
     </p>
     <p>
-      Como puderam ver, a diferença entre as versões é muito pequena, isso comparando o User CPU Time e System CPU Time, pórem quando observamos O tempo real decorrido (Elapsed real time) percebemos que a versão 2.3.0 tem uma vantagem significativa. A tradução disso é que Ruby 2.3.0 executa instruções mais rápidas do que a versão 2.2.3, como já era de se esperar ;D
+      Como puderam ver, a diferença entre as versões é muito pequena, isso comparando o User CPU Time e System CPU Time, porém, quando observamos o tempo real decorrido (Elapsed real time) percebemos que a versão 2.3.0 tem uma vantagem significativa. A tradução disso é que Ruby 2.3.0 executa instruções mais rápido do que a versão 2.2.3, como já era de se esperar ;D
     </p>
   </div>
   <footer>

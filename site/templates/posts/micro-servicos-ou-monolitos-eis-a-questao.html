@@ -12,7 +12,7 @@
 
   <div class="entry-content">
     <p>
-      Micro serviços ou Monolíticos? O que é melhor? A resposta para essa pergunta é a mesma para muitas para muitas perguntas do universo de desenvolvimento de software: Depende :)
+      Micro serviços ou Monolíticos? O que é melhor? A resposta para essa pergunta é a mesma para muitas perguntas do universo de desenvolvimento de software: Depende :)
       <br/>
       <ul>
         <li>Depende do tamanho da sua equipe</li>
@@ -25,18 +25,18 @@
       Esses são alguns fatores que consigo lembrar nesse momento, mas antes de continuar vou explicar um pouco sobre micro serviços e monolíticos.
     </p>
     <p>
-      <b>Um micro serviço</b> é um software como outro qualquer, mas o que o define, é o fato de ter apenas uma responsabilidade (enviar e-mail, autenticar um usuário ou precessar uma imagem) e estar disponível para receber requisições de outros serviços (geralmente via HTTP), quando você tem vários microservices se comunicando entre si, temos o que pode ser chamar de uma arquitetura em micro serviços.<br/>
-      O que caracteriza um micro serviço é o fato dele poder ser executado e implantado de maneira idependente, ou seja, você consegue ligar e desligar o serviço na hora que quiser, além disso, é importante dizer que um microservice possui seu próprio banco de dados.
+      <b>Um micro serviço</b> é um software como outro qualquer, mas o que o define, é o fato de ter apenas uma responsabilidade (enviar e-mail, autenticar um usuário ou processar uma imagem) e estar disponível para receber requisições de outros serviços (geralmente via HTTP), quando você tem vários microservices se comunicando entre si, temos o que pode ser chamado de uma arquitetura em micro serviços.<br/>
+      O que caracteriza um micro serviço é o fato dele poder ser executado e implantado de maneira independente, ou seja, você consegue ligar e desligar o serviço na hora que quiser, além disso, é importante dizer que um microservice possui seu próprio banco de dados.
     </p>
     <p>
       <b>Um monolito</b> é também um software como qualquer outro, mas que faz TUDO!!! Isso mesmo, os monolitos são conhecidos por serem softwares mais parrudos, que possuem muitas responsabilidades e fazem de tudo (enviam e-mail, autenticam usuários, geram relatórios, cadastram coisas e por aí vai...), essa seria a característica mais marcante e fidedigna de um monolito.<br/>
       Existem muitas vantagens de usar um monolito, para mim, a mais vantajosa é a manutenção, mas podemos citar: ter apenas uma rotina de deploy, base de código unificada e ter apenas uma base de dados para gerenciar.
     </p>
     <p>
-      Na minha opnião você não deve iniciar um projeto usando micro serviços, desde que realmente precise. Sou adepto de começar os projetos com monolitos e se necessário, aos poucos, ir extraindo as partes "problemáticas" em pequenos serviços.
+      Na minha opinião, você não deve iniciar um projeto usando micro serviços, a não ser que realmente precise. Sou adepto de começar os projetos com monolitos e se necessário, aos poucos, ir extraindo as partes "problemáticas" em pequenos serviços.
     </p>
     <p>
-      Qual a vantagem disso? Para mim, é o fato de ter mais controle sobre as mudanças do projeto, além de não tem um esforço incial grande.
+      Qual a vantagem disso? Para mim, é o fato de ter mais controle sobre as mudanças do projeto, além de não ter um esforço inicial grande.
     </p>
 
     <h4>Setup Inicial de um micro serviço</h4>
@@ -60,7 +60,7 @@
       </ul>
     </p>
 
-    <h4>Setup Inicial de um monlito</h4>
+    <h4>Setup Inicial de um monolito</h4>
     <p>
       Começando com um monolito o setup inicial seria parecido com o de um micro serviço, porém, você não precisa se preocupar com os outros problemas que uma arquitetura em micro serviços exige. Além de fazer isso apenas uma única vez. O setup inicial seria +/- esse:
     </p>
@@ -78,7 +78,7 @@
       <li class="collection-item">Testes</li>
     </ul>
 
-    <p>Se sua preocupação é escalabilidade e separação de responsabilidades, você pode fazer isso usando bons padrões de projeto. Além disso, uma prática adotada por alguns projetos é separar o seu software em módulos (isso pode facilitar a extração para um micro serviço, no futuro). Hoje em dia a grande maioria das linguagens dão suporte a instalação de bibliotecas externas ou internas (Isso mesmo, você pode criar libs próprias para serem usadas em projetos particulares). Por exemplo, ruby possui as gems, node possui os pacotes npm, php possui os pacotes do composer, java possui os pacotes do Maven e por aí vai... Como programador é importante que você conheça como esses pacotes são feitos e como você pode criar essas bibliotecas "instaláveis".</p>
+    <p>Se sua preocupação é escalabilidade e separação de responsabilidades, você pode fazer isso usando bons padrões de projeto. Além disso, uma prática adotada por alguns projetos é separar o seu software em módulos (isso pode facilitar a extração para um micro serviço, no futuro). Hoje em dia a grande maioria das linguagens dão suporte à instalação de bibliotecas externas ou internas (Isso mesmo, você pode criar libs próprias para serem usadas em projetos particulares). Por exemplo, ruby possui as gems, node possui os pacotes npm, php possui os pacotes do composer, java possui os pacotes do Maven e por aí vai... Como programador é importante que você conheça como esses pacotes são feitos e como você pode criar essas bibliotecas "instaláveis".</p>
 
     <h2>Comentando um pouco sobre os dependes</h2>
     <p>Como mencionei acima, a resposta sobre usar ou não usar microservices é: "depende". Vou comentar meu ponto de vista sobre cada tópico.</p>
@@ -90,36 +90,36 @@
     <p>
       <b>Depende do tamanho da sua solução</b>
       <br/>
-      Se você possui uma solução pequena, um software com poucas fucnionalidades, não vale a pena você querer quebrar isso em micro serviços, pelo mesmo motivo que falei acima.
+      Se você possui uma solução pequena, um software com poucas funcionalidades, não vale a pena você querer quebrar isso em micro serviços, pelo mesmo motivo que falei acima.
     </p>
     <p>
       <b>Depende do problema que você está enfrentando</b>
       <br/>
-      Micro serviços, na minha visão são muito bem vindos quando partes do seu software começam a engasgar, por exemplo, imagine que seu software possui uma funcionalidade de gerar PDFs a partir de uma página HTML, inicialmente essa renderização é feita on demand. Pouco tempo depois, você implementa essa mesma funcionalidade em outra parte do software, estamos agora com dois lugares usando a mesma função de renderizar PDF, daí a demanda começa a crescer e gerar esse PDF on demand começa a ficar custoso, então você implementa um mecanismo de fila, onde o usuário solicita o PDF, renderiza em background e envia esse PDF por e-mail, depois de um tempo mais pontos do sistema começam a usar a mesma funcionalidade de gerar PDF, algum tempo depois, começa a ficar inviável fazer isso dentro do mesmo servidor, pois o job de renderizar PDFs começam a consumir muito recusro e isso começa a concorrer com as necessidades da aplicação principal, então, agora você coloca o job para rodar em um servidor dedicado, se passa mais algum tempo, essa funcionalidade precisa ser usada por outros softwares da empresa, seja em uma nova aplicação, em um APP, qualquer coisa... A partir desse momento começa a ser interessante criar um micro serviço responsável por gerar PDFs.
+      Micro serviços, na minha visão, são muito bem-vindos quando partes do seu software começam a engasgar, por exemplo, imagine que seu software possui uma funcionalidade de gerar PDFs a partir de uma página HTML, inicialmente essa renderização é feita on demand. Pouco tempo depois, você implementa essa mesma funcionalidade em outra parte do software, estamos agora com dois lugares usando a mesma função de renderizar PDF, daí a demanda começa a crescer e gerar esse PDF on demand começa a ficar custoso, então você implementa um mecanismo de fila, onde o usuário solicita o PDF, renderiza em background e envia esse PDF por e-mail, depois de um tempo mais pontos do sistema começam a usar a mesma funcionalidade de gerar PDF, algum tempo depois, começa a ficar inviável fazer isso dentro do mesmo servidor, pois o job de renderizar PDFs começa a consumir muito recurso e isso começa a concorrer com as necessidades da aplicação principal, então, agora você coloca o job para rodar em um servidor dedicado, se passa mais algum tempo, essa funcionalidade precisa ser usada por outros softwares da empresa, seja em uma nova aplicação, em um APP, qualquer coisa... A partir desse momento começa a ser interessante criar um micro serviço responsável por gerar PDFs.
     </p>
     <p>
       <b>Depende do trabalho que você quer ter para manter as coisas funcionando</b>
       <br/>
-      Manter vários serviços rodando não é uma tarefa fácil. A infra de um software rodando na web já é algo complexo, imagine agora lidar com essa complexidade multiplicada por 2,3 ou 4 serviços, sem falar nos testes de integração para garantir que as mudanças no seu serviço não vai quebrar os outros e nos casos onde você precisará duplicar dados entre os serviços, imagine ter que se preocupar em sincronizar esses dados e na frequência que isso precisa ser feito.
+      Manter vários serviços rodando não é uma tarefa fácil. A infra de um software rodando na web já é algo complexo, imagine agora lidar com essa complexidade multiplicada por 2, 3 ou 4 serviços, sem falar nos testes de integração para garantir que as mudanças no seu serviço não vão quebrar os outros e nos casos onde você precisará duplicar dados entre os serviços, imagine ter que se preocupar em sincronizar esses dados e na frequência que isso precisa ser feito.
     </p>
     <p>
       <b>Depende do seu orçamento</b>
       <br/>
-      De novo, manter vários softwares rodando requer custo por cada um, mesmo que você rode cada serviço em um container docker, seus serviços juntos vão consumir mais do que um monolito consumiria, isso sem falar nos custos relacionados infra de rede necessária para manter a comunicação entre os serviços.
+      De novo, manter vários softwares rodando requer custo por cada um, mesmo que você rode cada serviço em um container docker, seus serviços juntos vão consumir mais do que um monolito consumiria, isso sem falar nos custos relacionados à infra de rede necessária para manter a comunicação entre os serviços.
     </p>
 
     <p>
-      Então é isso, na minha opnião começar um projeto usando micro serviços não é uma escolha sensata, principalmente pelo fato de que o setup inicial é custoso. Começar rápido e simples é a melhor opção, com um monolito em poucas semanas você já tem algo funcional rodando e a medida que sua necessidade for aumentado comece a pensar em novos modelos de arquitetura.
+      Então é isso, na minha opinião, começar um projeto usando micro serviços não é uma escolha sensata, principalmente pelo fato de que o setup inicial é custoso. Começar rápido e simples é a melhor opção, com um monolito em poucas semanas você já tem algo funcional rodando e, à medida que sua necessidade for aumentando, comece a pensar em novos modelos de arquitetura.
     </p>
     <p>Software é maleável, você pode evoluí-lo aos poucos, apenas se preocupe em fazê-lo de uma forma que seja fácil manter.
     </p>
 
     <p>
-      Arquitetura em micro serviços é uma ferramenta que precisa ser usada por quem entende, estude as ferramentas e use as que mais se adequar ao seu problema.
+      Arquitetura em micro serviços é uma ferramenta que precisa ser usada por quem entende, estude as ferramentas e use as que mais se adequarem ao seu problema.
     </p>
 
     <p>
-      Espero ter ajudado e contrubuído com algo.<br/>
+      Espero ter ajudado e contribuído com algo.<br/>
       Um forte abraço.
     </p>
   </div>

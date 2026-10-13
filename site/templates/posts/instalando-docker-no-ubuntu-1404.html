@@ -11,10 +11,10 @@
   </header>
 
   <div class="entry-content">
-    Para instalar o docker no ubuntu 14.04 é simples. Abra o terminal com <code>ctrl+alt+t</code> e verifique se você possui o wget com o comando <code>which wget</code>, caso não o possua, instale usando o comando <code>sudo apt-get install wget</code>.
+    Para instalar o Docker no Ubuntu 14.04 é simples. Abra o terminal com <code>ctrl+alt+t</code> e verifique se você possui o wget com o comando <code>which wget</code>, caso não o possua, instale usando o comando <code>sudo apt-get install wget</code>.
     <h4>Instalando o Docker</h4>
-    Ainda no terminal digite <code>wget -qO- https://get.docker.com/ | sh</code>. Após o script ser executado o docker já estará instalado. Para executá-lo sem a necessidade de digitar <code>sudo docker</code>, digite este comando: <code>sudo usermod -aG docker $USER</code> para adiconar seu usuário ao grupo docker .<br/>
-    No tutoarial oficial (<a href="http://docs.docker.com/linux/step_one/">http://docs.docker.com/linux/step_one/</a>) eles informam que para testar o docker  após esse processo basta executar: <code>docker run hello-world</code> e você verá algo desse tipo:
+    Ainda no terminal digite <code>wget -qO- https://get.docker.com/ | sh</code>. Após o script ser executado o docker já estará instalado. Para executá-lo sem a necessidade de digitar <code>sudo docker</code>, digite este comando: <code>sudo usermod -aG docker $USER</code> para adicionar seu usuário ao grupo docker.<br/>
+    No tutorial oficial (<a href="http://docs.docker.com/linux/step_one/">http://docs.docker.com/linux/step_one/</a>) eles informam que para testar o Docker após esse processo basta executar: <code>docker run hello-world</code> e você verá algo desse tipo:
     <pre>
       $ docker run hello-world
 
@@ -76,7 +76,7 @@
         # This is also a handy place to tweak where Docker's temporary files go.
         #export TMPDIR="/mnt/bigdrive/docker-tmp"
      </pre>
-      descomente a linha <code>#DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4"</code> e adicionae a linha <code>DOCKER_HOST="/var/run/docker.sock"</code> e seu seu arquivo deve fica assim:
+      Descomente a linha <code>#DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4"</code> e adicione a linha <code>DOCKER_HOST="/var/run/docker.sock"</code> e seu arquivo deve ficar assim:
       <br/>
       <pre>
         # Docker Upstart and SysVinit configuration file
@@ -97,7 +97,7 @@
       </pre>
       Aperte <code>ctrl+x</code> para salvar o arquivo e digite no terminal <code>sudo service docker restart</code> para reiniciar o serviço do docker.  Agora teste <code>docker run hello-world</code>.
       <br/><br/>
-      É isso aí pessoal! Muito obrigado e até a pŕoxima! ;)
+      É isso aí, pessoal! Muito obrigado e até a próxima! ;)
   </div>
   <footer>
 

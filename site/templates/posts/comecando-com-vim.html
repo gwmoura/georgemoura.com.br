@@ -15,7 +15,7 @@
 
     <div>
       <h2>Como instalar</h2>
-      <code>sudo apt-get install vim</code>. digitando <code>vim</code> no terminal você verá essa tela.
+      <code>sudo apt-get install vim</code>. Digitando <code>vim</code> no terminal você verá essa tela.
       <p><img class="materialboxed" src="{{ assetsHost }}/2020/08/vim-start-screen.png" alt="Tela inicial do Vim"></p>
     </div>
 
@@ -28,14 +28,14 @@
         <li><kbd>v</kbd> para iniciar o modo de visualização</li>
         <li><kbd>esc</kbd> para sair de qualquer modo</li>
         <li><code>:q</code> para fechar o editor</li>
-        <li><code>:w</code> para grvar as alterações</li>
+        <li><code>:w</code> para gravar as alterações</li>
         <li><kbd>u</kbd> para desfazer</li>
         <li><kbd>y</kbd> para copiar</li>
         <li><kbd>p</kbd> para colar</li>
         <li><kbd>x</kbd> para recortar</li>
       </ul>
 
-      <h3>Criadno e editando um arquivo</h3>
+      <h3>Criando e editando um arquivo</h3>
 
       <p>
           Acesse o diretório pelo terminal e digite <code>vim .</code> para abrir o diretório atual, selecione o arquivo e comece a editar ou digite <code>vim [arquivo]</code> para abrir o arquivo.<br/>
@@ -43,22 +43,22 @@
           Para fechar o arquivo aperte <code>:q</code>
       </p>
 
-      <h3>Desfazendo alteraçõess</h3>
+      <h3>Desfazendo alterações</h3>
 
       <p>Abra o arquivo e aperte a tecla <kbd>i</kbd>, digite qualquer palavra, aperte <kbd>esc</kbd> e depois <kbd>u</kbd>, as alterações serão desfeitas.</p>
 
       <h3>Copiando e colando coisas</h3>
 
       <p>Como o vim é no terminal, por padrão o <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>C</kbd> copia os dados e <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>V</kbd> cola os dados, mas a depender do que você selecione muito lixo será levado para a área de transferência, o ideal para o vim é usar a tecla <kbd>y</kbd> para copiar, a <kbd>x</kbd> para recortar e a <kbd>p</kbd> para colar. <b>ATENÇÃO</b>, esses atalhos funcionam apenas no modo visual do vim. Então, vamos ao exemplo.<br/>
-          Abra o arquivo, navegue até a linha que deseja selecionar, depois aperte a tecla <kbd>v</kbd>, com isso o vim entra em modo <b>VISUAL</b>, esse modo é como se você tivesse com a tecla SHIFT prescionada, então selecione o que precisar e depois basta clicar na tecla <kbd>y</kbd>, em seguida aperte <kbd>esc</kbd> para sair do modo visual, navegue atté onde deseja colar e aperte <kbd>p</kbd>. Para recortar é só seguir o mesmo procedimento.<br/>
+          Abra o arquivo, navegue até a linha que deseja selecionar, depois aperte a tecla <kbd>v</kbd>, com isso o vim entra em modo <b>VISUAL</b>, esse modo é como se você estivesse com a tecla SHIFT pressionada, então selecione o que precisar e depois basta clicar na tecla <kbd>y</kbd>, em seguida aperte <kbd>esc</kbd> para sair do modo visual, navegue até onde deseja colar e aperte <kbd>p</kbd>. Para recortar é só seguir o mesmo procedimento.<br/>
     </div>
     <div>
       <h2>Personalizando o vim</h2>
 
-      <p>O vim, como todos os editores usado por programadores, possuie plugins e pode ser customizado. Essas personalizações ficam registradas no arquivo <code>.vimrc</code> que fica na pasta home do seu usuário.<br/>
-        Esse arquivo é utilizado para guardar preferências, atalhos personalizados, configurações de plugins e esquemas de cores. Esse arquivo não é criado por padrão na instalação do vim, mas caso exista o vim o reconhece, então para criar, é só digitando <code>touch ~/.vimrc</code>. Vamos agora fazer uma pequena personalização:</p>
+      <p>O vim, como todos os editores usados por programadores, possui plugins e pode ser customizado. Essas personalizações ficam registradas no arquivo <code>.vimrc</code> que fica na pasta home do seu usuário.<br/>
+        Esse arquivo é utilizado para guardar preferências, atalhos personalizados, configurações de plugins e esquemas de cores. Esse arquivo não é criado por padrão na instalação do vim, mas caso exista o vim o reconhece, então para criar, é só digitar <code>touch ~/.vimrc</code>. Vamos agora fazer uma pequena personalização:</p>
 
-      <p>Digite <code>vim ~/.vimrc</code>. Aperte <kbd>i</kbd> para entrar no modeo de INSERÇÃO e digite <code>set number</code>, depois salve as alterações e feche o arquivo: <kbd>esc</kbd> <code>:wq</code> <kbd>enter</kbd>. Esse comando faz com que o vim exiba o número de linhas no documento, abrindo o documento novamente você verá o número de linhas.</p>
+      <p>Digite <code>vim ~/.vimrc</code>. Aperte <kbd>i</kbd> para entrar no modo de INSERÇÃO e digite <code>set number</code>, depois salve as alterações e feche o arquivo: <kbd>esc</kbd> <code>:wq</code> <kbd>enter</kbd>. Esse comando faz com que o vim exiba o número de linhas no documento, abrindo o documento novamente você verá o número de linhas.</p>
       <p><b>Antes</b><br/><img class="materialboxed" src="{{ assetsHost }}/2020/08/vim-without-number-lines.png" alt="Vim sem número de linhas"></p>
       <p><b>Depois</b><br/><img class="materialboxed" src="{{ assetsHost }}/2020/08/vim-with-number-lines.png" alt="Vim com número de linhas"></p>
     </div>
