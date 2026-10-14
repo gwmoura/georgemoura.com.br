@@ -25,6 +25,8 @@ Este é um site pessoal e blog desenvolvido por George Moura. O projeto é uma a
 - **Hospedagem**: Google App Engine
 - **Storage**: Google Cloud Storage (para imagens/assets)
 - **CI/CD**: Codeship
+- **Analytics**: Google Analytics 4 (`G-KMK5CKL8N9`), carregado no `layout.tmpl` apenas com `ENV=production`
+- **Consentimento de cookies**: aviso no `layout.tmpl` + `site.js` (chave `cookie-consent` no localStorage). GA4 começa com Consent Mode v2 negado; o AdSense só é carregado depois que o visitante aceita. Tudo apenas em produção
 
 ## Estrutura do Projeto
 

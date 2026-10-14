@@ -22,6 +22,33 @@
     <link rel="stylesheet" href="/css/pico.min.css">
     <link rel="stylesheet" href="/css/chroma.css">
     <link rel="stylesheet" href="/css/style.css">
+    {{if eq env "production"}}
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KMK5CKL8N9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Consent Mode v2: nada é gravado até o visitante aceitar no aviso de cookies
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+      try {
+        if (localStorage.getItem('cookie-consent') === 'granted') {
+          gtag('consent', 'update', {
+            analytics_storage: 'granted',
+            ad_storage: 'granted',
+            ad_user_data: 'granted',
+            ad_personalization: 'granted'
+          });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', 'G-KMK5CKL8N9');
+    </script>
+    {{end}}
   </head>
   <body>
     {{if ne (hasString current "cv") true}}
@@ -66,19 +93,18 @@
       {{ yield }}
     </main>
     {{if ne (hasString current "cv") true}}
-    <aside class="container anuncio">
+    {{if eq env "production"}}
+    <!-- AdSense: carregado pelo site.js só depois que o visitante aceita os cookies -->
+    <aside class="container anuncio" hidden>
       <small>anúncio</small>
-      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
       <!-- George Site -->
       <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-7444396631758040"
            data-ad-slot="9531772347"
            data-ad-format="auto"></ins>
-      <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
     </aside>
+    {{end}}
     <footer class="site-footer">
       <div class="container">
         <nav class="social" aria-label="Redes sociais">
@@ -92,11 +118,19 @@
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
           </a>
         </nav>
-        <small>&copy; George Moura - {{year}}</small>
+        <small>&copy; George Moura - {{year}}{{if eq env "production"}} · <a href="#" class="cookie-settings">Preferências de cookies</a>{{end}}</small>
       </div>
     </footer>
     {{end}}
-    {{/* TODO: analytics. O ga.js (Universal Analytics) foi desativado pelo Google; avaliar GA4 ou GoatCounter/Plausible/Umami. */}}
+    {{if eq env "production"}}
+    <aside class="cookie-banner" role="region" aria-label="Aviso de cookies" hidden>
+      <p>Este site usa cookies do Google Analytics, para entender como as páginas são visitadas, e do Google AdSense, para exibir anúncios. Os cookies só são gravados e os anúncios só são carregados se você aceitar.</p>
+      <div class="cookie-actions">
+        <button type="button" class="secondary outline" data-consent="denied">Recusar</button>
+        <button type="button" data-consent="granted">Aceitar</button>
+      </div>
+    </aside>
+    {{end}}
     <script src="/js/site.js"></script>
   </body>
 </html>

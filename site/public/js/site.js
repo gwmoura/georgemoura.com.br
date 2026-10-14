@@ -46,3 +46,55 @@
   dialog.addEventListener('click', function () { dialog.close(); });
   dialog.addEventListener('close', function () { big.removeAttribute('src'); });
 })();
+
+// Aviso de cookies: guarda a escolha, atualiza o Consent Mode do GA4 e só
+// carrega o AdSense depois que o visitante aceita
+(function () {
+  var banner = document.querySelector('.cookie-banner');
+  if (!banner) return;
+
+  function saved() {
+    try { return localStorage.getItem('cookie-consent'); } catch (e) { return null; }
+  }
+
+  var adsLoaded = false;
+  function loadAds() {
+    var ad = document.querySelector('.anuncio');
+    if (!ad || adsLoaded) return;
+    adsLoaded = true;
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7444396631758040';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+    ad.hidden = false;
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+  }
+
+  banner.querySelectorAll('[data-consent]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var choice = button.getAttribute('data-consent');
+      try { localStorage.setItem('cookie-consent', choice); } catch (e) {}
+      if (window.gtag) {
+        gtag('consent', 'update', {
+          analytics_storage: choice,
+          ad_storage: choice,
+          ad_user_data: choice,
+          ad_personalization: choice
+        });
+      }
+      if (choice === 'granted') loadAds();
+      banner.hidden = true;
+    });
+  });
+
+  document.querySelectorAll('.cookie-settings').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      banner.hidden = false;
+    });
+  });
+
+  if (saved() === 'granted') loadAds();
+  else if (!saved()) banner.hidden = false;
+})();

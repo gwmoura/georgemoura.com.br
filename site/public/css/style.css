@@ -195,3 +195,24 @@ dialog.lightbox .lightbox-close {
   border-radius: var(--pico-border-radius);
   border: 1px solid var(--pico-muted-border-color);
 }
+
+/* Aviso de cookies */
+.cookie-banner {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 10;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
+  background: var(--pico-card-background-color);
+  border: 1px solid var(--pico-muted-border-color);
+  border-radius: var(--pico-border-radius);
+  box-shadow: var(--pico-card-box-shadow);
+}
+.cookie-banner[hidden] { display: none; }
+.cookie-banner p { margin-bottom: .75rem; font-size: .9rem; }
+.cookie-actions { display: flex; gap: .5rem; justify-content: flex-end; }
+.cookie-actions button { margin: 0; padding: .4rem 1rem; }
+@media print { .cookie-banner { display: none !important; } }
