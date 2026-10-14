@@ -33,16 +33,8 @@ var Host = template.FuncMap{"host": func() string { return domain }}
 // Env - app env
 var Env = template.FuncMap{"env": func() string { return env() }}
 
-var inProduction = template.FuncMap{"inProduction": func() bool { return env() == "production" }}
-
-// GaAccount - return Google Analytics ID
-var GaAccount = template.FuncMap{"gaAccount": func() string {
-	if env() == "production" {
-		return "UA-38960674-1"
-	}
-
-	return ""
-}}
+// Year - current year, used in the footer
+var Year = template.FuncMap{"year": func() int { return time.Now().Year() }}
 
 func env() string {
 	return os.Getenv("ENV")
@@ -69,7 +61,7 @@ func setUp() {
 	MyInstance.Use(render.Renderer(render.Options{
 		Layout:     "layout",
 		Extensions: []string{".tmpl", ".html"},
-		Funcs:      []template.FuncMap{AssetsHost, Host, hasString, Env, GaAccount, inProduction},
+		Funcs:      []template.FuncMap{AssetsHost, Host, hasString, Env, Year},
 	}))
 	MyInstance.Use(func(res http.ResponseWriter, req *http.Request) {
 		res.Header().Set("Cache-Control", "public, max-age=3600")
@@ -143,8 +135,9 @@ func index(params martini.Params, r render.Render) {
 		Title       string
 		Description string
 		Keywords    string
+		Link        string
 		Posts       []Post
-	}{posts[0].Title, posts[0].Description, posts[0].Keywords, getPosts()}
+	}{posts[0].Title, posts[0].Description, posts[0].Keywords, "/", getPosts()}
 	r.HTML(200, "home", s)
 }
 
@@ -153,8 +146,9 @@ func blog(params martini.Params, r render.Render) {
 		Title       string
 		Description string
 		Keywords    string
+		Link        string
 		Posts       []Post
-	}{posts[0].Title, posts[0].Description, posts[0].Keywords, getPosts()}
+	}{posts[0].Title, posts[0].Description, posts[0].Keywords, "/blog", getPosts()}
 
 	r.HTML(200, "blog", s)
 }
@@ -164,7 +158,8 @@ func contatos(params martini.Params, r render.Render) {
 		Title       string
 		Description string
 		Keywords    string
-	}{posts[0].Title, posts[0].Description, posts[0].Keywords}
+		Link        string
+	}{posts[0].Title, posts[0].Description, posts[0].Keywords, "/contatos"}
 	r.HTML(200, "contact", s)
 }
 
@@ -186,7 +181,8 @@ func natal(params martini.Params, r render.Render) {
 		Title       string
 		Description string
 		Keywords    string
-	}{"Página para o natal da família", "Página para o natal da família", "natal, família"}
+		Link        string
+	}{"Página para o natal da família", "Página para o natal da família", "natal, família", "/natal"}
 	r.HTML(200, "natal", s)
 }
 
@@ -231,9 +227,11 @@ func getPost(params martini.Params, r render.Render) {
 func showCVPage(params martini.Params, r render.Render) {
 	locale := params["locale"]
 	templateName := "cv/br"
+	link := "/curriculo"
 	fmt.Println("Locale", locale)
 	if locale != "" {
 		templateName = "cv/" + locale
+		link += "/" + locale
 	}
 	yearsOld := age(time.Date(1990, 5, 14, 0, 0, 0, 0, time.UTC))
 
@@ -242,7 +240,8 @@ func showCVPage(params martini.Params, r render.Render) {
 		Title       string
 		Description string
 		Keywords    string
-	}{yearsOld, posts[1].Title, posts[1].Description, posts[1].Keywords}
+		Link        string
+	}{yearsOld, posts[1].Title, posts[1].Description, posts[1].Keywords, link}
 	r.HTML(200, templateName, s)
 }
 
@@ -251,7 +250,8 @@ func euli(params martini.Params, r render.Render) {
 		Title       string
 		Description string
 		Keywords    string
-	}{posts[0].Title, posts[0].Description, posts[0].Keywords}
+		Link        string
+	}{posts[0].Title, posts[0].Description, posts[0].Keywords, "/euli"}
 
 	r.HTML(200, "euli", s)
 }

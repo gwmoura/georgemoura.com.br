@@ -1,41 +1,48 @@
-$( document ).ready(function(){
-  $(".button-collapse").sideNav();
-  $('.materialboxed').materialbox();
-  $('.carousel').carousel();
-  
-  // Dark Mode Toggle
-  const toggleDarkMode = function() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    
-    // Atualiza ícone
-    const icon = newTheme === 'dark' ? 'brightness_7' : 'brightness_4';
-    $('#dark-mode-toggle i, #dark-mode-toggle-mobile i').text(icon);
-  };
-  
-  // Event listeners para ambos os botões (desktop e mobile)
-  $('#dark-mode-toggle, #dark-mode-toggle-mobile').on('click', toggleDarkMode);
-  
-  // Carrega preferência salva ou detecta preferência do sistema
-  const savedTheme = localStorage.getItem('theme');
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-  
-  if (theme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    $('#dark-mode-toggle i, #dark-mode-toggle-mobile i').text('brightness_7');
+// Dark Mode Toggle (o tema inicial é aplicado por um script inline no <head>)
+(function () {
+  var root = document.documentElement;
+  var media = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function saved() {
+    try { return localStorage.getItem('theme'); } catch (e) { return null; }
   }
-  
-  // Escuta mudanças na preferência do sistema
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-    if (!localStorage.getItem('theme')) {
-      const newTheme = e.matches ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      const icon = newTheme === 'dark' ? 'brightness_7' : 'brightness_4';
-      $('#dark-mode-toggle i, #dark-mode-toggle-mobile i').text(icon);
-    }
+
+  document.querySelectorAll('.theme-toggle').forEach(function (el) {
+    el.addEventListener('click', function (event) {
+      event.preventDefault();
+      var theme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', theme);
+      try { localStorage.setItem('theme', theme); } catch (e) {}
+    });
   });
-})
+
+  // Segue a preferência do sistema enquanto o usuário não escolher um tema
+  media.addEventListener('change', function (e) {
+    if (!saved()) root.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+  });
+})();
+
+// Lightbox: imagens com class="zoom" abrem ampliadas num <dialog> compartilhado
+(function () {
+  var images = document.querySelectorAll('img.zoom');
+  if (!images.length || !window.HTMLDialogElement) return;
+
+  var dialog = document.createElement('dialog');
+  dialog.className = 'lightbox';
+  dialog.innerHTML = '<button type="button" class="lightbox-close" aria-label="Fechar">&times;</button><img alt="">';
+  document.body.appendChild(dialog);
+  var big = dialog.querySelector('img');
+
+  images.forEach(function (img) {
+    img.addEventListener('click', function (event) {
+      event.preventDefault();
+      big.src = img.currentSrc || img.src;
+      big.alt = img.alt;
+      dialog.showModal();
+    });
+  });
+
+  // Clique em qualquer lugar (imagem, fundo ou botão) fecha; Esc é nativo do <dialog>
+  dialog.addEventListener('click', function () { dialog.close(); });
+  dialog.addEventListener('close', function () { big.removeAttribute('src'); });
+})();

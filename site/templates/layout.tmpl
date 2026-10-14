@@ -2,116 +2,106 @@
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8">
-    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
     <meta name="description" content="{{.Description}}">
     <meta name="keywords" content="HTML,CSS,XML,JavaScript,PHP,Ruby,Python,Go,Java,{{.Keywords}}">
     <meta name="author" content="George Moura">
     <title>George Moura | {{.Title}}</title>
     <link rel="icon" href="//www.gravatar.com/avatar/563562a5c924aac52c903ddf4fd80fa8">
-    <link rel="canonical" href="//georgemoura.com.br/" />
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css"  media="screen,projection"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="canonical" href="https://{{host}}{{.Link}}">
+    <script>
+      // Aplica o tema antes da renderização para evitar o "flash" de tema errado
+      (function () {
+        var theme = null;
+        try { theme = localStorage.getItem('theme'); } catch (e) {}
+        if (!theme) theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+    <link rel="stylesheet" href="/css/pico.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/monokai-sublime.min.css">
-    <link type="text/css" rel="stylesheet" media="all" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
     {{if ne (hasString current "cv") true}}
-    <nav class="cyan darken-4">
-      <div class="nav-wrapper">
-        <a href="/" title="George Moura" class="brand-logo">George Moura</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
+    <header class="site-header">
+      <nav class="container">
+        <ul>
+          <li><a href="/" class="brand" title="George Moura">George Moura</a></li>
+        </ul>
+        <ul class="nav-desktop">
           <li><a href="/" title="Início">Início</a></li>
           <li><a href="/blog" title="Blog">Blog</a></li>
           <li><a href="/contatos" title="Contatos">Contatos</a></li>
           <li><a href="/curriculo" target="_blank" title="Currículo">Currículo</a></li>
           <li><a href="/euli" target="_blank" title="EuLi">Eu Li</a></li>
           <li><a href="//feeds.feedburner.com/georgemoura" title="Assinar Posts">RSS</a></li>
-          <li><a id="dark-mode-toggle" title="Alternar tema escuro/claro"><i class="material-icons">brightness_4</i></a></li>
+          <li>
+            <button type="button" class="theme-toggle" title="Alternar tema escuro/claro" aria-label="Alternar tema escuro/claro">
+              <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+              <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            </button>
+          </li>
         </ul>
-        <ul class="side-nav" id="mobile-demo">
-          <li><a href="/" title="Início">Início</a></li>
-          <li><a href="/blog" title="Blog">Blog</a></li>
-          <li><a href="/contatos" title="Contatos">Contatos</a></li>
-          <li><a href="/curriculo" target="_blank" title="Currículo">Currículo</a></li>
-          <li><a href="/euli" target="_blank" title="EuLi">Eu Li</a></li>
-          <li><a href="//feeds.feedburner.com/georgemoura" title="Assinar Posts">RSS</a></li>
-          <li><a id="dark-mode-toggle-mobile" title="Alternar tema escuro/claro"><i class="material-icons">brightness_4</i> Tema Escuro</a></li>
-        </ul>
-      </div>
-    </nav>
-    <div class="container">
-      {{end}}
-        <!-- Render the current template here -->
-        {{ yield }}
-      {{if ne (hasString current "cv") true}}
-      <div>
-        <div class="anuncio">
-          anúncio
-          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <!-- George Site -->
-          <ins class="adsbygoogle"
-               style="display:block"
-               data-ad-client="ca-pub-7444396631758040"
-               data-ad-slot="9531772347"
-               data-ad-format="auto"></ins>
-          <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-        </div>
-      </div>
-    </div><!--/.container-->
-    <!--disqus-->
-    <div id="disqus_thread"></div>
-    <!--/disqus-->
-    <footer class="page-footer cyan darken-4">
-      <div class="container-footer">
-        <center>
-          <a href="//www.facebook.com/gwmoura" target="_blank"><img src="/images/icon-facebook.png"  alt="Facebook"  /></a>
-          <a href="//github.com/gwmoura" target="_blank"><img src="/images/icon-github.png"  alt="Github"  /></a>
-          <a href="//www.twitter.com/georgemoura" target="_blank"><img src="/images/icon-twitter.png"  alt="Twitter"  /></a>
-        </center>
-      </div>
-      <div class="footer-copyright">
-        <div class="container-footer">
-          <center>&copy; George Moura - 2015</center>
-        </div>
+        <details class="dropdown nav-mobile">
+          <summary aria-label="Menu">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </summary>
+          <ul dir="rtl">
+            <li><a href="/" title="Início">Início</a></li>
+            <li><a href="/blog" title="Blog">Blog</a></li>
+            <li><a href="/contatos" title="Contatos">Contatos</a></li>
+            <li><a href="/curriculo" target="_blank" title="Currículo">Currículo</a></li>
+            <li><a href="/euli" target="_blank" title="EuLi">Eu Li</a></li>
+            <li><a href="//feeds.feedburner.com/georgemoura" title="Assinar Posts">RSS</a></li>
+            <li><a href="#" class="theme-toggle" role="button" title="Alternar tema escuro/claro">Alternar tema</a></li>
+          </ul>
+        </details>
+      </nav>
+    </header>
+    {{end}}
+    <main class="container">
+      <!-- Render the current template here -->
+      {{ yield }}
+    </main>
+    {{if ne (hasString current "cv") true}}
+    <aside class="container anuncio">
+      <small>anúncio</small>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- George Site -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7444396631758040"
+           data-ad-slot="9531772347"
+           data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </aside>
+    <footer class="site-footer">
+      <div class="container">
+        <nav class="social" aria-label="Redes sociais">
+          <a href="//www.facebook.com/gwmoura" target="_blank" rel="noopener" title="Facebook" aria-label="Facebook">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="//github.com/gwmoura" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <a href="//www.twitter.com/georgemoura" target="_blank" rel="noopener" title="X (Twitter)" aria-label="X (Twitter)">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+          </a>
+        </nav>
+        <small>&copy; George Moura - {{year}}</small>
       </div>
     </footer>
     {{end}}
-    {{if inProduction }}
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', '{{gaAccount}}']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-    {{end}}
-    <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    {{/* TODO: analytics. O ga.js (Universal Analytics) foi desativado pelo Google; avaliar GA4 ou GoatCounter/Plausible/Umami. */}}
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/languages/dockerfile.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/languages/yaml.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/languages/json.min.js"></script>
-    <script type="text/javascript" src="/js/site.js"></script>
+    <script src="/js/site.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <!--<script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES * * */
-        var disqus_shortname = 'georgemourablog';
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript> -->
   </body>
 </html>

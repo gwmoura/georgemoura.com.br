@@ -42,21 +42,21 @@
     <h4>Setup Inicial de um micro serviço</h4>
     <p>
       Deixe-me explicar melhor isso. O setup inicial de um projeto numa arquitetura em micro serviços, é no mínimo essa:<br/>
-      <ul class="collection">
-        <li class="collection-item">Separar responsabilidades em serviços</li>
-        <li class="collection-item">Codificar a estrutura de cada serviço</li>
-        <li class="collection-item">
-          <ul class="collection">
-            <li class="collection-item">Banco de dados</li>
-            <li class="collection-item">Autenticação</li>
-            <li class="collection-item">Controle de acesso</li>
-            <li class="collection-item">Regras de negócio</li>
+      <ul>
+        <li>Separar responsabilidades em serviços</li>
+        <li>Codificar a estrutura de cada serviço</li>
+        <li>
+          <ul>
+            <li>Banco de dados</li>
+            <li>Autenticação</li>
+            <li>Controle de acesso</li>
+            <li>Regras de negócio</li>
           </ul>
         </li>
-        <li class="collection-item">Deploy de cada serviço</li>
-        <li class="collection-item">Service discovery</li>
-        <li class="collection-item">DNS</li>
-        <li class="collection-item">Testes de integração - Você precisa garantir que as coisas funcionem bem juntas</li>
+        <li>Deploy de cada serviço</li>
+        <li>Service discovery</li>
+        <li>DNS</li>
+        <li>Testes de integração - Você precisa garantir que as coisas funcionem bem juntas</li>
       </ul>
     </p>
 
@@ -65,17 +65,17 @@
       Começando com um monolito o setup inicial seria parecido com o de um micro serviço, porém, você não precisa se preocupar com os outros problemas que uma arquitetura em micro serviços exige. Além de fazer isso apenas uma única vez. O setup inicial seria +/- esse:
     </p>
 
-    <ul class="collection">
-      <li class="collection-item">Codificar a estrutura do sistema</li>
-      <li class="collection-item">
-        <ul class="collection">
-          <li class="collection-item">Banco de dados</li>
-          <li class="collection-item">Autenticação</li>
-          <li class="collection-item">Controle de acesso</li>
-          <li class="collection-item">Regras de negócio</li>
+    <ul>
+      <li>Codificar a estrutura do sistema</li>
+      <li>
+        <ul>
+          <li>Banco de dados</li>
+          <li>Autenticação</li>
+          <li>Controle de acesso</li>
+          <li>Regras de negócio</li>
         </ul>
       </li>
-      <li class="collection-item">Testes</li>
+      <li>Testes</li>
     </ul>
 
     <p>Se sua preocupação é escalabilidade e separação de responsabilidades, você pode fazer isso usando bons padrões de projeto. Além disso, uma prática adotada por alguns projetos é separar o seu software em módulos (isso pode facilitar a extração para um micro serviço, no futuro). Hoje em dia a grande maioria das linguagens dão suporte à instalação de bibliotecas externas ou internas (Isso mesmo, você pode criar libs próprias para serem usadas em projetos particulares). Por exemplo, ruby possui as gems, node possui os pacotes npm, php possui os pacotes do composer, java possui os pacotes do Maven e por aí vai... Como programador é importante que você conheça como esses pacotes são feitos e como você pode criar essas bibliotecas "instaláveis".</p>

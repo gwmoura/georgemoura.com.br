@@ -1,15 +1,13 @@
-<div class="posts">
+<section class="posts">
+  <h2>Blog</h2>
   {{range .Posts}}
-    <div class="post card-panel">
-      <h5><a class="collection-item" href="{{.Link}}" title="{{.Title}}">{{.Title}}</a></h5>
-      <div class="date">
-        {{.CreatedAt}}
-      </div>
-      <div class="description">
-        {{.Description}}
-        <br/>
-        <a href="{{.Link}}" title="Leia mais sobre {{.Title}}">leia mais...</a>
-      </div>
-    </div>
+    <article class="post">
+      <header>
+        <h3><a href="{{.Link}}" title="{{.Title}}">{{.Title}}</a></h3>
+        <small class="date">{{.CreatedAt}}</small>
+      </header>
+      <p class="description">{{.Description}}</p>
+      <a href="{{.Link}}" title="Leia mais sobre {{.Title}}">Leia mais →</a>
+    </article>
   {{end}}
-</div>
+</section>

@@ -1,8 +1,9 @@
-<div class="posts">
-  <ul class="collection with-header">
-  <li class="collection-header"><h4>Posts Recentes</h4></li>
+<section class="posts">
+  <h2>Posts recentes</h2>
+  <ul class="post-list">
   {{range .Posts}}
-    <li><a class="collection-item" href="{{.Link}}" title="{{.Title}}">{{.Title}}</a></li>
+    <li><a href="{{.Link}}" title="{{.Title}}">{{.Title}}</a></li>
   {{end}}
   </ul>
-</div>
+  <p><a href="/blog">Ver todos os posts →</a></p>
+</section>
