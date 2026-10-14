@@ -1,6 +1,15 @@
 package main
 
-import "time"
+import (
+	"html/template"
+	"time"
+)
+
+// PostPage é o post já renderizado, com o código destacado, dentro do layout.
+type PostPage struct {
+	Post
+	Content template.HTML
+}
 
 // Post - basic struct for content of site
 type Post struct {

@@ -218,7 +218,12 @@ func getPostByName(name string) Post {
 func getPost(params martini.Params, r render.Render) {
 	post := getPostByName(params["postname"])
 	if post.FriendlyId != "" {
-		r.HTML(200, "posts/"+post.FriendlyId, post)
+		content, err := renderPost(r.Template(), post)
+		if err != nil {
+			r.Text(500, err.Error())
+			return
+		}
+		r.HTML(200, "post", PostPage{Post: post, Content: content})
 	} else {
 		r.Text(404, "Not found")
 	}
