@@ -4,7 +4,7 @@
     <article class="post">
       <header>
         <h3><a href="{{.Link}}" title="{{.Title}}">{{.Title}}</a></h3>
-        <small class="date">{{.CreatedAt}}</small>
+        <small class="date"><time datetime="{{.CreatedAt.Format "2006-01-02"}}">{{.CreatedAt.Format "02/01/2006"}}</time></small>
       </header>
       <p class="description">{{.Description}}</p>
       <a href="{{.Link}}" title="Leia mais sobre {{.Title}}">Leia mais →</a>

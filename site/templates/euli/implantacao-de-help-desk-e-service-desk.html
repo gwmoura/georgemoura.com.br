@@ -4,7 +4,7 @@
     <div class="entry-meta">
       <span class="date">
         <a href="{{ .Link }}" title="Link permanente para {{ .Title }}" rel="bookmark">
-          <time class="entry-date" datetime="{{ .CreatedAt }}">{{ .CreatedAt }}</time>
+          <time class="entry-date" datetime="{{ .CreatedAt.Format "2006-01-02" }}">{{ .CreatedAt.Format "02/01/2006" }}</time>
         </a>
       </span>
     </div><!-- .entry-meta -->
