@@ -47,7 +47,7 @@ var feed = &feeds.Feed{
 	Title:       "George Moura Blog",
 	Link:        &feeds.Link{Href: "//" + domain},
 	Description: "Programador Web e Mobile ",
-	Author:      &feeds.Author{authorName, authorEmail},
+	Author:      &feeds.Author{Name: authorName, Email: authorEmail},
 	Created:     time.Now(),
 }
 
@@ -77,7 +77,7 @@ func setUp() {
 				Title:       post.Title,
 				Link:        &feeds.Link{Href: "http://" + domain + "" + post.Link},
 				Description: post.Description,
-				Author:      &feeds.Author{authorName, authorEmail},
+				Author:      &feeds.Author{Name: authorName, Email: authorEmail},
 				Created:     post.CreatedAt,
 			})
 	}

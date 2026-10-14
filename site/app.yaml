@@ -11,9 +11,6 @@ handlers:
 - url: /js
   static_dir: public/js/
 
-- url: /font
-  static_dir: public/font/
-
 - url: /images
   static_dir: public/images/
 
