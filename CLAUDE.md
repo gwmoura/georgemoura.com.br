@@ -8,7 +8,7 @@ Este é um site pessoal e blog desenvolvido por George Moura. O projeto é uma a
 
 ### Backend
 - **Linguagem**: Go 1.23+
-- **Runtime**: Google App Engine (`go123`)
+- **Runtime**: Google App Engine (`go127`)
 - **Framework Web**: Martini (`github.com/go-martini/martini`)
 - **Renderização**: `martini-contrib/render` com templates HTML
 - **Compressão**: `martini-contrib/gzip`

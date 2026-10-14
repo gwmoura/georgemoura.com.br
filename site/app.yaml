@@ -1,5 +1,5 @@
 # application: george-moura-site
-runtime: go123
+runtime: go127
 
 default_expiration: "30m"
 
