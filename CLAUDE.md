@@ -127,7 +127,8 @@ GET /feed                # RSS Feed
 GET /contatos            # Página de contatos
 GET /ferramentas         # Lista de ferramentas (array `tools` em tools.go)
 GET /ferramentas/meu-ip  # Mostra o IP público do visitante (Cache-Control: no-store)
-GET /ferramentas/:tool   # Demais ferramentas: entrada em `tools` + template `ferramentas/{FriendlyId}`
+GET /ferramentas/:tool   # Demais ferramentas: entrada em `tools` + template `ferramentas/{FriendlyId}.tmpl`
+                         # + script `public/js/ferramentas/{FriendlyId}.js` (rodam no navegador)
 GET /euli                # Página de livros
 GET /euli/:bookname      # Livro específico
 ```
@@ -189,7 +190,7 @@ make deploy              # Deploy completo (imagens + código)
 ## Assets Estáticos
 
 - **CSS**: Pico CSS + chroma.css (gerado com `go generate`) + style.css customizado com variáveis `--pico-*`
-- **JavaScript**: site.js (toggle de tema e lightbox), sem dependências
+- **JavaScript**: site.js (tema, lightbox, cookies e botão `data-copy`) e um script por ferramenta em `public/js/ferramentas/`, sem dependências
 - **CDN**: Google Cloud Storage para imagens
 - **Fontes**: fontes do sistema
 

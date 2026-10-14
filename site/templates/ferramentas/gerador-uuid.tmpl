@@ -1,0 +1,37 @@
+<section class="ferramenta">
+  <nav aria-label="breadcrumb">
+    <ul>
+      <li><a href="/ferramentas">Ferramentas</a></li>
+      <li>{{.Title}}</li>
+    </ul>
+  </nav>
+  <h2>{{.Title}}</h2>
+  <p>{{.Description}}</p>
+  <form class="uuid-generator">
+    <div class="grid">
+      <label>
+        Versão
+        <select name="version">
+          <option value="4">v4 (aleatório)</option>
+          <option value="7">v7 (ordenado pelo tempo)</option>
+        </select>
+      </label>
+      <label>
+        Quantidade
+        <input type="number" name="quantity" min="1" max="500" value="1">
+      </label>
+    </div>
+    <fieldset>
+      <label><input type="checkbox" name="uppercase"> Letras maiúsculas</label>
+      <label><input type="checkbox" name="nohyphens"> Sem hífens</label>
+    </fieldset>
+    <div class="tool-actions">
+      <button type="submit">Gerar UUID</button>
+      <button type="button" class="secondary outline" data-copy="#uuids" hidden>Copiar</button>
+    </div>
+  </form>
+  <textarea id="uuids" rows="8" readonly spellcheck="false" aria-label="UUIDs gerados" hidden></textarea>
+  <p><small>O v4 é totalmente aleatório. O v7 começa com o horário em milissegundos, o que mantém os IDs em ordem de criação e é melhor para chaves primárias de banco.</small></p>
+  <noscript><p>Esta ferramenta precisa de JavaScript.</p></noscript>
+</section>
+<script src="/js/ferramentas/gerador-uuid.js"></script>

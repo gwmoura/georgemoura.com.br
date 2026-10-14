@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"strings"
 	"testing"
 )
@@ -88,5 +89,18 @@ func TestGeradorDeSenhas(t *testing.T) {
 	response := DoRequest("GET", "/ferramentas/gerador-de-senhas")
 	if !strings.Contains(response.Body.String(), `class="password-generator"`) {
 		t.Fatalf("Password generator page did not render the form")
+	}
+}
+
+func TestFerramentasScripts(t *testing.T) {
+	for _, tool := range tools {
+		script := "/js/ferramentas/" + tool.FriendlyId + ".js"
+		if _, err := os.Stat("public" + script); err != nil {
+			t.Fatalf("Script of tool %v not found: %v", tool.FriendlyId, err)
+		}
+		response := DoRequest("GET", tool.Link)
+		if !strings.Contains(response.Body.String(), `<script src="`+script+`">`) {
+			t.Fatalf("Page %v did not load %v", tool.Link, script)
+		}
 	}
 }

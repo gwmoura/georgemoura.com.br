@@ -1,0 +1,31 @@
+<section class="ferramenta">
+  <nav aria-label="breadcrumb">
+    <ul>
+      <li><a href="/ferramentas">Ferramentas</a></li>
+      <li>{{.Title}}</li>
+    </ul>
+  </nav>
+  <h2>{{.Title}}</h2>
+  <p>{{.Description}}</p>
+  <article class="tool-result">
+    <small>Timestamp atual</small>
+    <output class="result" id="agora"></output>
+    <button type="button" class="secondary outline" data-copy="#agora">Copiar</button>
+  </article>
+  <div class="grid">
+    <article>
+      <h3>Timestamp → data</h3>
+      <label for="epoch">Timestamp (segundos ou milissegundos)</label>
+      <input type="text" id="epoch" inputmode="numeric" autocomplete="off" placeholder="1760400000">
+      <dl class="tool-output" id="epoch-resultado" aria-live="polite"></dl>
+    </article>
+    <article>
+      <h3>Data → timestamp</h3>
+      <label for="data">Data e hora (no seu fuso: <span data-timezone></span>)</label>
+      <input type="datetime-local" id="data" step="1">
+      <dl class="tool-output" id="data-resultado" aria-live="polite"></dl>
+    </article>
+  </div>
+  <noscript><p>Esta ferramenta precisa de JavaScript.</p></noscript>
+</section>
+<script src="/js/ferramentas/timestamp.js"></script>

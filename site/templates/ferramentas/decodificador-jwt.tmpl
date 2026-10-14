@@ -1,0 +1,23 @@
+<section class="ferramenta">
+  <nav aria-label="breadcrumb">
+    <ul>
+      <li><a href="/ferramentas">Ferramentas</a></li>
+      <li>{{.Title}}</li>
+    </ul>
+  </nav>
+  <h2>{{.Title}}</h2>
+  <p>{{.Description}}</p>
+  <label for="jwt">Token JWT</label>
+  <textarea id="jwt" rows="5" spellcheck="false" autocomplete="off" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." aria-describedby="jwt-status"></textarea>
+  <small id="jwt-status" aria-live="polite"></small>
+  <div class="jwt-parts" hidden>
+    <h3>Header</h3>
+    <pre><code id="jwt-header"></code></pre>
+    <h3>Payload</h3>
+    <pre><code id="jwt-payload"></code></pre>
+    <dl class="tool-output" id="jwt-datas"></dl>
+  </div>
+  <p><small>A assinatura <strong>não</strong> é verificada: isso exige a chave secreta ou pública de quem emitiu o token. A decodificação acontece toda no seu navegador e o token não é enviado a lugar nenhum.</small></p>
+  <noscript><p>Esta ferramenta precisa de JavaScript.</p></noscript>
+</section>
+<script src="/js/ferramentas/decodificador-jwt.js"></script>

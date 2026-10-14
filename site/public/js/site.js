@@ -99,93 +99,18 @@
   else if (!saved()) banner.hidden = false;
 })();
 
-// Botões com data-copy="#seletor" copiam o texto do elemento indicado
+// Botões com data-copy="#seletor" copiam o texto (ou o value, em campos) do elemento indicado
 (function () {
   document.querySelectorAll('[data-copy]').forEach(function (button) {
     var target = document.querySelector(button.getAttribute('data-copy'));
     if (!target || !navigator.clipboard) { button.hidden = true; return; }
     var label = button.textContent;
     button.addEventListener('click', function () {
-      navigator.clipboard.writeText(target.textContent.trim()).then(function () {
+      var text = 'value' in target ? target.value : target.textContent;
+      navigator.clipboard.writeText(text.trim()).then(function () {
         button.textContent = 'Copiado!';
         setTimeout(function () { button.textContent = label; }, 2000);
       });
     });
-  });
-})();
-
-// Meu IP: cada caixa consulta um endpoint que só responde por IPv4 ou só por
-// IPv6, para mostrar os dois endereços mesmo que o servidor tenha visto apenas um
-(function () {
-  document.querySelectorAll('[data-ip-lookup]').forEach(function (box) {
-    var output = box.querySelector('.ip');
-    var button = box.querySelector('[data-copy]');
-
-    function unavailable() {
-      if (output.textContent.trim() !== 'Buscando…') return;
-      output.textContent = 'Não disponível';
-      output.classList.add('unavailable');
-      if (button) button.hidden = true;
-    }
-
-    if (!window.fetch) return unavailable();
-    fetch(box.getAttribute('data-ip-lookup'), { cache: 'no-store' })
-      .then(function (res) { return res.ok ? res.json() : Promise.reject(); })
-      .then(function (data) {
-        output.textContent = data.ip;
-        output.classList.remove('unavailable');
-        if (button && navigator.clipboard) button.hidden = false;
-      })
-      .catch(unavailable);
-  });
-})();
-
-// Gerador de senhas: usa crypto.getRandomValues, tudo acontece no navegador.
-// Sempre tem minúscula, maiúscula e número (e símbolo, se marcado).
-(function () {
-  var form = document.querySelector('.password-generator');
-  if (!form || !window.crypto || !crypto.getRandomValues) return;
-
-  var groups = {
-    lower: 'abcdefghijklmnopqrstuvwxyz',
-    upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-    digits: '0123456789',
-    symbols: '!@#$%&*()-_=+[]{};:,.?/'
-  };
-  var output = document.getElementById('senha');
-  var copy = document.querySelector('[data-copy="#senha"]');
-  var lengthValue = form.querySelector('[data-length-value]');
-
-  // Número aleatório em [0, max) sem viés de módulo
-  function randomInt(max) {
-    var limit = Math.floor(0x100000000 / max) * max;
-    var buf = new Uint32Array(1);
-    do { crypto.getRandomValues(buf); } while (buf[0] >= limit);
-    return buf[0] % max;
-  }
-
-  function generate(length, sets) {
-    var chars = sets.join('');
-    var password;
-    // Sorteia de novo até ter ao menos um caractere de cada grupo escolhido
-    do {
-      password = '';
-      for (var i = 0; i < length; i++) password += chars[randomInt(chars.length)];
-    } while (!sets.every(function (set) {
-      return password.split('').some(function (c) { return set.indexOf(c) !== -1; });
-    }));
-    return password;
-  }
-
-  form.tamanho.addEventListener('input', function () {
-    lengthValue.textContent = form.tamanho.value;
-  });
-
-  form.addEventListener('submit', function (event) {
-    event.preventDefault();
-    var sets = [groups.lower, groups.upper, groups.digits];
-    if (form.symbols.checked) sets.push(groups.symbols);
-    output.textContent = generate(parseInt(form.tamanho.value, 10), sets);
-    if (copy && navigator.clipboard) copy.hidden = false;
   });
 })();

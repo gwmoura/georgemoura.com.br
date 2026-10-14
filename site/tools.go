@@ -33,6 +33,41 @@ var tools = []Tool{
 		Link:        "/ferramentas/gerador-de-senhas",
 		FriendlyId:  "gerador-de-senhas",
 	},
+	{
+		Title:       "Formatador de JSON",
+		Description: "Formate, valide e minifique JSON online. Mostra a linha e a coluna do erro quando o JSON é inválido.",
+		Keywords:    "json,formatador json,validador json,json formatter,minificar json",
+		Link:        "/ferramentas/formatador-json",
+		FriendlyId:  "formatador-json",
+	},
+	{
+		Title:       "Gerador e validador de CPF e CNPJ",
+		Description: "Gere CPF e CNPJ válidos para testes e valide documentos, inclusive o novo CNPJ alfanumérico.",
+		Keywords:    "cpf,cnpj,gerador de cpf,gerador de cnpj,validar cpf,validar cnpj,cnpj alfanumerico",
+		Link:        "/ferramentas/cpf-cnpj",
+		FriendlyId:  "cpf-cnpj",
+	},
+	{
+		Title:       "Conversor de timestamp Unix",
+		Description: "Converta timestamp Unix (epoch) em data e data em timestamp, em segundos ou milissegundos.",
+		Keywords:    "timestamp,unix timestamp,epoch,conversor epoch,data,unix time",
+		Link:        "/ferramentas/timestamp",
+		FriendlyId:  "timestamp",
+	},
+	{
+		Title:       "Gerador de UUID",
+		Description: "Gere UUIDs v4 (aleatórios) e v7 (ordenados pelo tempo), um ou vários de uma vez.",
+		Keywords:    "uuid,guid,gerador de uuid,uuid v4,uuid v7",
+		Link:        "/ferramentas/gerador-uuid",
+		FriendlyId:  "gerador-uuid",
+	},
+	{
+		Title:       "Decodificador de JWT",
+		Description: "Decodifique tokens JWT e veja o header, o payload e as datas de expiração. O token não sai do seu navegador.",
+		Keywords:    "jwt,decodificar jwt,jwt decoder,json web token,token",
+		Link:        "/ferramentas/decodificador-jwt",
+		FriendlyId:  "decodificador-jwt",
+	},
 }
 
 // IPPage - dados da página Meu IP

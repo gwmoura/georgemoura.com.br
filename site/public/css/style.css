@@ -218,10 +218,10 @@ dialog.lightbox .lightbox-close {
 @media print { .cookie-banner { display: none !important; } }
 
 /* Ferramentas */
-.ip-box { text-align: center; }
-.ip-box small { color: var(--pico-muted-color); }
-.ip-box .ip.unavailable { color: var(--pico-muted-color); font-weight: 400; }
-.ip-box .ip {
+.tool-result { text-align: center; }
+.tool-result small { color: var(--pico-muted-color); }
+.tool-result .result.unavailable { color: var(--pico-muted-color); font-weight: 400; }
+.tool-result .result {
   display: block;
   margin: .5rem 0 1rem;
   font-family: var(--pico-font-family-monospace);
@@ -229,3 +229,13 @@ dialog.lightbox .lightbox-close {
   font-weight: 700;
   overflow-wrap: anywhere;
 }
+.tool-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: center;
+}
+.tool-actions > * { width: auto; margin: 0; }
+.ferramenta textarea { font-family: var(--pico-font-family-monospace); font-size: .875rem; }
+.tool-output dt { color: var(--pico-muted-color); font-size: .875rem; }
+.tool-output dd { margin: 0 0 .5rem; font-family: var(--pico-font-family-monospace); overflow-wrap: anywhere; }

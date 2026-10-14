@@ -7,17 +7,18 @@
   </nav>
   <h2>{{.Title}}</h2>
   <p>{{.Description}}</p>
-  <div class="grid ip-grid">
-    <article class="ip-box" data-ip-lookup="https://api.ipify.org?format=json">
+  <div class="grid">
+    <article class="tool-result" data-ip-lookup="https://api.ipify.org?format=json">
       <small>IPv4</small>
-      <output class="ip" id="ipv4">{{if eq .Version "IPv4"}}{{.IP}}{{else}}Buscando…{{end}}</output>
+      <output class="result" id="ipv4">{{if eq .Version "IPv4"}}{{.IP}}{{else}}Buscando…{{end}}</output>
       <button type="button" class="secondary outline" data-copy="#ipv4">Copiar</button>
     </article>
-    <article class="ip-box" data-ip-lookup="https://api6.ipify.org?format=json">
+    <article class="tool-result" data-ip-lookup="https://api6.ipify.org?format=json">
       <small>IPv6</small>
-      <output class="ip" id="ipv6">{{if eq .Version "IPv6"}}{{.IP}}{{else}}Buscando…{{end}}</output>
+      <output class="result" id="ipv6">{{if eq .Version "IPv6"}}{{.IP}}{{else}}Buscando…{{end}}</output>
       <button type="button" class="secondary outline" data-copy="#ipv6">Copiar</button>
     </article>
   </div>
   <p><small>O servidor viu a sua conexão pelo {{.Version}} <code>{{.IP}}</code>. O outro endereço é consultado pelo seu navegador no <a href="https://www.ipify.org" target="_blank" rel="noopener">ipify</a>. Se você usa VPN ou proxy, aparecem os IPs deles.</small></p>
 </section>
+<script src="/js/ferramentas/meu-ip.js"></script>
