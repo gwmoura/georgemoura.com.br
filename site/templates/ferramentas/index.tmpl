@@ -1,0 +1,13 @@
+<section class="ferramentas">
+  <h2>Ferramentas</h2>
+  <p>Pequenos utilitários que uso no dia a dia.</p>
+  {{range .Tools}}
+    <article class="post">
+      <header>
+        <h3><a href="{{.Link}}" title="{{.Title}}">{{.Title}}</a></h3>
+      </header>
+      <p class="description">{{.Description}}</p>
+      <a href="{{.Link}}" title="Abrir {{.Title}}">Abrir →</a>
+    </article>
+  {{end}}
+</section>

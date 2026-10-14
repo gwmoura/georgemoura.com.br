@@ -95,6 +95,9 @@ func setRoutes() {
 	MyInstance.Get("/cv", showCVPage)
 	MyInstance.Get("/feed", pageFeed)
 	MyInstance.Get("/natal", natal)
+	MyInstance.Get("/ferramentas", ferramentas)
+	MyInstance.Get("/ferramentas/meu-ip", meuIP)
+	MyInstance.Get("/ferramentas/:toolname", ferramenta)
 	MyInstance.Get("/:postname", getPost)
 	MyInstance.Get("/.well-known/acme-challenge/:code", letsencrypt)
 	MyInstance.NotFound(func() string {

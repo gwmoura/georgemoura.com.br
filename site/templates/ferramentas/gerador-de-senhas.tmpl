@@ -1,0 +1,27 @@
+<section class="ferramenta">
+  <nav aria-label="breadcrumb">
+    <ul>
+      <li><a href="/ferramentas">Ferramentas</a></li>
+      <li>{{.Title}}</li>
+    </ul>
+  </nav>
+  <h2>{{.Title}}</h2>
+  <p>{{.Description}}</p>
+  <form class="password-generator">
+    <label>
+      Número de caracteres: <strong data-length-value>16</strong>
+      <input type="range" name="tamanho" min="4" max="64" value="16">
+    </label>
+    <label>
+      <input type="checkbox" name="symbols" role="switch" checked>
+      Incluir caracteres especiais (!@#$%…)
+    </label>
+    <button type="submit">Gerar senha</button>
+  </form>
+  <article class="ip-box" aria-live="polite">
+    <small>Sua senha</small>
+    <output class="ip" id="senha">Clique em "Gerar senha"</output>
+    <button type="button" class="secondary outline" data-copy="#senha" hidden>Copiar</button>
+  </article>
+  <noscript><p>Esta ferramenta precisa de JavaScript para gerar a senha no seu navegador.</p></noscript>
+</section>

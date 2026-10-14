@@ -37,6 +37,7 @@ Este é um site pessoal e blog desenvolvido por George Moura. O projeto é uma a
   ├── cmd/chromacss/     # Gerador do public/css/chroma.css (go generate)
   ├── database.go        # Array de posts (dados estáticos)
   ├── models.go          # Structs (Post, PostPage)
+  ├── tools.go           # Ferramentas: lista, handlers e detecção de IP
   ├── app.yaml           # Configuração do App Engine
   ├── cron.yaml          # Configuração de cron jobs
   ├── go.mod             # Dependências Go
@@ -124,6 +125,9 @@ GET /curriculo/:locale   # Currículo (pt-br ou en)
 GET /cv/:locale          # Alias para currículo
 GET /feed                # RSS Feed
 GET /contatos            # Página de contatos
+GET /ferramentas         # Lista de ferramentas (array `tools` em tools.go)
+GET /ferramentas/meu-ip  # Mostra o IP público do visitante (Cache-Control: no-store)
+GET /ferramentas/:tool   # Demais ferramentas: entrada em `tools` + template `ferramentas/{FriendlyId}`
 GET /euli                # Página de livros
 GET /euli/:bookname      # Livro específico
 ```
@@ -178,7 +182,7 @@ make deploy              # Deploy completo (imagens + código)
 
 ## Testes
 
-- Arquivos de testes: `/site/site_test.go` e `/site/highlight_test.go`
+- Arquivos de testes: `/site/site_test.go`, `/site/highlight_test.go` e `/site/tools_test.go`
 - Executar com: `make tests` ou `./scripts/run_tests.sh`
 - Testes devem cobrir handlers principais e funções auxiliares
 
