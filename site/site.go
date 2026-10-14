@@ -127,9 +127,12 @@ func start() {
 }
 
 func age(birthday time.Time) int {
-	now := time.Now()
+	return ageAt(birthday, time.Now())
+}
+
+func ageAt(birthday time.Time, now time.Time) int {
 	years := now.Year() - birthday.Year()
-	if now.YearDay() < birthday.YearDay() {
+	if now.Month() < birthday.Month() || (now.Month() == birthday.Month() && now.Day() < birthday.Day()) {
 		years--
 	}
 	return years
